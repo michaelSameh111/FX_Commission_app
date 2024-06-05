@@ -16,8 +16,10 @@ class MyApp extends StatelessWidget {
       builder: (BuildContext, Orientation, ScreenType) {
         return MaterialApp(
           //theme: ThemeData(useMaterial3: true),
-          home: SplashScreen(),
+          home: LoginScreen(),
           debugShowCheckedModeBanner: false,
+          color: Colors.red,
+          theme: ThemeData(),
         );
       },
     );
