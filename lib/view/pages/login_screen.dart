@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
+import 'package:fx_commission_app/view/pages/sign_up_screen.dart';
 
 import '../widgets/reusable_widgets.dart';
 
@@ -59,6 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
               width: double.infinity,
               padding: EdgeInsets.all(12.dp),
               decoration: BoxDecoration(
+                color: Colors.white,
                 border: Border.all(
                   color: const Color(0xff0095D0),
                 ),
@@ -109,7 +111,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     children: [
                       Checkbox(
                         side: const BorderSide(
-                            color: Color(0xffA2A2A2),
+                          color: Color(0xffA2A2A2),
                         ),
                         value: isChecked,
                         onChanged: (bool? value) {
@@ -127,6 +129,49 @@ class _LoginScreenState extends State<LoginScreen> {
                       )
                     ],
                   ),
+                  SizedBox(
+                    height: 2.h,
+                  ),
+                  Center(
+                    child: mainElevatedButton(
+                        text: 'Login',
+                        width: 35.w,
+                        height: 5.h,
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const LoginScreen()));
+                        }),
+                  ),
+                  SizedBox(
+                    height: 2.h,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Don\'t have an account ?',
+                        style: TextStyle(
+                          fontSize: 15.dp,
+                          color: Color(0xff646363),
+                        ),
+                      ),
+                      TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => SignUpScreen()));
+                          },
+                          child: Text(
+                            'Sign up',
+                            style: TextStyle(
+                                color: const Color(0xff0095D0),
+                                fontSize: 15.dp),
+                          ))
+                    ],
+                  )
                 ],
               ),
             )

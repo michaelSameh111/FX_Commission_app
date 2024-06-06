@@ -27,3 +27,29 @@ Widget defaultTextFormField(
                 TextStyle(color: const Color(0xff808080), fontSize: 15.dp)),
       ),
     );
+
+Widget mainElevatedButton({
+  double width = 35,
+  double height = 5,
+  String text = '',
+  final VoidCallback? onPressed,
+}) =>
+    SizedBox(
+      width: width,
+      height: height,
+      child: ElevatedButton(
+          style: ButtonStyle(
+            backgroundColor:
+                WidgetStateProperty.all<Color>(const Color(0xff0095D0)),
+            shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(5), // Set the border radius
+              ),
+            ),
+          ),
+          onPressed: onPressed,
+          child: Text(
+            text,
+            style: TextStyle(color: Colors.white, fontSize: 15.dp),
+          )),
+    );
