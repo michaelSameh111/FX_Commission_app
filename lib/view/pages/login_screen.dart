@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
+import 'package:fx_commission_app/view/pages/profile_screen/main_profile_screen.dart';
 import 'package:fx_commission_app/view/pages/sign_up_screen.dart';
 
 import '../widgets/reusable_widgets.dart';
@@ -141,7 +142,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const LoginScreen()));
+                                  builder: (context) => const MainProfileScreen()));
                         }),
                   ),
                   SizedBox(

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
+import 'package:fx_commission_app/view/pages/profile_screen/edit_profile_screen.dart';
+import 'package:fx_commission_app/view/pages/profile_screen/trading_accounts_screen.dart';
 
 class MainProfileScreen extends StatefulWidget {
   const MainProfileScreen({super.key});
@@ -76,15 +78,27 @@ class _MainProfileScreenState extends State<MainProfileScreen> {
                         Row(
                           children: [
                             InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                        const EditProfileScreen()));
+                              },
                               child: Icon(
                                 Icons.mode_edit_outline_outlined,
                                 size: 23.dp,
-                                color: Color(0xff646363),
+                                color: const Color(0xff646363),
                               ),
                             ),
                             TextButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                          const EditProfileScreen()));
+                                },
                                 child: Text(
                                   'Edit my profile',
                                   style: TextStyle(
@@ -146,11 +160,11 @@ class _MainProfileScreenState extends State<MainProfileScreen> {
                     children: [
                       InkWell(
                         onTap: () {
-                          // Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //         builder: (context) =>
-                          //         const LoginScreen()));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                  const TradingAccountsScreen()));
                         },
                         child: Row(
                           children: [
