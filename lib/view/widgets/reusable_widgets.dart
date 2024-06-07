@@ -1,3 +1,4 @@
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 
@@ -60,7 +61,7 @@ PreferredSizeWidget? reusableAppBar({
 }) =>
     AppBar(
       backgroundColor: Colors.white,
-      leadingWidth: 30.w,
+      leadingWidth: 60.w,
       leading: Row(
         children: [
           InkWell(

@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:fx_commission_app/view/pages/profile_screen/edit_profile_screen.dart';
-import 'package:fx_commission_app/view/pages/profile_screen/payment_history_screen.dart';
+import 'package:fx_commission_app/view/pages/profile_screen/inactive_fees/inactive_fees_screen.dart';
+import 'package:fx_commission_app/view/pages/profile_screen/loyalty_program/loyalty_program_screen.dart';
+import 'package:fx_commission_app/view/pages/profile_screen/payment_history/payment_history_screen.dart';
+import 'package:fx_commission_app/view/pages/profile_screen/referral/referral_screen.dart';
+import 'package:fx_commission_app/view/pages/profile_screen/registered_from_my_referral/registered_from_my_referral_screen.dart';
 import 'package:fx_commission_app/view/pages/profile_screen/trading_accounts/trading_accounts_screen.dart';
+import 'package:fx_commission_app/view/pages/withdrawals/withdrawals_screen.dart';
 
 class MainProfileScreen extends StatefulWidget {
   const MainProfileScreen({super.key});
@@ -233,11 +238,11 @@ class _MainProfileScreenState extends State<MainProfileScreen> {
 
                       InkWell(
                         onTap: () {
-                          // Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //         builder: (context) =>
-                          //         const LoginScreen()));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                   ReferralScreen()));
                         },
                         child: Row(
                           children: [
@@ -269,11 +274,11 @@ class _MainProfileScreenState extends State<MainProfileScreen> {
 
                       InkWell(
                         onTap: () {
-                          // Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //         builder: (context) =>
-                          //         const LoginScreen()));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                  InactiveFeesScreen()));
                         },
                         child: Row(
                           children: [
@@ -305,11 +310,11 @@ class _MainProfileScreenState extends State<MainProfileScreen> {
 
                       InkWell(
                         onTap: () {
-                          // Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //         builder: (context) =>
-                          //         const LoginScreen()));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                   RegisteredFromMyReferralScreen()));
                         },
                         child: Row(
                           children: [
@@ -341,11 +346,11 @@ class _MainProfileScreenState extends State<MainProfileScreen> {
 
                       InkWell(
                         onTap: () {
-                          // Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //         builder: (context) =>
-                          //         const LoginScreen()));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                   WithdrawalsScreen()));
                         },
                         child: Row(
                           children: [
@@ -413,11 +418,11 @@ class _MainProfileScreenState extends State<MainProfileScreen> {
 
                       InkWell(
                         onTap: () {
-                          // Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //         builder: (context) =>
-                          //         const LoginScreen()));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                  const LoyaltyProgramScreen()));
                         },
                         child: Row(
                           children: [
