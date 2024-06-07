@@ -113,3 +113,208 @@ Widget containerBelowAppBar({
         ),
       ),
     );
+
+Widget addedAccountTradingAccountScreen({
+  String image = '',
+  String brokerName = '',
+  String accountNumber = '',
+  String accountStatus = '',
+}) =>
+    Row(
+      children: [
+        ClipRRect(
+            borderRadius: BorderRadius.circular(8.dp),
+            child: Image(image: AssetImage(image))),
+        SizedBox(
+          width: 3.w,
+        ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Text(
+                  'Broker : ',
+                  style: TextStyle(fontSize: 14.dp),
+                ),
+                Text(
+                  brokerName,
+                  style: TextStyle(fontSize: 14.dp, color: Color(0xff808080)),
+                )
+              ],
+            ),
+            Row(
+              children: [
+                Text(
+                  'Account Number : ',
+                  style: TextStyle(fontSize: 14.dp),
+                ),
+                Text(
+                  accountNumber,
+                  style: TextStyle(fontSize: 14.dp, color: Color(0xff808080)),
+                )
+              ],
+            ),
+            Row(
+              children: [
+                Text(
+                  'Account Status : ',
+                  style: TextStyle(fontSize: 14.dp),
+                ),
+                Text(
+                  accountStatus,
+                  style: TextStyle(fontSize: 14.dp, color: Colors.red),
+                )
+              ],
+            ),
+          ],
+        )
+      ],
+    );
+
+
+
+class startDateTextFormField extends StatefulWidget {
+  const startDateTextFormField({super.key});
+
+  @override
+  State<startDateTextFormField> createState() =>
+      _startDateTextFormFieldState();
+}
+class _startDateTextFormFieldState extends State<startDateTextFormField> {
+  final _formKey = GlobalKey<FormState>();
+  TextEditingController _startDateController = TextEditingController();
+
+  @override
+  void dispose() {
+    _startDateController.dispose();
+    super.dispose();
+  }
+
+  Future<void> _selectStartDate(
+      BuildContext context, TextEditingController controller) async {
+    DateTime? selectedDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime(2024),
+      firstDate: DateTime(2000),
+      lastDate: DateTime.now(),
+    );
+
+    if (selectedDate != null) {
+      setState(() {
+        controller.text = selectedDate.toLocal().toString().split(' ')[0];
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 42.w,
+      decoration: BoxDecoration(
+        color: const Color(0xffECECEC), // Set the background color
+        borderRadius: BorderRadius.circular(6.dp), // Set the border radius
+        border: Border.all(
+          color: const Color(0xffC4C4C4), // Set the border color
+          width: 1.5, // Set the border width
+        ),
+      ),
+      child: TextFormField(
+        onTap: () {
+          _selectStartDate(context, _startDateController);
+        },
+        readOnly: true,
+        keyboardType: TextInputType.datetime,
+        controller: _startDateController,
+        decoration: InputDecoration(
+            suffixIcon: IconButton(
+              icon: Icon(Icons.calendar_today),
+              onPressed: () {
+                _selectStartDate(context, _startDateController);
+              },
+            ),
+            contentPadding: EdgeInsets.all(12.dp),
+            border: InputBorder.none,
+            hintText: 'start date',
+            hintStyle:
+                TextStyle(color: const Color(0xff808080), fontSize: 15.dp)),
+      ),
+    );
+  }
+}
+
+
+
+class endDateTextFormField extends StatefulWidget {
+  const endDateTextFormField({super.key});
+
+  @override
+  State<endDateTextFormField> createState() =>
+      _endDateTextFormFieldState();
+}
+class _endDateTextFormFieldState extends State<endDateTextFormField> {
+  final _formKey = GlobalKey<FormState>();
+  TextEditingController _endDateController = TextEditingController();
+
+  @override
+  void dispose() {
+    _endDateController.dispose();
+    super.dispose();
+  }
+
+  Future<void> _selectEndDate(
+      BuildContext context, TextEditingController controller) async {
+    DateTime? selectedDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime(2024),
+      firstDate: DateTime(2000),
+      lastDate: DateTime.now(),
+    );
+
+    if (selectedDate != null) {
+      setState(() {
+        controller.text = selectedDate.toLocal().toString().split(' ')[0];
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 42.w,
+      decoration: BoxDecoration(
+        color: const Color(0xffECECEC), // Set the background color
+        borderRadius: BorderRadius.circular(6.dp), // Set the border radius
+        border: Border.all(
+          color: const Color(0xffC4C4C4), // Set the border color
+          width: 1.5, // Set the border width
+        ),
+      ),
+      child: TextFormField(
+        onTap: () {
+          _selectEndDate(context, _endDateController);
+        },
+        readOnly: true,
+        keyboardType: TextInputType.datetime,
+        controller: _endDateController,
+        decoration: InputDecoration(
+            suffixIcon: IconButton(
+              icon: Icon(Icons.calendar_today),
+              onPressed: () {
+                _selectEndDate(context, _endDateController);
+              },
+            ),
+            contentPadding: EdgeInsets.all(12.dp),
+            border: InputBorder.none,
+            hintText: 'end date',
+            hintStyle:
+            TextStyle(color: const Color(0xff808080), fontSize: 15.dp)),
+      ),
+    );
+  }
+}
+
+
+
+
+

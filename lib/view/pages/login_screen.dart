@@ -21,162 +21,164 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 3.0.w, vertical: 10.h),
-        child: Column(
-          children: [
-            Row(
-              children: [
-                Container(
-                  width: 1.2.w,
-                  height: 10.h,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15.dp),
-                      color: const Color(0xff0095D0)),
-                ),
-                SizedBox(
-                  width: 3.w,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Login',
-                      style: TextStyle(
-                          fontSize: 22.dp, fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      'You have an account ? Login here',
-                      style: TextStyle(
-                          color: const Color(0xff808080),
-                          fontSize: 15.dp,
-                          fontWeight: FontWeight.w600),
-                    ),
-                  ],
-                )
-              ],
-            ),
-            SizedBox(
-              height: 4.h,
-            ),
-            Container(
-              width: double.infinity,
-              padding: EdgeInsets.all(12.dp),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                border: Border.all(
-                  color: const Color(0xff0095D0),
-                ),
-                borderRadius: BorderRadius.circular(7.dp),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Row(
                 children: [
-                  Text(
-                    'Full Name*',
-                    style:
-                        TextStyle(fontSize: 15.dp, fontWeight: FontWeight.w600),
+                  Container(
+                    width: 1.2.w,
+                    height: 10.h,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15.dp),
+                        color: const Color(0xff0095D0)),
                   ),
                   SizedBox(
-                    height: 1.h,
+                    width: 3.w,
                   ),
-                  defaultTextFormField(
-                      hintText: 'Enter your name',
-                      keyboardType: TextInputType.name),
-                  SizedBox(
-                    height: 2.h,
-                  ),
-                  Text(
-                    'Password*',
-                    style:
-                        TextStyle(fontSize: 15.dp, fontWeight: FontWeight.w600),
-                  ),
-                  SizedBox(
-                    height: 1.h,
-                  ),
-                  defaultTextFormField(
-                      obscureText: true,
-                      hintText: 'Enter your password',
-                      keyboardType: TextInputType.visiblePassword),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      TextButton(
-                          onPressed: () {},
-                          child: Text(
-                            'Forgot password ?',
-                            style:
-                                TextStyle(color: Colors.black, fontSize: 13.dp),
-                          )),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Checkbox(
-                        side: const BorderSide(
-                          color: Color(0xffA2A2A2),
-                        ),
-                        value: isChecked,
-                        onChanged: (bool? value) {
-                          setState(() {
-                            isChecked = value!;
-                          });
-                        },
-                        activeColor: const Color(0xff0095D0),
-                        checkColor: Colors.white,
-                      ),
-                      Text(
-                        'Remember me',
-                        style: TextStyle(
-                            fontSize: 14.dp, fontWeight: FontWeight.w500),
-                      )
-                    ],
-                  ),
-                  SizedBox(
-                    height: 2.h,
-                  ),
-                  Center(
-                    child: mainElevatedButton(
-                        text: 'Login',
-                        width: 35.w,
-                        height: 5.h,
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const MainProfileScreen()));
-                        }),
-                  ),
-                  SizedBox(
-                    height: 2.h,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Don\'t have an account ?',
+                        'Login',
                         style: TextStyle(
-                          fontSize: 15.dp,
-                          color: Color(0xff646363),
-                        ),
+                            fontSize: 22.dp, fontWeight: FontWeight.bold),
                       ),
-                      TextButton(
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => SignUpScreen()));
-                          },
-                          child: Text(
-                            'Sign up',
-                            style: TextStyle(
-                                color: const Color(0xff0095D0),
-                                fontSize: 15.dp),
-                          ))
+                      Text(
+                        'You have an account ? Login here',
+                        style: TextStyle(
+                            color: const Color(0xff808080),
+                            fontSize: 15.dp,
+                            fontWeight: FontWeight.w600),
+                      ),
                     ],
                   )
                 ],
               ),
-            )
-          ],
+              SizedBox(
+                height: 4.h,
+              ),
+              Container(
+                width: double.infinity,
+                padding: EdgeInsets.all(12.dp),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(
+                    color: const Color(0xff0095D0),
+                  ),
+                  borderRadius: BorderRadius.circular(7.dp),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Full Name*',
+                      style:
+                          TextStyle(fontSize: 15.dp, fontWeight: FontWeight.w600),
+                    ),
+                    SizedBox(
+                      height: 1.h,
+                    ),
+                    defaultTextFormField(
+                        hintText: 'Enter your name',
+                        keyboardType: TextInputType.name),
+                    SizedBox(
+                      height: 2.h,
+                    ),
+                    Text(
+                      'Password*',
+                      style:
+                          TextStyle(fontSize: 15.dp, fontWeight: FontWeight.w600),
+                    ),
+                    SizedBox(
+                      height: 1.h,
+                    ),
+                    defaultTextFormField(
+                        obscureText: true,
+                        hintText: 'Enter your password',
+                        keyboardType: TextInputType.visiblePassword),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        TextButton(
+                            onPressed: () {},
+                            child: Text(
+                              'Forgot password ?',
+                              style:
+                                  TextStyle(color: Colors.black, fontSize: 13.dp),
+                            )),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Checkbox(
+                          side: const BorderSide(
+                            color: Color(0xffA2A2A2),
+                          ),
+                          value: isChecked,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              isChecked = value!;
+                            });
+                          },
+                          activeColor: const Color(0xff0095D0),
+                          checkColor: Colors.white,
+                        ),
+                        Text(
+                          'Remember me',
+                          style: TextStyle(
+                              fontSize: 14.dp, fontWeight: FontWeight.w500),
+                        )
+                      ],
+                    ),
+                    SizedBox(
+                      height: 2.h,
+                    ),
+                    Center(
+                      child: mainElevatedButton(
+                          text: 'Login',
+                          width: 35.w,
+                          height: 5.h,
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const MainProfileScreen()));
+                          }),
+                    ),
+                    SizedBox(
+                      height: 2.h,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Don\'t have an account ?',
+                          style: TextStyle(
+                            fontSize: 15.dp,
+                            color: Color(0xff646363),
+                          ),
+                        ),
+                        TextButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => SignUpScreen()));
+                            },
+                            child: Text(
+                              'Sign up',
+                              style: TextStyle(
+                                  color: const Color(0xff0095D0),
+                                  fontSize: 15.dp),
+                            ))
+                      ],
+                    )
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:fx_commission_app/view/pages/profile_screen/edit_profile_screen.dart';
-import 'package:fx_commission_app/view/pages/profile_screen/trading_accounts_screen.dart';
+import 'package:fx_commission_app/view/pages/profile_screen/payment_history_screen.dart';
+import 'package:fx_commission_app/view/pages/profile_screen/trading_accounts/trading_accounts_screen.dart';
 
 class MainProfileScreen extends StatefulWidget {
   const MainProfileScreen({super.key});
@@ -196,11 +197,11 @@ class _MainProfileScreenState extends State<MainProfileScreen> {
 
                       InkWell(
                         onTap: () {
-                          // Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //         builder: (context) =>
-                          //         const LoginScreen()));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                   PaymentHistoryScreen()));
                         },
                         child: Row(
                           children: [

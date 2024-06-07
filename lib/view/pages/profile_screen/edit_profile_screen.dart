@@ -145,7 +145,7 @@ class EditProfileScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     Center(
-                      child: Text('Change account inofrmation',
+                      child: Text('Change account information',
                         style: TextStyle(
                             fontSize: 18.dp,
                             fontWeight: FontWeight.bold

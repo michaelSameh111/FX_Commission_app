@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:fx_commission_app/view/pages/login_screen.dart';
 import 'package:fx_commission_app/view/pages/profile_screen/main_profile_screen.dart';
+import 'package:fx_commission_app/view/pages/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
     return FlutterSizer(
       builder: (BuildContext, Orientation, ScreenType) {
         return MaterialApp(
-          home: const LoginScreen(),
+          home: const SplashScreen(),
           debugShowCheckedModeBanner: false,
           color: Colors.red,
           theme: ThemeData(
