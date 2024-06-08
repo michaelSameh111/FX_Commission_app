@@ -1,163 +1,55 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
-import 'package:fx_commission_app/view/pages/profile_screen/edit_profile_screen.dart';
-import 'package:fx_commission_app/view/pages/profile_screen/inactive_fees/inactive_fees_screen.dart';
-import 'package:fx_commission_app/view/pages/profile_screen/loyalty_program/loyalty_program_screen.dart';
-import 'package:fx_commission_app/view/pages/profile_screen/payment_history/payment_history_screen.dart';
-import 'package:fx_commission_app/view/pages/profile_screen/referral/referral_screen.dart';
-import 'package:fx_commission_app/view/pages/profile_screen/registered_from_my_referral/registered_from_my_referral_screen.dart';
-import 'package:fx_commission_app/view/pages/profile_screen/trading_accounts/trading_accounts_screen.dart';
+import 'package:fx_commission_app/view/pages/more_screen/FAQs/faqs_screen.dart';
+import 'package:fx_commission_app/view/pages/more_screen/advertise_with_us/advertise_with_us_screen.dart';
+import 'package:fx_commission_app/view/pages/more_screen/blogs/blogs_screen.dart';
+import 'package:fx_commission_app/view/pages/more_screen/services/services_screen.dart';
+import 'package:fx_commission_app/view/widgets/reusable_widgets.dart';
 
-import 'withdrawals/withdrawals_screen.dart';
-
-class MainProfileScreen extends StatefulWidget {
-  const MainProfileScreen({super.key});
-
-  @override
-  State<MainProfileScreen> createState() => _MainProfileScreenState();
-}
-
-class _MainProfileScreenState extends State<MainProfileScreen> {
-  int currentIndex = 0;
+class MainMoreScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: const Color(0xff0379A8),
-        unselectedItemColor: const Color(0xffA2A2A2),
-        currentIndex: currentIndex,
-        onTap: (int index) {
-          setState(() {
-            currentIndex = index;
-          });
-        },
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.monetization_on),
-            label: 'Market',
-          ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.search_off), label: 'Brokers'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.view_headline_sharp),
-            label: 'More',
-          ),
-        ],
+      appBar: AppBar(
+        backgroundColor: Colors.white,
       ),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 3.0.w, vertical: 10.h),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                padding: EdgeInsets.all(12.dp),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10.dp),
-                    color: Colors.white),
-                child: Row(
-                  children: [
-                    CircleAvatar(
-                      radius: 8.w,
-                      child: const ClipOval(
-                        child: Image(
-                          image: AssetImage(
-                            'assets/images/profile_picture.png',
-                          ),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 6.w,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Ahmed Mohamed',
-                          style: TextStyle(
-                              color: const Color(0xff0095D0),
-                              fontSize: 25.dp,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        Row(
-                          children: [
-                            InkWell(
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                        const EditProfileScreen()));
-                              },
-                              child: Icon(
-                                Icons.mode_edit_outline_outlined,
-                                size: 23.dp,
-                                color: const Color(0xff646363),
-                              ),
-                            ),
-                            TextButton(
-                                onPressed: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                          const EditProfileScreen()));
-                                },
-                                child: Text(
-                                  'Edit my profile',
-                                  style: TextStyle(
-                                      color: Color(0xff646363), fontSize: 16.dp),
-                                ))
-                          ],
-                        ),
-                      ],
-                    )
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 4.h,
-              ),
-              Row(
-                children: [
-                  Container(
-                    width: 1.2.w,
-                    height: 10.h,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15.dp),
-                        color: const Color(0xff0095D0)),
+
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              width: double.infinity,
+              height: 6.h,
+              padding: EdgeInsets.symmetric(horizontal: 4.w),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                    bottomRight: Radius.circular(20.dp),
+                    bottomLeft: Radius.circular(20.dp)),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 1,
+                    blurRadius: 4,
+                    offset: Offset(0, 1), // changes position of shadow
                   ),
-                  SizedBox(
-                    width: 3.w,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Client Area',
-                        style: TextStyle(
-                            fontSize: 22.dp, fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        'Welcome, your current balance is 0.00 \$',
-                        style: TextStyle(
-                            color: const Color(0xff808080),
-                            fontSize: 15.dp,
-                            fontWeight: FontWeight.w600),
-                      ),
-                    ],
-                  )
                 ],
               ),
-              SizedBox(
-                height: 4.h,
+              child: Text(
+                'More',
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 25.dp,
+                    color: const Color(0xff0379A8)),
               ),
-              Container(
+            ), //customized containerBelowAppBar
+
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 3.0.w, vertical: 4.h),
+              child: Container(
                 width: double.infinity,
-                height: 54.h,
+                height: 51.h,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10.dp),
                     color: Colors.white),
@@ -171,199 +63,19 @@ class _MainProfileScreenState extends State<MainProfileScreen> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                  const TradingAccountsScreen()));
+                                      BlogsScreen()));
                         },
                         child: Row(
                           children: [
                             const Icon(
-                              Icons.currency_exchange,
+                              Icons.newspaper,
                               color: Color(0xff0095D0),
                             ),
                             SizedBox(
                               width: 3.w,
                             ),
                             Text(
-                              'Trading Accounts',
-                              style: TextStyle(fontSize: 15.dp),
-                            ),
-                            const Spacer(),
-                            Icon(
-                              Icons.arrow_forward_ios,
-                              color: const Color(0xffA2A2A2),
-                              size: 17.dp,
-                            )
-                          ],
-                        ),
-                      ),
-                      SizedBox(height: 1.h,),
-                      const Divider(
-                        color: Color(0xffF5F4F4),
-                      ),
-                      SizedBox(height: 1.h,),
-
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                   PaymentHistoryScreen()));
-                        },
-                        child: Row(
-                          children: [
-                            const Icon(
-                              Icons.auto_graph,
-                              color: Color(0xff0095D0),
-                            ),
-                            SizedBox(
-                              width: 3.w,
-                            ),
-                            Text(
-                              'Payments Log',
-                              style: TextStyle(fontSize: 15.dp),
-                            ),
-                            const Spacer(),
-                            Icon(
-                              Icons.arrow_forward_ios,
-                              color: const Color(0xffA2A2A2),
-                              size: 17.dp,
-                            )
-                          ],
-                        ),
-                      ),
-                      SizedBox(height: 1.h,),
-                      const Divider(
-                        color: Color(0xffF5F4F4),
-                      ),
-                      SizedBox(height: 1.h,),
-
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                   ReferralScreen()));
-                        },
-                        child: Row(
-                          children: [
-                            const Icon(
-                              Icons.home_mini,
-                              color: Color(0xff0095D0),
-                            ),
-                            SizedBox(
-                              width: 3.w,
-                            ),
-                            Text(
-                              'Referral',
-                              style: TextStyle(fontSize: 15.dp),
-                            ),
-                            const Spacer(),
-                            Icon(
-                              Icons.arrow_forward_ios,
-                              color: const Color(0xffA2A2A2),
-                              size: 17.dp,
-                            )
-                          ],
-                        ),
-                      ),
-                      SizedBox(height: 1.h,),
-                      const Divider(
-                        color: Color(0xffF5F4F4),
-                      ),
-                      SizedBox(height: 1.h,),
-
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                  InactiveFeesScreen()));
-                        },
-                        child: Row(
-                          children: [
-                            const Icon(
-                              Icons.attach_money,
-                              color: Color(0xff0095D0),
-                            ),
-                            SizedBox(
-                              width: 3.w,
-                            ),
-                            Text(
-                              'Inactive Fees',
-                              style: TextStyle(fontSize: 15.dp),
-                            ),
-                            const Spacer(),
-                            Icon(
-                              Icons.arrow_forward_ios,
-                              color: const Color(0xffA2A2A2),
-                              size: 17.dp,
-                            )
-                          ],
-                        ),
-                      ),
-                      SizedBox(height: 1.h,),
-                      const Divider(
-                        color: Color(0xffF5F4F4),
-                      ),
-                      SizedBox(height: 1.h,),
-
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                   RegisteredFromMyReferralScreen()));
-                        },
-                        child: Row(
-                          children: [
-                            const Icon(
-                              Icons.money_rounded,
-                              color: Color(0xff0095D0),
-                            ),
-                            SizedBox(
-                              width: 3.w,
-                            ),
-                            Text(
-                              'Registered from my referral',
-                              style: TextStyle(fontSize: 15.dp),
-                            ),
-                            const Spacer(),
-                            Icon(
-                              Icons.arrow_forward_ios,
-                              color: const Color(0xffA2A2A2),
-                              size: 17.dp,
-                            )
-                          ],
-                        ),
-                      ),
-                      SizedBox(height: 1.h,),
-                      const Divider(
-                        color: Color(0xffF5F4F4),
-                      ),
-                      SizedBox(height: 1.h,),
-
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                   WithdrawalsScreen()));
-                        },
-                        child: Row(
-                          children: [
-                            const Icon(
-                              Icons.add_card_sharp,
-                              color: Color(0xff0095D0),
-                            ),
-                            SizedBox(
-                              width: 3.w,
-                            ),
-                            Text(
-                              'Withdrawals',
+                              'Blogs',
                               style: TextStyle(fontSize: 15.dp),
                             ),
                             const Spacer(),
@@ -387,19 +99,19 @@ class _MainProfileScreenState extends State<MainProfileScreen> {
                           //     context,
                           //     MaterialPageRoute(
                           //         builder: (context) =>
-                          //         const LoginScreen()));
+                          //             PaymentHistoryScreen()));
                         },
                         child: Row(
                           children: [
                             const Icon(
-                              Icons.qr_code,
+                              Icons.auto_graph,
                               color: Color(0xff0095D0),
                             ),
                             SizedBox(
                               width: 3.w,
                             ),
                             Text(
-                              'Referral Codes',
+                              'Forex',
                               style: TextStyle(fontSize: 15.dp),
                             ),
                             const Spacer(),
@@ -419,11 +131,11 @@ class _MainProfileScreenState extends State<MainProfileScreen> {
 
                       InkWell(
                         onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                  const LoyaltyProgramScreen()));
+                          // Navigator.push(
+                          //     context,
+                          //     MaterialPageRoute(
+                          //         builder: (context) =>
+                          //             ReferralScreen()));
                         },
                         child: Row(
                           children: [
@@ -452,12 +164,216 @@ class _MainProfileScreenState extends State<MainProfileScreen> {
                         color: Color(0xffF5F4F4),
                       ),
                       SizedBox(height: 1.h,),
+
+                      InkWell(
+                        onTap: () {
+                          // Navigator.push(
+                          //     context,
+                          //     MaterialPageRoute(
+                          //         builder: (context) =>
+                          //             InactiveFeesScreen()));
+                        },
+                        child: Row(
+                          children: [
+                            const Icon(
+                              Icons.supervised_user_circle_rounded,
+                              color: Color(0xff0095D0),
+                            ),
+                            SizedBox(
+                              width: 3.w,
+                            ),
+                            Text(
+                              'About Us',
+                              style: TextStyle(fontSize: 15.dp),
+                            ),
+                            const Spacer(),
+                            Icon(
+                              Icons.arrow_forward_ios,
+                              color: const Color(0xffA2A2A2),
+                              size: 17.dp,
+                            )
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 1.h,),
+                      const Divider(
+                        color: Color(0xffF5F4F4),
+                      ),
+                      SizedBox(height: 1.h,),
+
+                      InkWell(
+                        onTap: () {
+                          // Navigator.push(
+                          //     context,
+                          //     MaterialPageRoute(
+                          //         builder: (context) =>
+                          //             RegisteredFromMyReferralScreen()));
+                        },
+                        child: Row(
+                          children: [
+                            const Icon(
+                              Icons.headset_mic,
+                              color: Color(0xff0095D0),
+                            ),
+                            SizedBox(
+                              width: 3.w,
+                            ),
+                            Text(
+                              'Contact Us',
+                              style: TextStyle(fontSize: 15.dp),
+                            ),
+                            const Spacer(),
+                            Icon(
+                              Icons.arrow_forward_ios,
+                              color: const Color(0xffA2A2A2),
+                              size: 17.dp,
+                            )
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 1.h,),
+                      const Divider(
+                        color: Color(0xffF5F4F4),
+                      ),
+                      SizedBox(height: 1.h,),
+
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      AdvertiseWithUsScreen()));
+                        },
+                        child: Row(
+                          children: [
+                            const Icon(
+                              Icons.fiber_new_sharp,
+                              color: Color(0xff0095D0),
+                            ),
+                            SizedBox(
+                              width: 3.w,
+                            ),
+                            Text(
+                              'Advertise With Us',
+                              style: TextStyle(fontSize: 15.dp),
+                            ),
+                            const Spacer(),
+                            Icon(
+                              Icons.arrow_forward_ios,
+                              color: const Color(0xffA2A2A2),
+                              size: 17.dp,
+                            )
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 1.h,),
+                      const Divider(
+                        color: Color(0xffF5F4F4),
+                      ),
+                      SizedBox(height: 1.h,),
+
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                  ServicesScreen()));
+                        },
+                        child: Row(
+                          children: [
+                            const Icon(
+                              Icons.handshake_rounded,
+                              color: Color(0xff0095D0),
+                            ),
+                            SizedBox(
+                              width: 3.w,
+                            ),
+                            Text(
+                              'Services',
+                              style: TextStyle(fontSize: 15.dp),
+                            ),
+                            const Spacer(),
+                            Icon(
+                              Icons.arrow_forward_ios,
+                              color: const Color(0xffA2A2A2),
+                              size: 17.dp,
+                            )
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 1.h,),
+                      const Divider(
+                        color: Color(0xffF5F4F4),
+                      ),
+                      SizedBox(height: 1.h,),
+
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                  FaqsScreen()));
+                        },
+                        child: Row(
+                          children: [
+                            const Icon(
+                              Icons.fax_outlined,
+                              color: Color(0xff0095D0),
+                            ),
+                            SizedBox(
+                              width: 3.w,
+                            ),
+                            Text(
+                              'FAQs',
+                              style: TextStyle(fontSize: 15.dp),
+                            ),
+                            const Spacer(),
+                            Icon(
+                              Icons.arrow_forward_ios,
+                              color: const Color(0xffA2A2A2),
+                              size: 17.dp,
+                            )
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 ),
-              )
-            ],
-          ),
+              ),
+            ),
+
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 3.0.w, vertical: 4.h),
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 2.h),
+                width: double.infinity,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.dp),
+                    color: Colors.white),
+                child: InkWell(
+                  onTap: (){},
+                  child: Row(
+                    children: [
+                      Text('How to register for a trading account ?',
+                      style: TextStyle(
+                        fontSize: 15.dp,
+                        fontWeight: FontWeight.bold
+                      ),),
+                      const Spacer(),
+                      Icon(
+                        Icons.arrow_forward_ios,
+                        color: const Color(0xffA2A2A2),
+                        size: 17.dp,
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            )
+          ],
         ),
       ),
     );

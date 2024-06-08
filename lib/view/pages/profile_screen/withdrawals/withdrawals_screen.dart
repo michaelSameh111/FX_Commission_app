@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
-import 'package:fx_commission_app/view/pages/withdrawals/add_new_payment_method_screen.dart';
-import 'package:fx_commission_app/view/pages/withdrawals/add_request_screen.dart';
+import 'package:fx_commission_app/view/pages/profile_screen/withdrawals/add_new_payment_method_screen.dart';
+import 'package:fx_commission_app/view/pages/profile_screen/withdrawals/add_request_screen.dart';
 import 'package:fx_commission_app/view/widgets/reusable_widgets.dart';
 
 class   WithdrawalsScreen extends StatelessWidget {

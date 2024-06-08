@@ -1,8 +1,7 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
-
-import '../../widgets/reusable_widgets.dart';
+import 'package:fx_commission_app/view/widgets/reusable_widgets.dart';
 
 class AddNewPaymentMethodScreen extends StatefulWidget {
   @override

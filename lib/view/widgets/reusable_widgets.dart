@@ -57,6 +57,7 @@ Widget mainElevatedButton({
 
 PreferredSizeWidget? reusableAppBar({
   required BuildContext context,
+
   String text = '',
 }) =>
     AppBar(
