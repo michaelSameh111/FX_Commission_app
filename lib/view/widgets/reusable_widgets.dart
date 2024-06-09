@@ -63,23 +63,23 @@ PreferredSizeWidget? reusableAppBar({
     AppBar(
       backgroundColor: Colors.white,
       leadingWidth: 60.w,
-      leading: Row(
-        children: [
-          InkWell(
-            onTap: () {
-              Navigator.pop(context);
-            },
-            child: Icon(Icons.arrow_back_ios_new_rounded,
+      leading: InkWell(
+        onTap: (){
+          Navigator.pop(context);
+        },
+        child: Row(
+          children: [
+            Icon(Icons.arrow_back_ios_new_rounded,
                 color: const Color(0xff646363), size: 25.dp),
-          ),
-          SizedBox(
-            width: 2.w,
-          ),
-          Text(
-            text,
-            style: TextStyle(fontSize: 18.dp),
-          ),
-        ],
+            SizedBox(
+              width: 2.w,
+            ),
+            Text(
+              text,
+              style: TextStyle(fontSize: 18.dp),
+            ),
+          ],
+        ),
       ),
       centerTitle: true,
     );

@@ -7,28 +7,7 @@ class FaqsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        leadingWidth: 60.w,
-        leading: InkWell(
-          onTap: () {
-            Navigator.pop(context);
-          },
-          child: Row(
-            children: [
-              Icon(Icons.arrow_back_ios_new_rounded,
-                  color: const Color(0xff646363), size: 25.dp),
-              SizedBox(
-                width: 2.w,
-              ),
-              Text(
-                'More',
-                style: TextStyle(fontSize: 18.dp),
-              ),
-            ],
-          ),
-        ),
-      ),
+      appBar: reusableAppBar(context: context, text: 'More'),
 
       body: SingleChildScrollView(
         child: Column(

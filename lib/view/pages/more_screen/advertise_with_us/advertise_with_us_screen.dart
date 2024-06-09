@@ -7,28 +7,7 @@ class AdvertiseWithUsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        leadingWidth: 60.w,
-        leading: InkWell(
-          onTap: () {
-            Navigator.pop(context);
-          },
-          child: Row(
-            children: [
-              Icon(Icons.arrow_back_ios_new_rounded,
-                  color: const Color(0xff646363), size: 25.dp),
-              SizedBox(
-                width: 2.w,
-              ),
-              Text(
-                'More',
-                style: TextStyle(fontSize: 18.dp),
-              ),
-            ],
-          ),
-        ),
-      ),
+      appBar: reusableAppBar(context: context, text: 'More'),
 
       body: SingleChildScrollView(
         child: Column(
@@ -41,15 +20,11 @@ class AdvertiseWithUsScreen extends StatelessWidget {
               child: Column(
                 children: [
                   Text('''Our beloved Customers & Visitors,
-We would like to announce that, Fxcommission provides advertising campaigns services
- to its followers specifically for companies,which are working in 
-Forex industry.
+
+We would like to announce that, Fxcommission provides advertising campaigns services to its followers specifically for companies,which are working in Forex industry.
 We have many channels to make a succeed advertising campaigns for your company.
-To communicate with us please do not be hesitated to send an email to
- contact@fxcommission.com.
-A representative of the Advertising and Marketing Department will contact you 
-immediately within minutes to explain the full details to you. We prefer contacting 
-in English or Arabic.
+To communicate with us please do not be hesitated to send an email to contact@fxcommission.com.
+A representative of the Advertising and Marketing Department will contact you immediately within minutes to explain the full details to you. We prefer contacting in English or Arabic.
 
 We wish you all the best.
 With regards

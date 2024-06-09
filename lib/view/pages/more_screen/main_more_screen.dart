@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:fx_commission_app/view/pages/more_screen/FAQs/faqs_screen.dart';
+import 'package:fx_commission_app/view/pages/more_screen/about_us/about_us_screen.dart';
 import 'package:fx_commission_app/view/pages/more_screen/advertise_with_us/advertise_with_us_screen.dart';
 import 'package:fx_commission_app/view/pages/more_screen/blogs/blogs_screen.dart';
+import 'package:fx_commission_app/view/pages/more_screen/contact_us/contact_us_screen.dart';
+import 'package:fx_commission_app/view/pages/more_screen/forex/forex_screen.dart';
+import 'package:fx_commission_app/view/pages/more_screen/how_to_register_for_trading_account/how_to_register_for_trading_account_screen.dart';
+import 'package:fx_commission_app/view/pages/more_screen/loyalty_programs/loyalty_programs_screen.dart';
 import 'package:fx_commission_app/view/pages/more_screen/services/services_screen.dart';
-import 'package:fx_commission_app/view/widgets/reusable_widgets.dart';
 
 class MainMoreScreen extends StatelessWidget {
 
@@ -12,6 +16,7 @@ class MainMoreScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.white,
       ),
 
@@ -95,11 +100,11 @@ class MainMoreScreen extends StatelessWidget {
 
                       InkWell(
                         onTap: () {
-                          // Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //         builder: (context) =>
-                          //             PaymentHistoryScreen()));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      ForexScreen()));
                         },
                         child: Row(
                           children: [
@@ -131,11 +136,11 @@ class MainMoreScreen extends StatelessWidget {
 
                       InkWell(
                         onTap: () {
-                          // Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //         builder: (context) =>
-                          //             ReferralScreen()));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      LoyaltyProgramsScreen()));
                         },
                         child: Row(
                           children: [
@@ -167,11 +172,11 @@ class MainMoreScreen extends StatelessWidget {
 
                       InkWell(
                         onTap: () {
-                          // Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //         builder: (context) =>
-                          //             InactiveFeesScreen()));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      AboutUsScreen()));
                         },
                         child: Row(
                           children: [
@@ -203,11 +208,11 @@ class MainMoreScreen extends StatelessWidget {
 
                       InkWell(
                         onTap: () {
-                          // Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //         builder: (context) =>
-                          //             RegisteredFromMyReferralScreen()));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      ContactUsScreen()));
                         },
                         child: Row(
                           children: [
@@ -354,7 +359,13 @@ class MainMoreScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10.dp),
                     color: Colors.white),
                 child: InkWell(
-                  onTap: (){},
+                  onTap: (){
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                HowToRegisterForTradingAccountScreen()));
+                  },
                   child: Row(
                     children: [
                       Text('How to register for a trading account ?',
