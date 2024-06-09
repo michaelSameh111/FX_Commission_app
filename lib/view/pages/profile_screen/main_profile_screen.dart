@@ -447,11 +447,7 @@ class _MainProfileScreenState extends State<MainProfileScreen> {
                           ],
                         ),
                       ),
-                      SizedBox(height: 1.h,),
-                      const Divider(
-                        color: Color(0xffF5F4F4),
-                      ),
-                      SizedBox(height: 1.h,),
+
                     ],
                   ),
                 ),

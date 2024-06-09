@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:fx_commission_app/view/widgets/reusable_widgets.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ReferralScreen extends StatelessWidget {
   String totalPayments = '0.0 \$';
@@ -56,11 +57,19 @@ class ReferralScreen extends StatelessWidget {
                     SizedBox(
                       height: 2.h,
                     ),
-                    Text(
-                      'https://www.fxcommission.com/via/5793',
-                      style: TextStyle(
-                        color: const Color(0xff0379A8),
-                          fontSize: 15.dp, fontWeight: FontWeight.w500),
+                    GestureDetector(
+                      onTap: () async {
+                        final url = Uri.parse('https://www.fxcommission.com/via/5793');
+                        if (await canLaunchUrl(url)) {
+                          await launchUrl(url, mode: LaunchMode.externalApplication);
+                        }
+                      },
+                      child: Text(
+                        'https://www.fxcommission.com/via/5793',
+                        style: TextStyle(
+                          color: const Color(0xff0379A8),
+                            fontSize: 15.dp, fontWeight: FontWeight.w500),
+                      ),
                     ),
                     SizedBox(
                       height: 1.h,

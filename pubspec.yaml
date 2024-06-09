@@ -33,6 +33,7 @@ dependencies:
   flutter_sizer: ^1.0.4
   date_time_picker: "^2.1.0"
   dropdown_button2: ^2.3.9
+  url_launcher: ^6.3.0
 
 
 
