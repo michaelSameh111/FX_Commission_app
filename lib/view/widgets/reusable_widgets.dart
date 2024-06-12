@@ -1,4 +1,4 @@
-import 'package:dropdown_button2/dropdown_button2.dart';
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 
@@ -44,27 +44,57 @@ Widget mainElevatedButton({
                 WidgetStateProperty.all<Color>(const Color(0xff0095D0)),
             shape: WidgetStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(5), // Set the border radius
+                borderRadius:
+                    BorderRadius.circular(5.dp), // Set the border radius
               ),
             ),
           ),
           onPressed: onPressed,
           child: Text(
             text,
-            style: TextStyle(color: Colors.white, fontSize: 15.dp),
+            style: TextStyle(color: Colors.white, fontSize: 14.dp,
+            fontWeight: FontWeight.bold),
+          )),
+    );
+
+Widget mainElevatedButtonWithBorder({
+  double width = 40,
+  double height = 5,
+  String text = 'Open a test account',
+  final VoidCallback? onPressed,
+
+}) =>
+    SizedBox(
+      width: width,
+      height: height,
+      child: ElevatedButton(
+          onPressed: onPressed,
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.transparent,
+              elevation: 0,
+              shadowColor: Colors.transparent,
+              side: const BorderSide(
+                color: Color(0xff0095D0),
+              ),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5.dp))),
+          child: Text(
+            text,
+            style: TextStyle(color: const Color(0xff0095D0),
+                fontSize: 12.dp,
+            fontWeight: FontWeight.bold),
           )),
     );
 
 PreferredSizeWidget? reusableAppBar({
   required BuildContext context,
-
   String text = '',
 }) =>
     AppBar(
       backgroundColor: Colors.white,
       leadingWidth: 60.w,
       leading: InkWell(
-        onTap: (){
+        onTap: () {
           Navigator.pop(context);
         },
         child: Row(
@@ -174,15 +204,13 @@ Widget addedAccountTradingAccountScreen({
       ],
     );
 
-
-
 class startDateTextFormField extends StatefulWidget {
   const startDateTextFormField({super.key});
 
   @override
-  State<startDateTextFormField> createState() =>
-      _startDateTextFormFieldState();
+  State<startDateTextFormField> createState() => _startDateTextFormFieldState();
 }
+
 class _startDateTextFormFieldState extends State<startDateTextFormField> {
   final _formKey = GlobalKey<FormState>();
   TextEditingController _startDateController = TextEditingController();
@@ -245,15 +273,13 @@ class _startDateTextFormFieldState extends State<startDateTextFormField> {
   }
 }
 
-
-
 class endDateTextFormField extends StatefulWidget {
   const endDateTextFormField({super.key});
 
   @override
-  State<endDateTextFormField> createState() =>
-      _endDateTextFormFieldState();
+  State<endDateTextFormField> createState() => _endDateTextFormFieldState();
 }
+
 class _endDateTextFormFieldState extends State<endDateTextFormField> {
   final _formKey = GlobalKey<FormState>();
   TextEditingController _endDateController = TextEditingController();
@@ -310,13 +336,8 @@ class _endDateTextFormFieldState extends State<endDateTextFormField> {
             border: InputBorder.none,
             hintText: 'end date',
             hintStyle:
-            TextStyle(color: const Color(0xff808080), fontSize: 15.dp)),
+                TextStyle(color: const Color(0xff808080), fontSize: 15.dp)),
       ),
     );
   }
 }
-
-
-
-
-
