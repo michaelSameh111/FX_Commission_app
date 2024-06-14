@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
+import 'package:fx_commission_app/view/pages/home_layout_screen.dart';
 import 'package:fx_commission_app/view/pages/profile_screen/main_profile_screen.dart';
 import 'package:fx_commission_app/view/pages/sign_up_screen.dart';
 
@@ -140,10 +141,10 @@ class _LoginScreenState extends State<LoginScreen> {
                           width: 35.w,
                           height: 5.h,
                           onPressed: () {
-                            Navigator.push(
+                            Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const MainProfileScreen()));
+                                    builder: (context) => const HomeLayoutScreen()));
                           }),
                     ),
                     SizedBox(
@@ -156,7 +157,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           'Don\'t have an account ?',
                           style: TextStyle(
                             fontSize: 15.dp,
-                            color: Color(0xff646363),
+                            color: const Color(0xff646363),
                           ),
                         ),
                         TextButton(

@@ -13,6 +13,8 @@ class BlogsScreen extends StatelessWidget {
       ' reached an agreement to lift the ban on investing'
       ' in this Chinese company.in this Chinese company.in this Chinese company.';
 
+ // TabController? _tabController = TabController;
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -39,35 +41,47 @@ class BlogsScreen extends StatelessWidget {
               ],
             ),
           ),
-          bottom: TabBar(
+          bottom:
+
+          TabBar(
+            padding: EdgeInsets.zero,
+            //   controller: _tabController,
+            isScrollable: true,
+            indicator: const BoxDecoration(
+              border: Border(
+                bottom: BorderSide(
+                  color: Color(0xff0379A8),
+                )
+              )
+            ),
             tabs: [
               Text(
                 'Last News',
                 style: TextStyle(
-                    color: const Color(0xff0038A7),
+                    color: const Color(0xff0379A8),
                     fontWeight: FontWeight.bold,
-                    fontSize: 12.dp),
+                    fontSize: 16.dp),
               ),
               Text(
                 'Forex News',
                 style: TextStyle(
-                    color: const Color(0xff0038A7),
+                    color: const Color(0xff0379A8),
                     fontWeight: FontWeight.bold,
-                    fontSize: 12.dp),
+                    fontSize: 16.dp),
               ),
               Text(
                 'FX Commission News',
                 style: TextStyle(
-                    color: const Color(0xff0038A7),
+                    color: const Color(0xff0379A8),
                     fontWeight: FontWeight.bold,
-                    fontSize: 12.dp),
+                    fontSize: 16.dp),
               ),
               Text(
                 'Broker News',
                 style: TextStyle(
-                    color: const Color(0xff0038A7),
+                    color: const Color(0xff0379A8),
                     fontWeight: FontWeight.bold,
-                    fontSize: 12.dp),
+                    fontSize: 16.dp),
               ),
             ],
           ),

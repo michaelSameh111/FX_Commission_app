@@ -409,7 +409,6 @@ class _BrokersNewAccountScreenState extends State<BrokersNewAccountScreen> {
                           style: TextStyle(
                             fontSize: 16.dp,
                           ),),
-
                       ],
                     ),
                   ),
@@ -430,12 +429,9 @@ class _BrokersNewAccountScreenState extends State<BrokersNewAccountScreen> {
                           style: TextStyle(
                             fontSize: 16.dp,
                           ),),
-
                       ],
                     ),
                   ),
-
-
                 ],
               ),
             )

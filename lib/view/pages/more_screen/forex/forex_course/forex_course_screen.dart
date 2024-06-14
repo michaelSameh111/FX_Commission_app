@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:fx_commission_app/view/widgets/reusable_widgets.dart';
+import 'package:fx_commission_app/view/widgets/video_player_widget.dart';
 
 class ForexCourseScreen extends StatelessWidget {
   String issuer = 'Natali Craig';
@@ -83,6 +84,11 @@ purus.''';
                       fontSize: 17.dp,
                     ),
                   ),
+
+
+                  VideoPlayerWidget(
+                    videoUrl: 'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4',
+                  )
                 ],
               ),
             )

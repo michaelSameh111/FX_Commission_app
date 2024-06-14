@@ -1,9 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter_sizer/flutter_sizer.dart';
-import 'package:fx_commission_app/view/pages/login_screen.dart';
+import 'package:fx_commission_app/view/pages/on_boarding_screen_trial.dart';
 
-import 'on_boarding_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -19,7 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(const Duration(seconds: 2), () {
       Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) =>  OnBoardingScreen()));
+          MaterialPageRoute(builder: (context) => OnBoardingScreen()));
     });
   }
 

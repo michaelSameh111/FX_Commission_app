@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
+import 'package:fx_commission_app/view/pages/brokers_screen/main_brokers_screen.dart';
+import 'package:fx_commission_app/view/pages/more_screen/main_more_screen.dart';
 import 'package:fx_commission_app/view/pages/profile_screen/edit_profile_screen.dart';
 import 'package:fx_commission_app/view/pages/profile_screen/inactive_fees/inactive_fees_screen.dart';
 import 'package:fx_commission_app/view/pages/profile_screen/loyalty_program/loyalty_program_screen.dart';
@@ -10,42 +12,12 @@ import 'package:fx_commission_app/view/pages/profile_screen/trading_accounts/tra
 
 import 'withdrawals/withdrawals_screen.dart';
 
-class MainProfileScreen extends StatefulWidget {
+class MainProfileScreen extends StatelessWidget {
   const MainProfileScreen({super.key});
-
-  @override
-  State<MainProfileScreen> createState() => _MainProfileScreenState();
-}
-
-class _MainProfileScreenState extends State<MainProfileScreen> {
-  int currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: const Color(0xff0379A8),
-        unselectedItemColor: const Color(0xffA2A2A2),
-        currentIndex: currentIndex,
-        onTap: (int index) {
-          setState(() {
-            currentIndex = index;
-          });
-        },
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.monetization_on),
-            label: 'Market',
-          ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.search_off), label: 'Brokers'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.view_headline_sharp),
-            label: 'More',
-          ),
-        ],
-      ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 3.0.w, vertical: 10.h),
         child: SingleChildScrollView(

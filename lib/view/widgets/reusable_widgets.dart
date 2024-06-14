@@ -228,6 +228,15 @@ class _startDateTextFormFieldState extends State<startDateTextFormField> {
       initialDate: DateTime(2024),
       firstDate: DateTime(2000),
       lastDate: DateTime.now(),
+      builder: (context, child) {
+        return Theme(
+            data: ThemeData.light().copyWith(
+              colorScheme: const ColorScheme.light(
+                primary: Color(0xff0095D0)
+              )
+            ),
+            child: child!);
+      },
     );
 
     if (selectedDate != null) {
@@ -297,6 +306,15 @@ class _endDateTextFormFieldState extends State<endDateTextFormField> {
       initialDate: DateTime(2024),
       firstDate: DateTime(2000),
       lastDate: DateTime.now(),
+      builder: (context, child) {
+        return Theme(
+            data: ThemeData.light().copyWith(
+                colorScheme: const ColorScheme.light(
+                    primary: Color(0xff0095D0)
+                )
+            ),
+            child: child!);
+      },
     );
 
     if (selectedDate != null) {
