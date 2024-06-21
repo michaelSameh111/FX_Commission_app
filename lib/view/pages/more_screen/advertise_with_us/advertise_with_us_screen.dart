@@ -9,17 +9,20 @@ class AdvertiseWithUsScreen extends StatelessWidget {
     return Scaffold(
       appBar: reusableAppBar(context: context, text: 'More'),
 
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            containerBelowAppBar(text: 'Advertise with us'),
-            
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 3.0.w, vertical: 4.h),
-              
+      body: Column(
+        children: [
+          containerBelowAppBar(text: 'Advertise with us'),
+
+          Expanded(
+            child: SingleChildScrollView(
               child: Column(
                 children: [
-                  Text('''Our beloved Customers & Visitors,
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 3.0.w, vertical: 4.h),
+
+                    child: Column(
+                      children: [
+                        Text('''Our beloved Customers & Visitors,
 
 We would like to announce that, Fxcommission provides advertising campaigns services to its followers specifically for companies,which are working in Forex industry.
 We have many channels to make a succeed advertising campaigns for your company.
@@ -30,14 +33,17 @@ We wish you all the best.
 With regards
 
 FXCommission Management Board.''',
-                  style: TextStyle(
-                    fontSize: 17.dp
-                  ),)
+                        style: TextStyle(
+                          fontSize: 17.dp
+                        ),)
+                      ],
+                    ),
+                  )
                 ],
               ),
-            )
-          ],
-        ),
+            ),
+          ),
+        ],
       ),
 
     );

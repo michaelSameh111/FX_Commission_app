@@ -23,7 +23,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           child: FloatingActionButton(
             shape: const CircleBorder(),
             onPressed: () {
-              print(pageIndex);
+              // print(pageIndex);
               if (pageIndex < 2) {
                 _controller.nextPage(
                     duration: Duration(milliseconds: 500), curve: Curves.ease);

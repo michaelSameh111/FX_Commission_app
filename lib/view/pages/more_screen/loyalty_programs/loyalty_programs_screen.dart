@@ -21,80 +21,87 @@ for old customers, all what you need is to activate the program from the control
     return Scaffold(
       appBar: reusableAppBar(context: context, text: 'More'),
 
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            containerBelowAppBar(text: 'Loyalty Programs'),
+      body: Column(
+        children: [
+          containerBelowAppBar(text: 'Loyalty Programs'),
 
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 3.0.w, vertical: 4.h),
+          Expanded(
+            child: SingleChildScrollView(
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(10.dp),
-                    child: SizedBox(
-                      width: double.infinity,
-                      child: Image.asset(
-                          fit: BoxFit.cover,
-                          image),
+
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 3.0.w, vertical: 4.h),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(10.dp),
+                          child: SizedBox(
+                            width: double.infinity,
+                            child: Image.asset(
+                                fit: BoxFit.cover,
+                                image),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 2.h,
+                        ),
+                        Text(
+                          question,
+                          style: TextStyle(fontWeight: FontWeight.bold,
+                              fontSize: 18.dp),),
+                        SizedBox(
+                          height: 2.h,
+                        ),
+                        Text(answer,
+                          style: TextStyle(color: const Color(0xff646363),
+                              fontSize: 16.dp),
+                        ),
+                        SizedBox(height: 12.h,),
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(10.dp),
+                          child: SizedBox(
+                            width: double.infinity,
+                            child: Image.asset(
+                                fit: BoxFit.cover,
+                                image),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 2.h,
+                        ),
+                        Text(
+                          noteTitle,
+                          style: TextStyle(fontWeight: FontWeight.bold,
+                              fontSize: 18.dp),),
+                        SizedBox(
+                          height: 2.h,
+                        ),
+                        Text(note,
+                          style: TextStyle(color: const Color(0xff646363),
+                              fontSize: 16.dp),
+                        ),
+                        SizedBox(
+                          height: 2.h,
+                        ),
+                        Text(
+                          exampleTitle,
+                          style: TextStyle(fontWeight: FontWeight.bold,
+                              fontSize: 16.dp),),
+                        Text(theExample,
+                          style: TextStyle(color: const Color(0xff646363),
+                              fontSize: 16.dp),
+                        ),
+                        SizedBox(height: 12.h,),
+                      ],
                     ),
-                  ),
-                  SizedBox(
-                    height: 2.h,
-                  ),
-                  Text(
-                    question,
-                    style: TextStyle(fontWeight: FontWeight.bold,
-                        fontSize: 18.dp),),
-                  SizedBox(
-                    height: 2.h,
-                  ),
-                  Text(answer,
-                    style: TextStyle(color: const Color(0xff646363),
-                        fontSize: 16.dp),
-                  ),
-                  SizedBox(height: 12.h,),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(10.dp),
-                    child: SizedBox(
-                      width: double.infinity,
-                      child: Image.asset(
-                          fit: BoxFit.cover,
-                          image),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 2.h,
-                  ),
-                  Text(
-                    noteTitle,
-                    style: TextStyle(fontWeight: FontWeight.bold,
-                        fontSize: 18.dp),),
-                  SizedBox(
-                    height: 2.h,
-                  ),
-                  Text(note,
-                    style: TextStyle(color: const Color(0xff646363),
-                        fontSize: 16.dp),
-                  ),
-                  SizedBox(
-                    height: 2.h,
-                  ),
-                  Text(
-                    exampleTitle,
-                    style: TextStyle(fontWeight: FontWeight.bold,
-                        fontSize: 16.dp),),
-                  Text(theExample,
-                    style: TextStyle(color: const Color(0xff646363),
-                        fontSize: 16.dp),
-                  ),
-                  SizedBox(height: 12.h,),
+                  )
                 ],
               ),
-            )
-          ],
-        ),
+            ),
+          ),
+        ],
       ),
 
     );

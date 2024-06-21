@@ -27,81 +27,87 @@ purus.''';
         automaticallyImplyLeading: false,
       ),
 
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              width: double.infinity,
-              height: 6.h,
-              padding: EdgeInsets.symmetric(horizontal: 4.w),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                    bottomRight: Radius.circular(20.dp),
-                    bottomLeft: Radius.circular(20.dp)),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    spreadRadius: 1,
-                    blurRadius: 4,
-                    offset: Offset(0, 1), // changes position of shadow
-                  ),
-                ],
-              ),
-              child: InkWell(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                child: Row(
-                  children: [
-                    Icon(Icons.arrow_back_ios_new_rounded,
-                        color: const Color(0xff646363), size: 25.dp),
-                    SizedBox(
-                      width: 2.w,
-                    ),
-                    Text(
-                      'Services',
-                      style: TextStyle(fontSize: 18.dp),
-                    ),
-                  ],
+      body: Column(
+        children: [
+          Container(
+            width: double.infinity,
+            height: 6.h,
+            padding: EdgeInsets.symmetric(horizontal: 4.w),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                  bottomRight: Radius.circular(20.dp),
+                  bottomLeft: Radius.circular(20.dp)),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.5),
+                  spreadRadius: 1,
+                  blurRadius: 4,
+                  offset: Offset(0, 1), // changes position of shadow
                 ),
-              ),
-            ), //customized containerBelowAppBar
-
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 3.0.w, vertical: 4.h),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              ],
+            ),
+            child: InkWell(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: Row(
                 children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(10.dp),
-                    child: SizedBox(
-                      width: double.infinity,
-                      child: Image.asset(
-                          fit: BoxFit.cover,
-                          'assets/images/laptop_mobile_image.png'),
-                    ),
+                  Icon(Icons.arrow_back_ios_new_rounded,
+                      color: const Color(0xff646363), size: 25.dp),
+                  SizedBox(
+                    width: 2.w,
                   ),
-                  SizedBox(height: 2.h,),
-                  Text('$serviceTitle',
-                    style: TextStyle(
-                      color: const Color(0xff0379A8),
-                        fontSize: 17.dp,
-                        fontWeight: FontWeight.bold
-                    ),
+                  Text(
+                    'Services',
+                    style: TextStyle(fontSize: 18.dp),
                   ),
-                  SizedBox(height: 2.h,),
-                  Text('$content',
-                    style: TextStyle(
-                      fontSize: 17.dp,
-                    ),
-                  ),
-
                 ],
               ),
-            )
-          ],
-        ),
+            ),
+          ), //customized containerBelowAppBar
+
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 3.0.w, vertical: 4.h),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(10.dp),
+                          child: SizedBox(
+                            width: double.infinity,
+                            child: Image.asset(
+                                fit: BoxFit.cover,
+                                'assets/images/laptop_mobile_image.png'),
+                          ),
+                        ),
+                        SizedBox(height: 2.h,),
+                        Text('$serviceTitle',
+                          style: TextStyle(
+                            color: const Color(0xff0379A8),
+                              fontSize: 17.dp,
+                              fontWeight: FontWeight.bold
+                          ),
+                        ),
+                        SizedBox(height: 2.h,),
+                        Text('$content',
+                          style: TextStyle(
+                            fontSize: 17.dp,
+                          ),
+                        ),
+
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
 
 

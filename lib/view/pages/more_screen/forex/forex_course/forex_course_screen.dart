@@ -29,72 +29,79 @@ purus.''';
     return Scaffold(
       appBar: reusableAppBar(context: context, text: 'FOREX'),
 
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            containerBelowAppBar(text: 'Forex Course'),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 3.0.w, vertical: 4.h),
+      body: Column(
+        children: [
+          containerBelowAppBar(text: 'Forex Course'),
+
+          Expanded(
+            child: SingleChildScrollView(
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(10.dp),
-                    child: SizedBox(
-                      width: double.infinity,
-                      child: Image.asset(
-                          fit: BoxFit.cover,
-                          'assets/images/laptop_mobile_image.png'),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 2.h,
-                  ),
-                  Row(
-                    children: [
-                      Text(issuer,
-                        style: TextStyle(
-                            color: const Color(0xff0095D0), fontSize: 13.dp),
-                      ),
-                      Text(' • ',
-                        style: TextStyle(
-                            color: const Color(0xff0095D0), fontSize: 13.dp),
-                      ),
-                      Text(
-                        issueDate,
-                        style: TextStyle(
-                            color: const Color(0xff0095D0), fontSize: 13.dp),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 2.h,
-                  ),
-                  Text(
-                    courseTitle,
-                    style:
-                    TextStyle(fontSize: 17.dp, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(
-                    height: 2.h,
-                  ),
-                  Text(
-                    content,
-                    style: TextStyle(
-                      fontSize: 17.dp,
-                    ),
-                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 3.0.w, vertical: 4.h),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(10.dp),
+                          child: SizedBox(
+                            width: double.infinity,
+                            child: Image.asset(
+                                fit: BoxFit.cover,
+                                'assets/images/laptop_mobile_image.png'),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 2.h,
+                        ),
+                        Row(
+                          children: [
+                            Text(issuer,
+                              style: TextStyle(
+                                  color: const Color(0xff0095D0), fontSize: 13.dp),
+                            ),
+                            Text(' • ',
+                              style: TextStyle(
+                                  color: const Color(0xff0095D0), fontSize: 13.dp),
+                            ),
+                            Text(
+                              issueDate,
+                              style: TextStyle(
+                                  color: const Color(0xff0095D0), fontSize: 13.dp),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 2.h,
+                        ),
+                        Text(
+                          courseTitle,
+                          style:
+                          TextStyle(fontSize: 17.dp, fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(
+                          height: 2.h,
+                        ),
+                        Text(
+                          content,
+                          style: TextStyle(
+                            fontSize: 17.dp,
+                          ),
+                        ),
 
 
-                  VideoPlayerWidget(
-                    videoUrl: 'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4',
+                        VideoPlayerWidget(
+                          videoUrl: 'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4',
+                        )
+                      ],
+                    ),
                   )
+
                 ],
               ),
-            )
-
-          ],
-        ),
+            ),
+          ),
+        ],
       ),
 
     );

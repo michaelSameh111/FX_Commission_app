@@ -16,421 +16,429 @@ class   WithdrawalsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: reusableAppBar(context: context, text: 'My Profile'),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            containerBelowAppBar(text: 'Withdrawals'),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 3.0.w, vertical: 3.h),
-              child: Container(
-                width: double.infinity,
-                padding: EdgeInsets.all(12.dp),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  border: Border.all(
-                    color: const Color(0xff0095D0),
+      body: Column(
+        children: [
+          containerBelowAppBar(text: 'Withdrawals'),
+
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  // containerBelowAppBar(text: 'Withdrawals'),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 3.0.w, vertical: 3.h),
+                    child: Container(
+                      width: double.infinity,
+                      padding: EdgeInsets.all(12.dp),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        border: Border.all(
+                          color: const Color(0xff0095D0),
+                        ),
+                        borderRadius: BorderRadius.circular(7.dp),
+                      ),
+                      child: Column(
+                        children: [
+                          Center(
+                            child: Text(
+                              'Withdrawal Methods',
+                              style: TextStyle(
+                                  fontSize: 18.dp, fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 3.h,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 3.w),
+                            child: Row(
+                              children: [
+                                Text(
+                                  'Withdrawal\nMethod',
+                                  style: TextStyle(
+                                      fontSize: 15.dp,
+                                      fontWeight: FontWeight.bold,
+                                      color: const Color(0xff0095D0)),
+                                ),
+                                SizedBox(
+                                  width: 19.w,
+                                ),
+                                Container(
+                                  width: 0.3.w,
+                                  height: 10.h,
+                                  color: const Color(0xffC4C4C4),
+                                ),
+                                SizedBox(
+                                  width: 5.w,
+                                ),
+                                Text(
+                                  'Vodafone Cash (only\nfor customers\nin Egypt)',
+                                  style: TextStyle(
+                                      fontSize: 15.dp, fontWeight: FontWeight.w600),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Divider(
+                            thickness: 0.3.w,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 3.w),
+                            child: Row(
+                              children: [
+                                Text(
+                                  'Minimum',
+                                  style: TextStyle(
+                                      fontSize: 15.dp,
+                                      fontWeight: FontWeight.bold,
+                                      color: const Color(0xff0095D0)),
+                                ),
+                                SizedBox(
+                                  width: 22.w,
+                                ),
+                                Container(
+                                  width: 0.3.w,
+                                  height: 5.h,
+                                  color: const Color(0xffC4C4C4),
+                                ),
+                                SizedBox(
+                                  width: 5.w,
+                                ),
+                                Text(
+                                  minimum,
+                                  style: TextStyle(
+                                      fontSize: 15.dp, fontWeight: FontWeight.w600),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Divider(
+                            thickness: 0.3.w,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 3.w),
+                            child: Row(
+                              children: [
+                                Text(
+                                  'Fees',
+                                  style: TextStyle(
+                                      fontSize: 15.dp,
+                                      fontWeight: FontWeight.bold,
+                                      color: const Color(0xff0095D0)),
+                                ),
+                                SizedBox(
+                                  width: 30.2.w,
+                                ),
+                                Container(
+                                  width: 0.3.w,
+                                  height: 5.h,
+                                  color: const Color(0xffC4C4C4),
+                                ),
+                                SizedBox(
+                                  width: 5.w,
+                                ),
+                                Text(
+                                  fees,
+                                  style: TextStyle(
+                                      fontSize: 15.dp, fontWeight: FontWeight.w600),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Divider(
+                            thickness: 0.3.w,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 3.w),
+                            child: Row(
+                              children: [
+                                Text(
+                                  'Withdrawal\nData	',
+                                  style: TextStyle(
+                                      fontSize: 15.dp,
+                                      fontWeight: FontWeight.bold,
+                                      color: const Color(0xff0095D0)),
+                                ),
+                                SizedBox(
+                                  width: 19.w,
+                                ),
+                                Container(
+                                  width: 0.3.w,
+                                  height: 5.h,
+                                  color: const Color(0xffC4C4C4),
+                                ),
+                                SizedBox(
+                                  width: 5.w,
+                                ),
+                                Text(
+                                  withdrawalData,
+                                  style: TextStyle(
+                                      fontSize: 15.dp, fontWeight: FontWeight.w600),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Divider(
+                            thickness: 0.3.w,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 3.w),
+                            child: Row(
+                              children: [
+                                Text(
+                                  'Delete	',
+                                  style: TextStyle(
+                                      fontSize: 15.dp,
+                                      fontWeight: FontWeight.bold,
+                                      color: const Color(0xff0095D0)),
+                                ),
+                                SizedBox(
+                                  width: 26.3.w,
+                                ),
+                                Container(
+                                  width: 0.3.w,
+                                  height: 5.h,
+                                  color: const Color(0xffC4C4C4),
+                                ),
+                                SizedBox(
+                                  width: 5.w,
+                                ),
+                                const Icon(
+                                  Icons.cancel_outlined,
+                                  color: Colors.red,
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            height: 3.h,
+                          ),
+                          mainElevatedButton(
+                            width: 70.w,
+                            height: 5.h,
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          AddNewPaymentMethodScreen()));
+                            },
+                            text: 'Add new payment method',
+                          )
+                        ],
+                      ),
+                    ),
                   ),
-                  borderRadius: BorderRadius.circular(7.dp),
-                ),
-                child: Column(
-                  children: [
-                    Center(
-                      child: Text(
-                        'Withdrawal Methods',
-                        style: TextStyle(
-                            fontSize: 18.dp, fontWeight: FontWeight.bold),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 3.0.w, vertical: 3.h),
+                    child: Container(
+                      width: double.infinity,
+                      padding: EdgeInsets.all(12.dp),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        border: Border.all(
+                          color: const Color(0xff0095D0),
+                        ),
+                        borderRadius: BorderRadius.circular(7.dp),
                       ),
-                    ),
-                    SizedBox(
-                      height: 3.h,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 3.w),
-                      child: Row(
+                      child: Column(
                         children: [
-                          Text(
-                            'Withdrawal\nMethod',
-                            style: TextStyle(
-                                fontSize: 15.dp,
-                                fontWeight: FontWeight.bold,
-                                color: const Color(0xff0095D0)),
+                          Center(
+                            child: Text(
+                              'Withdrawal Requests',
+                              style: TextStyle(
+                                  fontSize: 18.dp, fontWeight: FontWeight.bold),
+                            ),
                           ),
                           SizedBox(
-                            width: 19.w,
+                            height: 3.h,
                           ),
-                          Container(
-                            width: 0.3.w,
-                            height: 10.h,
-                            color: const Color(0xffC4C4C4),
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 3.w),
+                            child: Row(
+                              children: [
+                                Text(
+                                  'Withdrawal\nMethod',
+                                  style: TextStyle(
+                                      fontSize: 15.dp,
+                                      fontWeight: FontWeight.bold,
+                                      color: const Color(0xff0095D0)),
+                                ),
+                                SizedBox(
+                                  width: 19.w,
+                                ),
+                                Container(
+                                  width: 0.3.w,
+                                  height: 10.h,
+                                  color: const Color(0xffC4C4C4),
+                                ),
+                                SizedBox(
+                                  width: 5.w,
+                                ),
+                                Text(
+                                  'Vodafone Cash (only\nfor customers\nin Egypt)',
+                                  style: TextStyle(
+                                      fontSize: 15.dp, fontWeight: FontWeight.w600),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Divider(
+                            thickness: 0.3.w,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 3.w),
+                            child: Row(
+                              children: [
+                                Text(
+                                  'The Amount',
+                                  style: TextStyle(
+                                      fontSize: 15.dp,
+                                      fontWeight: FontWeight.bold,
+                                      color: const Color(0xff0095D0)),
+                                ),
+                                SizedBox(
+                                  width: 17.2.w,
+                                ),
+                                Container(
+                                  width: 0.3.w,
+                                  height: 5.h,
+                                  color: const Color(0xffC4C4C4),
+                                ),
+                                SizedBox(
+                                  width: 5.w,
+                                ),
+                                Text(
+                                  theAmount,
+                                  style: TextStyle(
+                                      fontSize: 15.dp, fontWeight: FontWeight.w600),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Divider(
+                            thickness: 0.3.w,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 3.w),
+                            child: Row(
+                              children: [
+                                Text(
+                                  'Fees',
+                                  style: TextStyle(
+                                      fontSize: 15.dp,
+                                      fontWeight: FontWeight.bold,
+                                      color: const Color(0xff0095D0)),
+                                ),
+                                SizedBox(
+                                  width: 30.2.w,
+                                ),
+                                Container(
+                                  width: 0.3.w,
+                                  height: 5.h,
+                                  color: const Color(0xffC4C4C4),
+                                ),
+                                SizedBox(
+                                  width: 5.w,
+                                ),
+                                Text(
+                                  fees,
+                                  style: TextStyle(
+                                      fontSize: 15.dp, fontWeight: FontWeight.w600),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Divider(
+                            thickness: 0.3.w,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 3.w),
+                            child: Row(
+                              children: [
+                                Text(
+                                  'The Date',
+                                  style: TextStyle(
+                                      fontSize: 15.dp,
+                                      fontWeight: FontWeight.bold,
+                                      color: const Color(0xff0095D0)),
+                                ),
+                                SizedBox(
+                                  width: 22.8.w,
+                                ),
+                                Container(
+                                  width: 0.3.w,
+                                  height: 5.h,
+                                  color: const Color(0xffC4C4C4),
+                                ),
+                                SizedBox(
+                                  width: 5.w,
+                                ),
+                                Text(
+                                  theDate,
+                                  style: TextStyle(
+                                      fontSize: 15.dp, fontWeight: FontWeight.w600),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Divider(
+                            thickness: 0.3.w,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 3.w),
+                            child: Row(
+                              children: [
+                                Text(
+                                  'The\nCondition	',
+                                  style: TextStyle(
+                                      fontSize: 15.dp,
+                                      fontWeight: FontWeight.bold,
+                                      color: const Color(0xff0095D0)),
+                                ),
+                                SizedBox(
+                                  width: 20.6.w,
+                                ),
+                                Container(
+                                  width: 0.3.w,
+                                  height: 5.h,
+                                  color: const Color(0xffC4C4C4),
+                                ),
+                                SizedBox(
+                                  width: 5.w,
+                                ),
+                                Text(
+                                  theCondition,
+                                  style: TextStyle(
+                                      fontSize: 15.dp, fontWeight: FontWeight.w600),
+                                ),
+                              ],
+                            ),
                           ),
                           SizedBox(
-                            width: 5.w,
+                            height: 3.h,
                           ),
-                          Text(
-                            'Vodafone Cash (only\nfor customers\nin Egypt)',
-                            style: TextStyle(
-                                fontSize: 15.dp, fontWeight: FontWeight.w600),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Divider(
-                      thickness: 0.3.w,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 3.w),
-                      child: Row(
-                        children: [
-                          Text(
-                            'Minimum',
-                            style: TextStyle(
-                                fontSize: 15.dp,
-                                fontWeight: FontWeight.bold,
-                                color: const Color(0xff0095D0)),
-                          ),
-                          SizedBox(
-                            width: 22.w,
-                          ),
-                          Container(
-                            width: 0.3.w,
+                          mainElevatedButton(
+                            width: 70.w,
                             height: 5.h,
-                            color: const Color(0xffC4C4C4),
-                          ),
-                          SizedBox(
-                            width: 5.w,
-                          ),
-                          Text(
-                            minimum,
-                            style: TextStyle(
-                                fontSize: 15.dp, fontWeight: FontWeight.w600),
-                          ),
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          AddRequestScreen()));
+                            },
+                            text: 'Add a request',
+                          )
                         ],
                       ),
                     ),
-                    Divider(
-                      thickness: 0.3.w,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 3.w),
-                      child: Row(
-                        children: [
-                          Text(
-                            'Fees',
-                            style: TextStyle(
-                                fontSize: 15.dp,
-                                fontWeight: FontWeight.bold,
-                                color: const Color(0xff0095D0)),
-                          ),
-                          SizedBox(
-                            width: 30.2.w,
-                          ),
-                          Container(
-                            width: 0.3.w,
-                            height: 5.h,
-                            color: const Color(0xffC4C4C4),
-                          ),
-                          SizedBox(
-                            width: 5.w,
-                          ),
-                          Text(
-                            fees,
-                            style: TextStyle(
-                                fontSize: 15.dp, fontWeight: FontWeight.w600),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Divider(
-                      thickness: 0.3.w,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 3.w),
-                      child: Row(
-                        children: [
-                          Text(
-                            'Withdrawal\nData	',
-                            style: TextStyle(
-                                fontSize: 15.dp,
-                                fontWeight: FontWeight.bold,
-                                color: const Color(0xff0095D0)),
-                          ),
-                          SizedBox(
-                            width: 19.w,
-                          ),
-                          Container(
-                            width: 0.3.w,
-                            height: 5.h,
-                            color: const Color(0xffC4C4C4),
-                          ),
-                          SizedBox(
-                            width: 5.w,
-                          ),
-                          Text(
-                            withdrawalData,
-                            style: TextStyle(
-                                fontSize: 15.dp, fontWeight: FontWeight.w600),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Divider(
-                      thickness: 0.3.w,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 3.w),
-                      child: Row(
-                        children: [
-                          Text(
-                            'Delete	',
-                            style: TextStyle(
-                                fontSize: 15.dp,
-                                fontWeight: FontWeight.bold,
-                                color: const Color(0xff0095D0)),
-                          ),
-                          SizedBox(
-                            width: 26.3.w,
-                          ),
-                          Container(
-                            width: 0.3.w,
-                            height: 5.h,
-                            color: const Color(0xffC4C4C4),
-                          ),
-                          SizedBox(
-                            width: 5.w,
-                          ),
-                          const Icon(
-                            Icons.cancel_outlined,
-                            color: Colors.red,
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: 3.h,
-                    ),
-                    mainElevatedButton(
-                      width: 70.w,
-                      height: 5.h,
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    AddNewPaymentMethodScreen()));
-                      },
-                      text: 'Add new payment method',
-                    )
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 3.0.w, vertical: 3.h),
-              child: Container(
-                width: double.infinity,
-                padding: EdgeInsets.all(12.dp),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  border: Border.all(
-                    color: const Color(0xff0095D0),
-                  ),
-                  borderRadius: BorderRadius.circular(7.dp),
-                ),
-                child: Column(
-                  children: [
-                    Center(
-                      child: Text(
-                        'Withdrawal Requests',
-                        style: TextStyle(
-                            fontSize: 18.dp, fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 3.h,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 3.w),
-                      child: Row(
-                        children: [
-                          Text(
-                            'Withdrawal\nMethod',
-                            style: TextStyle(
-                                fontSize: 15.dp,
-                                fontWeight: FontWeight.bold,
-                                color: const Color(0xff0095D0)),
-                          ),
-                          SizedBox(
-                            width: 19.w,
-                          ),
-                          Container(
-                            width: 0.3.w,
-                            height: 10.h,
-                            color: const Color(0xffC4C4C4),
-                          ),
-                          SizedBox(
-                            width: 5.w,
-                          ),
-                          Text(
-                            'Vodafone Cash (only\nfor customers\nin Egypt)',
-                            style: TextStyle(
-                                fontSize: 15.dp, fontWeight: FontWeight.w600),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Divider(
-                      thickness: 0.3.w,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 3.w),
-                      child: Row(
-                        children: [
-                          Text(
-                            'The Amount',
-                            style: TextStyle(
-                                fontSize: 15.dp,
-                                fontWeight: FontWeight.bold,
-                                color: const Color(0xff0095D0)),
-                          ),
-                          SizedBox(
-                            width: 17.2.w,
-                          ),
-                          Container(
-                            width: 0.3.w,
-                            height: 5.h,
-                            color: const Color(0xffC4C4C4),
-                          ),
-                          SizedBox(
-                            width: 5.w,
-                          ),
-                          Text(
-                            theAmount,
-                            style: TextStyle(
-                                fontSize: 15.dp, fontWeight: FontWeight.w600),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Divider(
-                      thickness: 0.3.w,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 3.w),
-                      child: Row(
-                        children: [
-                          Text(
-                            'Fees',
-                            style: TextStyle(
-                                fontSize: 15.dp,
-                                fontWeight: FontWeight.bold,
-                                color: const Color(0xff0095D0)),
-                          ),
-                          SizedBox(
-                            width: 30.2.w,
-                          ),
-                          Container(
-                            width: 0.3.w,
-                            height: 5.h,
-                            color: const Color(0xffC4C4C4),
-                          ),
-                          SizedBox(
-                            width: 5.w,
-                          ),
-                          Text(
-                            fees,
-                            style: TextStyle(
-                                fontSize: 15.dp, fontWeight: FontWeight.w600),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Divider(
-                      thickness: 0.3.w,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 3.w),
-                      child: Row(
-                        children: [
-                          Text(
-                            'The Date',
-                            style: TextStyle(
-                                fontSize: 15.dp,
-                                fontWeight: FontWeight.bold,
-                                color: const Color(0xff0095D0)),
-                          ),
-                          SizedBox(
-                            width: 22.8.w,
-                          ),
-                          Container(
-                            width: 0.3.w,
-                            height: 5.h,
-                            color: const Color(0xffC4C4C4),
-                          ),
-                          SizedBox(
-                            width: 5.w,
-                          ),
-                          Text(
-                            theDate,
-                            style: TextStyle(
-                                fontSize: 15.dp, fontWeight: FontWeight.w600),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Divider(
-                      thickness: 0.3.w,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 3.w),
-                      child: Row(
-                        children: [
-                          Text(
-                            'The\nCondition	',
-                            style: TextStyle(
-                                fontSize: 15.dp,
-                                fontWeight: FontWeight.bold,
-                                color: const Color(0xff0095D0)),
-                          ),
-                          SizedBox(
-                            width: 20.6.w,
-                          ),
-                          Container(
-                            width: 0.3.w,
-                            height: 5.h,
-                            color: const Color(0xffC4C4C4),
-                          ),
-                          SizedBox(
-                            width: 5.w,
-                          ),
-                          Text(
-                            theCondition,
-                            style: TextStyle(
-                                fontSize: 15.dp, fontWeight: FontWeight.w600),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: 3.h,
-                    ),
-                    mainElevatedButton(
-                      width: 70.w,
-                      height: 5.h,
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    AddRequestScreen()));
-                      },
-                      text: 'Add a request',
-                    )
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

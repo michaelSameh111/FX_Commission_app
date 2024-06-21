@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:fx_commission_app/view/pages/on_boarding_screen_trial.dart';
+import 'package:fx_commission_app/view/pages/on_boarding_screen.dart';
 
 
 class SplashScreen extends StatefulWidget {
