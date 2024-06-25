@@ -36,6 +36,7 @@ dependencies:
   url_launcher: ^6.3.0
   animated_rating_stars: ^1.0.1
   video_player: ^2.8.7
+  chewie: ^1.8.1
 
 
 

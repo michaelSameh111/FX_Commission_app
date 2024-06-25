@@ -1,4 +1,5 @@
 import 'package:animated_rating_stars/animated_rating_stars.dart';
+import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:fx_commission_app/view/widgets/reusable_widgets.dart';
@@ -19,27 +20,47 @@ class _BrokersNewAccountScreenState extends State<BrokersNewAccountScreen> {
  Currently Exness Group offers the ability to trade more than 120 financial instruments, with some of the best-on-the-market order execution and record-tight spreads for the main currency pairs. Priorities Continuous development, guided primarily by systematic improvement of trading conditions, is the key to Exness Group's long-term and successful work. ''';
   String noticesContent = '''XM Group is a group of regulated online brokers. Trading Point of Financial Instruments Ltd was established in 2009 and it is regulated by the Cyprus Securities and Exchange Commission (CySEC 120/10), Trading Point of Financial Instruments Pty Ltd was established in 2015 and it is regulated by the Australian Securities and Investments Commission (ASIC 443670), and XM Global Limited was established in 2017 and it is regulated by the International Financial Services Commission IFSC/60/354/TS/19
 ''';
-  late VideoPlayerController _controller;
+  late VideoPlayerController _videoPlayerController;
   late Future<void> _initializeVideoPlayerFuture;
+  late ChewieController _chewieController;
 
   @override
   void initState() {
     super.initState();
     // Initialize the controller and load the video from a URL or an asset
-    _controller = VideoPlayerController.network(
+    _videoPlayerController = VideoPlayerController.network(
       'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4', // Replace with your video URL or use VideoPlayerController.asset('assets/sample_video.mp4')
     );
+    _videoPlayerController.initialize().then((_) {
+      setState(() {});
+    });
 
-    _initializeVideoPlayerFuture = _controller.initialize();
+    _chewieController = ChewieController(
+      videoPlayerController: _videoPlayerController,
+      aspectRatio: _videoPlayerController.value.aspectRatio,
+      autoPlay: true,
+      looping: true,
+      // Custom controls can be added here
+      materialProgressColors: ChewieProgressColors(
+        playedColor: Colors.red,
+        handleColor: Colors.red,
+        backgroundColor: Colors.grey,
+        bufferedColor: Colors.lightGreen,
+      ),
+    );
+
+
+    _initializeVideoPlayerFuture = _videoPlayerController.initialize();
     // Start playing the video automatically
-    _controller.setLooping(true);
-    _controller.play();
+    _videoPlayerController.setLooping(true);
+    _videoPlayerController.play();
   }
 
   @override
   void dispose() {
     // Ensure disposing of the VideoPlayerController to free up resources
-    _controller.dispose();
+    _videoPlayerController.dispose();
+    _chewieController.dispose();
     super.dispose();
   }
 
@@ -100,29 +121,29 @@ class _BrokersNewAccountScreenState extends State<BrokersNewAccountScreen> {
                         ),
                         SizedBox(height: 2.h,),
                         mainElevatedButton(
-                          onPressed: (){
+                            onPressed: (){
 
-                          },
-                          width: double.infinity,
-                          height: 5.h,
-                          text: 'New account'
+                            },
+                            width: double.infinity,
+                            height: 5.h,
+                            text: 'New account'
                         ),
                         SizedBox(height: 1.h,),
                         mainElevatedButtonWithBorder(
-                          onPressed: (){},
+                            onPressed: (){},
                             width: double.infinity,
                             height: 5.h,
                             text: 'Open a test account'
                         ),
                         SizedBox(height: 2.h,),
                         Text('About $accountTitle',
-                        style: TextStyle(
-                          fontSize: 15.dp,
-                          fontWeight: FontWeight.bold
-                        ),),
-                        Text(accountContent,
                           style: TextStyle(
                               fontSize: 15.dp,
+                              fontWeight: FontWeight.bold
+                          ),),
+                        Text(accountContent,
+                          style: TextStyle(
+                            fontSize: 15.dp,
                           ),),
                         SizedBox(height: 2.h,),
                         TextButton(
@@ -133,7 +154,7 @@ class _BrokersNewAccountScreenState extends State<BrokersNewAccountScreen> {
                               //         builder: (context) =>
                               //             BlogsReadArticleScreen())
                               // );
-                              },
+                            },
                             child: Row(
                               children: [
                                 Text(
@@ -204,11 +225,11 @@ class _BrokersNewAccountScreenState extends State<BrokersNewAccountScreen> {
                           color: const Color(0xff0379A8),
                           child: Center(
                             child: Text('XM Group',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18.dp,
-                              fontWeight: FontWeight.bold
-                            ),),
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18.dp,
+                                  fontWeight: FontWeight.bold
+                              ),),
                           ),
                         ),
                         Container(
@@ -226,7 +247,7 @@ class _BrokersNewAccountScreenState extends State<BrokersNewAccountScreen> {
                                 ),),
                               Text('start from 2\$',
                                 style: TextStyle(
-                                    fontSize: 16.dp,
+                                  fontSize: 16.dp,
                                 ),),
 
                             ],
@@ -464,26 +485,32 @@ class _BrokersNewAccountScreenState extends State<BrokersNewAccountScreen> {
 
                         SizedBox(height: 2.h,),
                         FutureBuilder(
-                            future: _initializeVideoPlayerFuture,
-                            builder: (context, snapshot) {
-                              if (snapshot.connectionState == ConnectionState.done) {
-                                // If the VideoPlayerController has finished initialization, use
-                                // the VideoPlayer widget to display the video.
-                                return ClipRRect(
-                                  borderRadius: BorderRadius.circular(15.dp),
-                                  child: AspectRatio(
-                                    aspectRatio: _controller.value.aspectRatio,
-                                    child: VideoPlayer(_controller),
+                          future: _initializeVideoPlayerFuture,
+                          builder: (context, snapshot) {
+                            if (snapshot.connectionState == ConnectionState.done) {
+                              // If the VideoPlayerController has finished initialization, use
+                              // the VideoPlayer widget to display the video.
+                              return Column(
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(15.dp),
+                                    child: AspectRatio(
+                                      aspectRatio: _videoPlayerController.value.aspectRatio,
+                                      child: Chewie(
+                                        controller: _chewieController,
+                                      ),
+                                    ),
                                   ),
-                                );
-                              } else {
-                                // If the VideoPlayerController is still initializing, show a
-                                // loading spinner.
-                                return const Center(child: CircularProgressIndicator(
-                                  color: Color(0xff0095D0),
-                                ));
-                              }
-                            },)
+                                ],
+                              );
+                            } else {
+                              // If the VideoPlayerController is still initializing, show a
+                              // loading spinner.
+                              return const Center(child: CircularProgressIndicator(
+                                color: Color(0xff0095D0),
+                              ));
+                            }
+                          },)
                       ],
                     ),
                   )
