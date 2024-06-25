@@ -92,7 +92,7 @@ PreferredSizeWidget? reusableAppBar({
 }) =>
     AppBar(
       backgroundColor: Colors.white,
-
+      // forceMaterialTransparency: true,
       leadingWidth: 60.w,
       leading: InkWell(
         onTap: () {

@@ -2,6 +2,8 @@ import 'package:animated_rating_stars/animated_rating_stars.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:fx_commission_app/view/widgets/reusable_widgets.dart';
+import 'package:video_player/video_player.dart';
+
 
 class BrokersNewAccountScreen extends StatefulWidget {
 
@@ -17,6 +19,29 @@ class _BrokersNewAccountScreenState extends State<BrokersNewAccountScreen> {
  Currently Exness Group offers the ability to trade more than 120 financial instruments, with some of the best-on-the-market order execution and record-tight spreads for the main currency pairs. Priorities Continuous development, guided primarily by systematic improvement of trading conditions, is the key to Exness Group's long-term and successful work. ''';
   String noticesContent = '''XM Group is a group of regulated online brokers. Trading Point of Financial Instruments Ltd was established in 2009 and it is regulated by the Cyprus Securities and Exchange Commission (CySEC 120/10), Trading Point of Financial Instruments Pty Ltd was established in 2015 and it is regulated by the Australian Securities and Investments Commission (ASIC 443670), and XM Global Limited was established in 2017 and it is regulated by the International Financial Services Commission IFSC/60/354/TS/19
 ''';
+  late VideoPlayerController _controller;
+  late Future<void> _initializeVideoPlayerFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    // Initialize the controller and load the video from a URL or an asset
+    _controller = VideoPlayerController.network(
+      'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4', // Replace with your video URL or use VideoPlayerController.asset('assets/sample_video.mp4')
+    );
+
+    _initializeVideoPlayerFuture = _controller.initialize();
+    // Start playing the video automatically
+    _controller.setLooping(true);
+    _controller.play();
+  }
+
+  @override
+  void dispose() {
+    // Ensure disposing of the VideoPlayerController to free up resources
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -436,6 +461,29 @@ class _BrokersNewAccountScreenState extends State<BrokersNewAccountScreen> {
                             ],
                           ),
                         ),
+
+                        SizedBox(height: 2.h,),
+                        FutureBuilder(
+                            future: _initializeVideoPlayerFuture,
+                            builder: (context, snapshot) {
+                              if (snapshot.connectionState == ConnectionState.done) {
+                                // If the VideoPlayerController has finished initialization, use
+                                // the VideoPlayer widget to display the video.
+                                return ClipRRect(
+                                  borderRadius: BorderRadius.circular(15.dp),
+                                  child: AspectRatio(
+                                    aspectRatio: _controller.value.aspectRatio,
+                                    child: VideoPlayer(_controller),
+                                  ),
+                                );
+                              } else {
+                                // If the VideoPlayerController is still initializing, show a
+                                // loading spinner.
+                                return const Center(child: CircularProgressIndicator(
+                                  color: Color(0xff0095D0),
+                                ));
+                              }
+                            },)
                       ],
                     ),
                   )
