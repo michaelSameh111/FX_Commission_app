@@ -34,6 +34,7 @@ Widget mainElevatedButton({
   double height = 5,
   String text = '',
   final VoidCallback? onPressed,
+  bool? loading,
 }) =>
     SizedBox(
       width: width,
@@ -49,8 +50,10 @@ Widget mainElevatedButton({
               ),
             ),
           ),
-          onPressed: onPressed,
-          child: Text(
+          onPressed: loading == true ? null : onPressed,
+          child: loading == true ? const Center(child: CircularProgressIndicator(
+            color: Colors.white,
+          ),) : Text(
             text,
             style: TextStyle(color: Colors.white, fontSize: 14.dp,
             fontWeight: FontWeight.bold),

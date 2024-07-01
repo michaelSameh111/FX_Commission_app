@@ -1,0 +1,1 @@
+const login = 'api/auth/login';

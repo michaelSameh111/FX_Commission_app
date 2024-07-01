@@ -6,8 +6,9 @@ class DioHelper {
   static init() {
     dio = Dio(
       BaseOptions(
-        baseUrl: '',
+        baseUrl: 'https://innovationscope.com/demos/fx/public/',
         receiveDataWhenStatusError: true,
+        
       ),
     );
   }
@@ -17,5 +18,17 @@ class DioHelper {
     required Map<String, dynamic>? query,
   }) async {
     return await dio?.get(url, queryParameters: query);
+  }
+
+  static Future<Response> postData ({
+    required String url,
+    Map<String, dynamic>? query,
+    required Map<String, dynamic>? data,
+  }) async {
+    return dio!.post(
+      url,
+      queryParameters: query,
+      data: data
+    );
   }
 }
