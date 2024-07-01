@@ -1,7 +1,10 @@
 import 'package:animated_rating_stars/animated_rating_stars.dart';
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
+import 'package:fx_commission_app/controller/cubit/cubit.dart';
+import 'package:fx_commission_app/controller/cubit/states.dart';
 import 'package:fx_commission_app/view/widgets/reusable_widgets.dart';
 import 'package:video_player/video_player.dart';
 
@@ -66,459 +69,467 @@ class _BrokersNewAccountScreenState extends State<BrokersNewAccountScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: reusableAppBar(context: context, text: 'Brokers'),
+    return BlocProvider(
+      create: (BuildContext context) => AppCubit(),
+      child: BlocConsumer <AppCubit, AppStates>(
+        listener: (context, state) {} ,
+        builder: (context, state) {
+          return Scaffold (
+            appBar: reusableAppBar(context: context, text: 'Brokers'),
 
-      body: Column(
-        children: [
-          containerBelowAppBar(text: accountTitle),
+            body: Column(
+              children: [
+                containerBelowAppBar(text: accountTitle),
 
-          Expanded(
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 3.0.w, vertical: 4.h),
+                Expanded(
+                  child: SingleChildScrollView(
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Center(
-                          child: SizedBox(
-                            width: 30.w,
-                            height: 14.h,
-                            child: ClipRRect(
-                                borderRadius: BorderRadius.circular(8.dp),
-                                child: const Image(fit: BoxFit.cover,
-                                    image:
-                                    AssetImage('assets/images/profile_picture.png'))),
-                          ),
-                        ),
-                        SizedBox(height: 3.h,),
-                        Center(
-                          child: AnimatedRatingStars(
-                            initialRating: 2.5,
-                            onChanged: (rating) {
-                              setState(() {
-                                _rating = rating;
-                                //print('Rating : $rating');
-                              });
-                            },
-                            starSize: 15.dp,
-                            customFilledIcon: Icons.star,
-                            customHalfFilledIcon: Icons.star_half,
-                            customEmptyIcon: Icons.star_border,
-                            interactiveTooltips: true,
-                            filledColor: const Color(0xff0095D0),
-                          ),
-                        ),
-                        SizedBox(height: 1.h,),
-                        Center(
-                          child: Text('(14025)',
-                            style: TextStyle(
-                                fontSize: 15.dp
-                            ),),
-                        ),
-                        SizedBox(height: 2.h,),
-                        mainElevatedButton(
-                            onPressed: (){
 
-                            },
-                            width: double.infinity,
-                            height: 5.h,
-                            text: 'New account'
-                        ),
-                        SizedBox(height: 1.h,),
-                        mainElevatedButtonWithBorder(
-                            onPressed: (){},
-                            width: double.infinity,
-                            height: 5.h,
-                            text: 'Open a test account'
-                        ),
-                        SizedBox(height: 2.h,),
-                        Text('About $accountTitle',
-                          style: TextStyle(
-                              fontSize: 15.dp,
-                              fontWeight: FontWeight.bold
-                          ),),
-                        Text(accountContent,
-                          style: TextStyle(
-                            fontSize: 15.dp,
-                          ),),
-                        SizedBox(height: 2.h,),
-                        TextButton(
-                            onPressed: () {
-                              // Navigator.push(
-                              //     context,
-                              //     MaterialPageRoute(
-                              //         builder: (context) =>
-                              //             BlogsReadArticleScreen())
-                              // );
-                            },
-                            child: Row(
-                              children: [
-                                Text(
-                                  'Learn more',
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 3.0.w, vertical: 4.h),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Center(
+                                child: SizedBox(
+                                  width: 30.w,
+                                  height: 14.h,
+                                  child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(8.dp),
+                                      child: const Image(fit: BoxFit.cover,
+                                          image:
+                                          AssetImage('assets/images/profile_picture.png'))),
+                                ),
+                              ),
+                              SizedBox(height: 3.h,),
+                              Center(
+                                child: AnimatedRatingStars(
+                                  initialRating: 2.5,
+                                  onChanged: (rating) {
+                                    setState(() {
+                                      _rating = rating;
+                                      //print('Rating : $rating');
+                                    });
+                                  },
+                                  starSize: 15.dp,
+                                  customFilledIcon: Icons.star,
+                                  customHalfFilledIcon: Icons.star_half,
+                                  customEmptyIcon: Icons.star_border,
+                                  interactiveTooltips: true,
+                                  filledColor: const Color(0xff0095D0),
+                                ),
+                              ),
+                              SizedBox(height: 1.h,),
+                              Center(
+                                child: Text('(14025)',
                                   style: TextStyle(
-                                      color:
-                                      const Color(0xff0095D0),
-                                      fontSize: 18.dp),
-                                ),
-                                SizedBox(
-                                  width: 2.w,
-                                ),
-                                Icon(
-                                  Icons.arrow_forward_ios,
-                                  size: 15.dp,
-                                  color: const Color(0xff0095D0),
-                                )
-                              ],
-                            )),
+                                      fontSize: 15.dp
+                                  ),),
+                              ),
+                              SizedBox(height: 2.h,),
+                              mainElevatedButton(
+                                  onPressed: (){
 
-                        const Divider(
-                          color: Color(0xffA2A2A2),
-                        ),
-
-                        SizedBox(height: 2.h,),
-                        Text('Notices',
-                          style: TextStyle(
-                              fontSize: 15.dp,
-                              fontWeight: FontWeight.bold
-                          ),),
-                        Text(noticesContent,
-                          style: TextStyle(
-                            fontSize: 15.dp,
-                          ),),
-                        TextButton(
-                            onPressed: () {
-                              // Navigator.push(
-                              //     context,
-                              //     MaterialPageRoute(
-                              //         builder: (context) =>
-                              //             BlogsReadArticleScreen())
-                              // );
-                            },
-                            child: Row(
-                              children: [
-                                Text(
-                                  'Learn more',
-                                  style: TextStyle(
-                                      color:
-                                      const Color(0xff0095D0),
-                                      fontSize: 18.dp),
-                                ),
-                                SizedBox(
-                                  width: 2.w,
-                                ),
-                                Icon(
-                                  Icons.arrow_forward_ios,
-                                  size: 15.dp,
-                                  color: const Color(0xff0095D0),
-                                )
-                              ],
-                            )),
-
-
-                        Container(
-                          width: double.infinity,
-                          height: 8.h,
-                          color: const Color(0xff0379A8),
-                          child: Center(
-                            child: Text('XM Group',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18.dp,
-                                  fontWeight: FontWeight.bold
-                              ),),
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(12.dp),
-                          width: double.infinity,
-                          height: 10.h,
-                          color: Colors.white,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('Commission per lot	',
+                                  },
+                                  width: double.infinity,
+                                  height: 5.h,
+                                  text: 'New account'
+                              ),
+                              SizedBox(height: 1.h,),
+                              mainElevatedButtonWithBorder(
+                                  onPressed: (){},
+                                  width: double.infinity,
+                                  height: 5.h,
+                                  text: 'Open a test account'
+                              ),
+                              SizedBox(height: 2.h,),
+                              Text('About $accountTitle',
                                 style: TextStyle(
-                                    fontSize: 18.dp,
+                                    fontSize: 15.dp,
                                     fontWeight: FontWeight.bold
                                 ),),
-                              Text('start from 2\$',
+                              Text(accountContent,
                                 style: TextStyle(
-                                  fontSize: 16.dp,
+                                  fontSize: 15.dp,
                                 ),),
-
-                            ],
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(12.dp),
-                          width: double.infinity,
-                          height: 10.h,
-                          color: const Color(0xffbcdbe6),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('Commission Percentage',
-                                style: TextStyle(
-                                    fontSize: 18.dp,
-                                    fontWeight: FontWeight.bold
-                                ),),
-                              Text('50%',
-                                style: TextStyle(
-                                  fontSize: 16.dp,
-                                ),),
-
-                            ],
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(12.dp),
-                          width: double.infinity,
-                          height: 10.h,
-                          color: Colors.white,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('Maximum Leverage',
-                                style: TextStyle(
-                                    fontSize: 18.dp,
-                                    fontWeight: FontWeight.bold
-                                ),),
-                              Text('unlimited',
-                                style: TextStyle(
-                                  fontSize: 16.dp,
-                                ),),
-
-                            ],
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(12.dp),
-                          width: double.infinity,
-                          height: 10.h,
-                          color: const Color(0xffbcdbe6),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('Spread for EUR/USD',
-                                style: TextStyle(
-                                    fontSize: 18.dp,
-                                    fontWeight: FontWeight.bold
-                                ),),
-                              Text('start from 0.1',
-                                style: TextStyle(
-                                  fontSize: 16.dp,
-                                ),),
-
-                            ],
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(12.dp),
-                          width: double.infinity,
-                          height: 10.h,
-                          color: Colors.white,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('Min Trade Size',
-                                style: TextStyle(
-                                    fontSize: 18.dp,
-                                    fontWeight: FontWeight.bold
-                                ),),
-                              Text('0.01',
-                                style: TextStyle(
-                                  fontSize: 16.dp,
-                                ),),
-
-                            ],
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(12.dp),
-                          width: double.infinity,
-                          height: 10.h,
-                          color: const Color(0xffbcdbe6),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('Minimum Deposit',
-                                style: TextStyle(
-                                    fontSize: 18.dp,
-                                    fontWeight: FontWeight.bold
-                                ),),
-                              Text('10\$',
-                                style: TextStyle(
-                                  fontSize: 16.dp,
-                                ),),
-
-                            ],
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(12.dp),
-                          width: double.infinity,
-                          height: 10.h,
-                          color: Colors.white,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('Headquarters',
-                                style: TextStyle(
-                                    fontSize: 18.dp,
-                                    fontWeight: FontWeight.bold
-                                ),),
-                              Text('London, Cyprus',
-                                style: TextStyle(
-                                  fontSize: 16.dp,
-                                ),),
-
-                            ],
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(12.dp),
-                          width: double.infinity,
-                          height: 10.h,
-                          color: const Color(0xffbcdbe6),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('Founded',
-                                style: TextStyle(
-                                    fontSize: 18.dp,
-                                    fontWeight: FontWeight.bold
-                                ),),
-                              Text('2008',
-                                style: TextStyle(
-                                  fontSize: 16.dp,
-                                ),),
-
-                            ],
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(12.dp),
-                          width: double.infinity,
-                          height: 10.h,
-                          color: Colors.white,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('Regulators',
-                                style: TextStyle(
-                                    fontSize: 18.dp,
-                                    fontWeight: FontWeight.bold
-                                ),),
-                              Text('CySEC , FCA , FSA , CBCS , FSC ,',
-                                style: TextStyle(
-                                  fontSize: 16.dp,
-                                ),),
-
-                            ],
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(12.dp),
-                          width: double.infinity,
-                          height: 10.h,
-                          color: const Color(0xffbcdbe6),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('Offices',
-                                style: TextStyle(
-                                    fontSize: 18.dp,
-                                    fontWeight: FontWeight.bold
-                                ),),
-                              Text('London, Cyprus',
-                                style: TextStyle(
-                                  fontSize: 16.dp,
-                                ),),
-
-                            ],
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(12.dp),
-                          width: double.infinity,
-                          height: 12.h,
-                          color: Colors.white,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('Support Languages',
-                                style: TextStyle(
-                                    fontSize: 18.dp,
-                                    fontWeight: FontWeight.bold
-                                ),),
-                              Text('Arabic, English, French, German, Italian, Hungarian, Spanish',
-                                style: TextStyle(
-                                  fontSize: 16.dp,
-                                ),),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(12.dp),
-                          width: double.infinity,
-                          height: 10.h,
-                          color: const Color(0xffbcdbe6),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('Account Currency	',
-                                style: TextStyle(
-                                    fontSize: 18.dp,
-                                    fontWeight: FontWeight.bold
-                                ),),
-                              Text('USD,EUR,GBP',
-                                style: TextStyle(
-                                  fontSize: 16.dp,
-                                ),),
-                            ],
-                          ),
-                        ),
-
-                        SizedBox(height: 2.h,),
-                        FutureBuilder(
-                          future: _initializeVideoPlayerFuture,
-                          builder: (context, snapshot) {
-                            if (snapshot.connectionState == ConnectionState.done) {
-                              // If the VideoPlayerController has finished initialization, use
-                              // the VideoPlayer widget to display the video.
-                              return Column(
-                                children: [
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(15.dp),
-                                    child: AspectRatio(
-                                      aspectRatio: _videoPlayerController.value.aspectRatio,
-                                      child: Chewie(
-                                        controller: _chewieController,
+                              SizedBox(height: 2.h,),
+                              TextButton(
+                                  onPressed: () {
+                                    // Navigator.push(
+                                    //     context,
+                                    //     MaterialPageRoute(
+                                    //         builder: (context) =>
+                                    //             BlogsReadArticleScreen())
+                                    // );
+                                  },
+                                  child: Row(
+                                    children: [
+                                      Text(
+                                        'Learn more',
+                                        style: TextStyle(
+                                            color:
+                                            const Color(0xff0095D0),
+                                            fontSize: 18.dp),
                                       ),
-                                    ),
-                                  ),
-                                ],
-                              );
-                            } else {
-                              // If the VideoPlayerController is still initializing, show a
-                              // loading spinner.
-                              return const Center(child: CircularProgressIndicator(
-                                color: Color(0xff0095D0),
-                              ));
-                            }
-                          },)
+                                      SizedBox(
+                                        width: 2.w,
+                                      ),
+                                      Icon(
+                                        Icons.arrow_forward_ios,
+                                        size: 15.dp,
+                                        color: const Color(0xff0095D0),
+                                      )
+                                    ],
+                                  )),
+
+                              const Divider(
+                                color: Color(0xffA2A2A2),
+                              ),
+
+                              SizedBox(height: 2.h,),
+                              Text('Notices',
+                                style: TextStyle(
+                                    fontSize: 15.dp,
+                                    fontWeight: FontWeight.bold
+                                ),),
+                              Text(noticesContent,
+                                style: TextStyle(
+                                  fontSize: 15.dp,
+                                ),),
+                              TextButton(
+                                  onPressed: () {
+                                    // Navigator.push(
+                                    //     context,
+                                    //     MaterialPageRoute(
+                                    //         builder: (context) =>
+                                    //             BlogsReadArticleScreen())
+                                    // );
+                                  },
+                                  child: Row(
+                                    children: [
+                                      Text(
+                                        'Learn more',
+                                        style: TextStyle(
+                                            color:
+                                            const Color(0xff0095D0),
+                                            fontSize: 18.dp),
+                                      ),
+                                      SizedBox(
+                                        width: 2.w,
+                                      ),
+                                      Icon(
+                                        Icons.arrow_forward_ios,
+                                        size: 15.dp,
+                                        color: const Color(0xff0095D0),
+                                      )
+                                    ],
+                                  )),
+
+
+                              Container(
+                                width: double.infinity,
+                                height: 8.h,
+                                color: const Color(0xff0379A8),
+                                child: Center(
+                                  child: Text('XM Group',
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 18.dp,
+                                        fontWeight: FontWeight.bold
+                                    ),),
+                                ),
+                              ),
+                              Container(
+                                padding: EdgeInsets.all(12.dp),
+                                width: double.infinity,
+                                height: 10.h,
+                                color: Colors.white,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text('Commission per lot	',
+                                      style: TextStyle(
+                                          fontSize: 18.dp,
+                                          fontWeight: FontWeight.bold
+                                      ),),
+                                    Text('start from 2\$',
+                                      style: TextStyle(
+                                        fontSize: 16.dp,
+                                      ),),
+
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                padding: EdgeInsets.all(12.dp),
+                                width: double.infinity,
+                                height: 10.h,
+                                color: const Color(0xffbcdbe6),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text('Commission Percentage',
+                                      style: TextStyle(
+                                          fontSize: 18.dp,
+                                          fontWeight: FontWeight.bold
+                                      ),),
+                                    Text('50%',
+                                      style: TextStyle(
+                                        fontSize: 16.dp,
+                                      ),),
+
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                padding: EdgeInsets.all(12.dp),
+                                width: double.infinity,
+                                height: 10.h,
+                                color: Colors.white,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text('Maximum Leverage',
+                                      style: TextStyle(
+                                          fontSize: 18.dp,
+                                          fontWeight: FontWeight.bold
+                                      ),),
+                                    Text('unlimited',
+                                      style: TextStyle(
+                                        fontSize: 16.dp,
+                                      ),),
+
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                padding: EdgeInsets.all(12.dp),
+                                width: double.infinity,
+                                height: 10.h,
+                                color: const Color(0xffbcdbe6),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text('Spread for EUR/USD',
+                                      style: TextStyle(
+                                          fontSize: 18.dp,
+                                          fontWeight: FontWeight.bold
+                                      ),),
+                                    Text('start from 0.1',
+                                      style: TextStyle(
+                                        fontSize: 16.dp,
+                                      ),),
+
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                padding: EdgeInsets.all(12.dp),
+                                width: double.infinity,
+                                height: 10.h,
+                                color: Colors.white,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text('Min Trade Size',
+                                      style: TextStyle(
+                                          fontSize: 18.dp,
+                                          fontWeight: FontWeight.bold
+                                      ),),
+                                    Text('0.01',
+                                      style: TextStyle(
+                                        fontSize: 16.dp,
+                                      ),),
+
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                padding: EdgeInsets.all(12.dp),
+                                width: double.infinity,
+                                height: 10.h,
+                                color: const Color(0xffbcdbe6),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text('Minimum Deposit',
+                                      style: TextStyle(
+                                          fontSize: 18.dp,
+                                          fontWeight: FontWeight.bold
+                                      ),),
+                                    Text('10\$',
+                                      style: TextStyle(
+                                        fontSize: 16.dp,
+                                      ),),
+
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                padding: EdgeInsets.all(12.dp),
+                                width: double.infinity,
+                                height: 10.h,
+                                color: Colors.white,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text('Headquarters',
+                                      style: TextStyle(
+                                          fontSize: 18.dp,
+                                          fontWeight: FontWeight.bold
+                                      ),),
+                                    Text('London, Cyprus',
+                                      style: TextStyle(
+                                        fontSize: 16.dp,
+                                      ),),
+
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                padding: EdgeInsets.all(12.dp),
+                                width: double.infinity,
+                                height: 10.h,
+                                color: const Color(0xffbcdbe6),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text('Founded',
+                                      style: TextStyle(
+                                          fontSize: 18.dp,
+                                          fontWeight: FontWeight.bold
+                                      ),),
+                                    Text('2008',
+                                      style: TextStyle(
+                                        fontSize: 16.dp,
+                                      ),),
+
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                padding: EdgeInsets.all(12.dp),
+                                width: double.infinity,
+                                height: 10.h,
+                                color: Colors.white,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text('Regulators',
+                                      style: TextStyle(
+                                          fontSize: 18.dp,
+                                          fontWeight: FontWeight.bold
+                                      ),),
+                                    Text('CySEC , FCA , FSA , CBCS , FSC ,',
+                                      style: TextStyle(
+                                        fontSize: 16.dp,
+                                      ),),
+
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                padding: EdgeInsets.all(12.dp),
+                                width: double.infinity,
+                                height: 10.h,
+                                color: const Color(0xffbcdbe6),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text('Offices',
+                                      style: TextStyle(
+                                          fontSize: 18.dp,
+                                          fontWeight: FontWeight.bold
+                                      ),),
+                                    Text('London, Cyprus',
+                                      style: TextStyle(
+                                        fontSize: 16.dp,
+                                      ),),
+
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                padding: EdgeInsets.all(12.dp),
+                                width: double.infinity,
+                                height: 12.h,
+                                color: Colors.white,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text('Support Languages',
+                                      style: TextStyle(
+                                          fontSize: 18.dp,
+                                          fontWeight: FontWeight.bold
+                                      ),),
+                                    Text('Arabic, English, French, German, Italian, Hungarian, Spanish',
+                                      style: TextStyle(
+                                        fontSize: 16.dp,
+                                      ),),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                padding: EdgeInsets.all(12.dp),
+                                width: double.infinity,
+                                height: 10.h,
+                                color: const Color(0xffbcdbe6),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text('Account Currency	',
+                                      style: TextStyle(
+                                          fontSize: 18.dp,
+                                          fontWeight: FontWeight.bold
+                                      ),),
+                                    Text('USD,EUR,GBP',
+                                      style: TextStyle(
+                                        fontSize: 16.dp,
+                                      ),),
+                                  ],
+                                ),
+                              ),
+
+                              SizedBox(height: 2.h,),
+                              FutureBuilder(
+                                future: _initializeVideoPlayerFuture,
+                                builder: (context, snapshot) {
+                                  if (snapshot.connectionState == ConnectionState.done) {
+                                    // If the VideoPlayerController has finished initialization, use
+                                    // the VideoPlayer widget to display the video.
+                                    return Column(
+                                      children: [
+                                        ClipRRect(
+                                          borderRadius: BorderRadius.circular(15.dp),
+                                          child: AspectRatio(
+                                            aspectRatio: _videoPlayerController.value.aspectRatio,
+                                            child: Chewie(
+                                              controller: _chewieController,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    );
+                                  } else {
+                                    // If the VideoPlayerController is still initializing, show a
+                                    // loading spinner.
+                                    return const Center(child: CircularProgressIndicator(
+                                      color: Color(0xff0095D0),
+                                    ));
+                                  }
+                                },)
+                            ],
+                          ),
+                        )
                       ],
                     ),
-                  )
-                ],
-              ),
+                  ),
+                ),
+              ],
             ),
-          ),
-        ],
+          );
+        },
       ),
     );
   }

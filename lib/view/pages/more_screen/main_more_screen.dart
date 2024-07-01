@@ -25,7 +25,7 @@ class MainMoreScreen extends StatelessWidget {
           children: [
             Container(
               width: double.infinity,
-              height: 6.h,
+              height: 8.h,
               padding: EdgeInsets.symmetric(horizontal: 4.w),
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -54,297 +54,299 @@ class MainMoreScreen extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 3.0.w, vertical: 4.h),
               child: Container(
                 width: double.infinity,
-                height: 51.h,
+                height: 54.h,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10.dp),
                     color: Colors.white),
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 2.h),
-                  child: Column(
-                    children: [
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      BlogsScreen()));
-                        },
-                        child: Row(
-                          children: [
-                            const Icon(
-                              Icons.newspaper,
-                              color: Color(0xff0095D0),
-                            ),
-                            SizedBox(
-                              width: 3.w,
-                            ),
-                            Text(
-                              'Blogs',
-                              style: TextStyle(fontSize: 15.dp),
-                            ),
-                            const Spacer(),
-                            Icon(
-                              Icons.arrow_forward_ios,
-                              color: const Color(0xffA2A2A2),
-                              size: 17.dp,
-                            )
-                          ],
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        BlogsScreen()));
+                          },
+                          child: Row(
+                            children: [
+                              const Icon(
+                                Icons.newspaper,
+                                color: Color(0xff0095D0),
+                              ),
+                              SizedBox(
+                                width: 3.w,
+                              ),
+                              Text(
+                                'Blogs',
+                                style: TextStyle(fontSize: 15.dp),
+                              ),
+                              const Spacer(),
+                              Icon(
+                                Icons.arrow_forward_ios,
+                                color: const Color(0xffA2A2A2),
+                                size: 17.dp,
+                              )
+                            ],
+                          ),
                         ),
-                      ),
-                      SizedBox(height: 1.h,),
-                      const Divider(
-                        color: Color(0xffF5F4F4),
-                      ),
-                      SizedBox(height: 1.h,),
+                        SizedBox(height: 1.h,),
+                        const Divider(
+                          color: Color(0xffF5F4F4),
+                        ),
+                        SizedBox(height: 1.h,),
 
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      ForexScreen()));
-                        },
-                        child: Row(
-                          children: [
-                            const Icon(
-                              Icons.auto_graph,
-                              color: Color(0xff0095D0),
-                            ),
-                            SizedBox(
-                              width: 3.w,
-                            ),
-                            Text(
-                              'Forex',
-                              style: TextStyle(fontSize: 15.dp),
-                            ),
-                            const Spacer(),
-                            Icon(
-                              Icons.arrow_forward_ios,
-                              color: const Color(0xffA2A2A2),
-                              size: 17.dp,
-                            )
-                          ],
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        ForexScreen()));
+                          },
+                          child: Row(
+                            children: [
+                              const Icon(
+                                Icons.auto_graph,
+                                color: Color(0xff0095D0),
+                              ),
+                              SizedBox(
+                                width: 3.w,
+                              ),
+                              Text(
+                                'Forex',
+                                style: TextStyle(fontSize: 15.dp),
+                              ),
+                              const Spacer(),
+                              Icon(
+                                Icons.arrow_forward_ios,
+                                color: const Color(0xffA2A2A2),
+                                size: 17.dp,
+                              )
+                            ],
+                          ),
                         ),
-                      ),
-                      SizedBox(height: 1.h,),
-                      const Divider(
-                        color: Color(0xffF5F4F4),
-                      ),
-                      SizedBox(height: 1.h,),
+                        SizedBox(height: 1.h,),
+                        const Divider(
+                          color: Color(0xffF5F4F4),
+                        ),
+                        SizedBox(height: 1.h,),
 
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      LoyaltyProgramsScreen()));
-                        },
-                        child: Row(
-                          children: [
-                            const Icon(
-                              Icons.wine_bar_outlined,
-                              color: Color(0xff0095D0),
-                            ),
-                            SizedBox(
-                              width: 3.w,
-                            ),
-                            Text(
-                              'Loyalty Programs',
-                              style: TextStyle(fontSize: 15.dp),
-                            ),
-                            const Spacer(),
-                            Icon(
-                              Icons.arrow_forward_ios,
-                              color: const Color(0xffA2A2A2),
-                              size: 17.dp,
-                            )
-                          ],
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        LoyaltyProgramsScreen()));
+                          },
+                          child: Row(
+                            children: [
+                              const Icon(
+                                Icons.wine_bar_outlined,
+                                color: Color(0xff0095D0),
+                              ),
+                              SizedBox(
+                                width: 3.w,
+                              ),
+                              Text(
+                                'Loyalty Programs',
+                                style: TextStyle(fontSize: 15.dp),
+                              ),
+                              const Spacer(),
+                              Icon(
+                                Icons.arrow_forward_ios,
+                                color: const Color(0xffA2A2A2),
+                                size: 17.dp,
+                              )
+                            ],
+                          ),
                         ),
-                      ),
-                      SizedBox(height: 1.h,),
-                      const Divider(
-                        color: Color(0xffF5F4F4),
-                      ),
-                      SizedBox(height: 1.h,),
+                        SizedBox(height: 1.h,),
+                        const Divider(
+                          color: Color(0xffF5F4F4),
+                        ),
+                        SizedBox(height: 1.h,),
 
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      AboutUsScreen()));
-                        },
-                        child: Row(
-                          children: [
-                            const Icon(
-                              Icons.supervised_user_circle_rounded,
-                              color: Color(0xff0095D0),
-                            ),
-                            SizedBox(
-                              width: 3.w,
-                            ),
-                            Text(
-                              'About Us',
-                              style: TextStyle(fontSize: 15.dp),
-                            ),
-                            const Spacer(),
-                            Icon(
-                              Icons.arrow_forward_ios,
-                              color: const Color(0xffA2A2A2),
-                              size: 17.dp,
-                            )
-                          ],
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        AboutUsScreen()));
+                          },
+                          child: Row(
+                            children: [
+                              const Icon(
+                                Icons.supervised_user_circle_rounded,
+                                color: Color(0xff0095D0),
+                              ),
+                              SizedBox(
+                                width: 3.w,
+                              ),
+                              Text(
+                                'About Us',
+                                style: TextStyle(fontSize: 15.dp),
+                              ),
+                              const Spacer(),
+                              Icon(
+                                Icons.arrow_forward_ios,
+                                color: const Color(0xffA2A2A2),
+                                size: 17.dp,
+                              )
+                            ],
+                          ),
                         ),
-                      ),
-                      SizedBox(height: 1.h,),
-                      const Divider(
-                        color: Color(0xffF5F4F4),
-                      ),
-                      SizedBox(height: 1.h,),
+                        SizedBox(height: 1.h,),
+                        const Divider(
+                          color: Color(0xffF5F4F4),
+                        ),
+                        SizedBox(height: 1.h,),
 
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      ContactUsScreen()));
-                        },
-                        child: Row(
-                          children: [
-                            const Icon(
-                              Icons.headset_mic,
-                              color: Color(0xff0095D0),
-                            ),
-                            SizedBox(
-                              width: 3.w,
-                            ),
-                            Text(
-                              'Contact Us',
-                              style: TextStyle(fontSize: 15.dp),
-                            ),
-                            const Spacer(),
-                            Icon(
-                              Icons.arrow_forward_ios,
-                              color: const Color(0xffA2A2A2),
-                              size: 17.dp,
-                            )
-                          ],
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        ContactUsScreen()));
+                          },
+                          child: Row(
+                            children: [
+                              const Icon(
+                                Icons.headset_mic,
+                                color: Color(0xff0095D0),
+                              ),
+                              SizedBox(
+                                width: 3.w,
+                              ),
+                              Text(
+                                'Contact Us',
+                                style: TextStyle(fontSize: 15.dp),
+                              ),
+                              const Spacer(),
+                              Icon(
+                                Icons.arrow_forward_ios,
+                                color: const Color(0xffA2A2A2),
+                                size: 17.dp,
+                              )
+                            ],
+                          ),
                         ),
-                      ),
-                      SizedBox(height: 1.h,),
-                      const Divider(
-                        color: Color(0xffF5F4F4),
-                      ),
-                      SizedBox(height: 1.h,),
+                        SizedBox(height: 1.h,),
+                        const Divider(
+                          color: Color(0xffF5F4F4),
+                        ),
+                        SizedBox(height: 1.h,),
 
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      AdvertiseWithUsScreen()));
-                        },
-                        child: Row(
-                          children: [
-                            const Icon(
-                              Icons.fiber_new_sharp,
-                              color: Color(0xff0095D0),
-                            ),
-                            SizedBox(
-                              width: 3.w,
-                            ),
-                            Text(
-                              'Advertise With Us',
-                              style: TextStyle(fontSize: 15.dp),
-                            ),
-                            const Spacer(),
-                            Icon(
-                              Icons.arrow_forward_ios,
-                              color: const Color(0xffA2A2A2),
-                              size: 17.dp,
-                            )
-                          ],
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        AdvertiseWithUsScreen()));
+                          },
+                          child: Row(
+                            children: [
+                              const Icon(
+                                Icons.fiber_new_sharp,
+                                color: Color(0xff0095D0),
+                              ),
+                              SizedBox(
+                                width: 3.w,
+                              ),
+                              Text(
+                                'Advertise With Us',
+                                style: TextStyle(fontSize: 15.dp),
+                              ),
+                              const Spacer(),
+                              Icon(
+                                Icons.arrow_forward_ios,
+                                color: const Color(0xffA2A2A2),
+                                size: 17.dp,
+                              )
+                            ],
+                          ),
                         ),
-                      ),
-                      SizedBox(height: 1.h,),
-                      const Divider(
-                        color: Color(0xffF5F4F4),
-                      ),
-                      SizedBox(height: 1.h,),
+                        SizedBox(height: 1.h,),
+                        const Divider(
+                          color: Color(0xffF5F4F4),
+                        ),
+                        SizedBox(height: 1.h,),
 
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                  ServicesScreen()));
-                        },
-                        child: Row(
-                          children: [
-                            const Icon(
-                              Icons.handshake_rounded,
-                              color: Color(0xff0095D0),
-                            ),
-                            SizedBox(
-                              width: 3.w,
-                            ),
-                            Text(
-                              'Services',
-                              style: TextStyle(fontSize: 15.dp),
-                            ),
-                            const Spacer(),
-                            Icon(
-                              Icons.arrow_forward_ios,
-                              color: const Color(0xffA2A2A2),
-                              size: 17.dp,
-                            )
-                          ],
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                    ServicesScreen()));
+                          },
+                          child: Row(
+                            children: [
+                              const Icon(
+                                Icons.handshake_rounded,
+                                color: Color(0xff0095D0),
+                              ),
+                              SizedBox(
+                                width: 3.w,
+                              ),
+                              Text(
+                                'Services',
+                                style: TextStyle(fontSize: 15.dp),
+                              ),
+                              const Spacer(),
+                              Icon(
+                                Icons.arrow_forward_ios,
+                                color: const Color(0xffA2A2A2),
+                                size: 17.dp,
+                              )
+                            ],
+                          ),
                         ),
-                      ),
-                      SizedBox(height: 1.h,),
-                      const Divider(
-                        color: Color(0xffF5F4F4),
-                      ),
-                      SizedBox(height: 1.h,),
+                        SizedBox(height: 1.h,),
+                        const Divider(
+                          color: Color(0xffF5F4F4),
+                        ),
+                        SizedBox(height: 1.h,),
 
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                  FaqsScreen()));
-                        },
-                        child: Row(
-                          children: [
-                            const Icon(
-                              Icons.fax_outlined,
-                              color: Color(0xff0095D0),
-                            ),
-                            SizedBox(
-                              width: 3.w,
-                            ),
-                            Text(
-                              'FAQs',
-                              style: TextStyle(fontSize: 15.dp),
-                            ),
-                            const Spacer(),
-                            Icon(
-                              Icons.arrow_forward_ios,
-                              color: const Color(0xffA2A2A2),
-                              size: 17.dp,
-                            )
-                          ],
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                    FaqsScreen()));
+                          },
+                          child: Row(
+                            children: [
+                              const Icon(
+                                Icons.fax_outlined,
+                                color: Color(0xff0095D0),
+                              ),
+                              SizedBox(
+                                width: 3.w,
+                              ),
+                              Text(
+                                'FAQs',
+                                style: TextStyle(fontSize: 15.dp),
+                              ),
+                              const Spacer(),
+                              Icon(
+                                Icons.arrow_forward_ios,
+                                color: const Color(0xffA2A2A2),
+                                size: 17.dp,
+                              )
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),

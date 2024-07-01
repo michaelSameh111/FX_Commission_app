@@ -144,7 +144,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const HomeLayoutScreen()));
+                                    builder: (context) => HomeLayoutScreen()));
                           }),
                     ),
                     SizedBox(

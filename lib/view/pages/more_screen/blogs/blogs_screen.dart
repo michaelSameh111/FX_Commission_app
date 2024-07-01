@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
+import 'package:fx_commission_app/model/dio_helper.dart';
 import 'package:fx_commission_app/view/pages/more_screen/blogs/blogs_read_article_screen.dart';
 import 'package:fx_commission_app/view/widgets/reusable_widgets.dart';
 
@@ -90,6 +91,23 @@ class BlogsScreen extends StatelessWidget {
         body: Column(
           children: [
             containerBelowAppBar(text: 'Blogs'),
+            FloatingActionButton(
+              onPressed: (){
+                DioHelper.getData(
+                  url: '', //v2/top-headlines
+                  query: {
+                    'country' : 'eg',
+                    'category' : 'business',
+               //     'apiKey' : '65f7sdafasasdad'
+                  },
+                ).then((value){
+                  print(value?.data);
+                }).catchError((error){
+                  print(error.toString());
+                });
+              },
+              child: Icon(Icons.ad_units),
+            ),
 
             Expanded(
               child: SingleChildScrollView(
