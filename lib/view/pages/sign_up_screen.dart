@@ -65,21 +65,6 @@ class SignUpScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'User name*',
-                        style: TextStyle(
-                            fontSize: 15.dp, fontWeight: FontWeight.w600),
-                      ),
-                      SizedBox(
-                        height: 1.h,
-                      ),
-                      defaultTextFormField(
-                          hintText: 'User name',
-                          keyboardType: TextInputType.name),
-                      SizedBox(
-                        height: 2.h,
-                      ),
-
-                      Text(
                         'First name*',
                         style: TextStyle(
                             fontSize: 15.dp, fontWeight: FontWeight.w600),

@@ -46,7 +46,7 @@ class AppCubit extends Cubit<AppStates> {
     required BuildContext context,
   }) {
     emit(AppLoginLoadingState());
-    DioHelper.postData(url: login, data: {'email': email, 'password': password})
+    DioHelper.postData(url: login, data: {'email': email, 'password': password}, token: '')
         .then((value) {
       print(value.data);
       emit(AppLoginSuccessState());

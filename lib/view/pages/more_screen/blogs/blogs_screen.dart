@@ -91,23 +91,23 @@ class BlogsScreen extends StatelessWidget {
         body: Column(
           children: [
             containerBelowAppBar(text: 'Blogs'),
-            FloatingActionButton(
-              onPressed: (){
-                DioHelper.getData(
-                  url: '', //v2/top-headlines
-                  query: {
-                    'country' : 'eg',
-                    'category' : 'business',
-               //     'apiKey' : '65f7sdafasasdad'
-                  },
-                ).then((value){
-                  print(value?.data);
-                }).catchError((error){
-                  print(error.toString());
-                });
-              },
-              child: Icon(Icons.ad_units),
-            ),
+            // FloatingActionButton(
+            //   onPressed: (){
+            //     DioHelper.getData(
+            //       url: '', //v2/top-headlines
+            //       query: {
+            //         'country' : 'eg',
+            //         'category' : 'business',
+            //    //     'apiKey' : '65f7sdafasasdad'
+            //       }, token: '',
+            //     ).then((value){
+            //       print(value?.data);
+            //     }).catchError((error){
+            //       print(error.toString());
+            //     });
+            //   },
+            //   child: Icon(Icons.ad_units),
+            // ),
 
             Expanded(
               child: SingleChildScrollView(

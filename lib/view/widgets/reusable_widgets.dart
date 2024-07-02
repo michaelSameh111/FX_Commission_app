@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 
@@ -6,7 +5,12 @@ Widget defaultTextFormField(
         {String? hintText,
         bool obscureText = false,
         TextEditingController? textFormFieldController,
-        TextInputType? keyboardType}) =>
+        TextInputType? keyboardType,
+        String? Function(String?)? validator,
+        IconData? suffixIcon,
+        void Function()? suffixPressed,
+        bool? isPassword,
+        }) =>
     Container(
       decoration: BoxDecoration(
         color: const Color(0xffECECEC), // Set the background color
@@ -21,11 +25,16 @@ Widget defaultTextFormField(
         controller: textFormFieldController,
         obscureText: obscureText,
         decoration: InputDecoration(
-            contentPadding: EdgeInsets.all(12.dp),
-            border: InputBorder.none,
-            hintText: hintText,
-            hintStyle:
-                TextStyle(color: const Color(0xff808080), fontSize: 15.dp)),
+          contentPadding: EdgeInsets.all(12.dp),
+          border: InputBorder.none,
+          hintText: hintText,
+          hintStyle: TextStyle(color: const Color(0xff808080), fontSize: 15.dp),
+          suffixIcon: suffixIcon != null ? IconButton(
+            icon: Icon(suffixIcon),
+            onPressed: suffixPressed,
+          ) : null,
+        ),
+        validator: validator,
       ),
     );
 
@@ -51,13 +60,19 @@ Widget mainElevatedButton({
             ),
           ),
           onPressed: loading == true ? null : onPressed,
-          child: loading == true ? const Center(child: CircularProgressIndicator(
-            color: Colors.white,
-          ),) : Text(
-            text,
-            style: TextStyle(color: Colors.white, fontSize: 14.dp,
-            fontWeight: FontWeight.bold),
-          )),
+          child: loading == true
+              ? const Center(
+                  child: CircularProgressIndicator(
+                    color: Colors.white,
+                  ),
+                )
+              : Text(
+                  text,
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 14.dp,
+                      fontWeight: FontWeight.bold),
+                )),
     );
 
 Widget mainElevatedButtonWithBorder({
@@ -65,7 +80,6 @@ Widget mainElevatedButtonWithBorder({
   double height = 5,
   String text = 'Open a test account',
   final VoidCallback? onPressed,
-
 }) =>
     SizedBox(
       width: width,
@@ -73,7 +87,7 @@ Widget mainElevatedButtonWithBorder({
       child: ElevatedButton(
           onPressed: onPressed,
           style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.transparent,
+              backgroundColor: Colors.transparent,
               elevation: 0,
               shadowColor: Colors.transparent,
               side: const BorderSide(
@@ -83,9 +97,10 @@ Widget mainElevatedButtonWithBorder({
                   borderRadius: BorderRadius.circular(5.dp))),
           child: Text(
             text,
-            style: TextStyle(color: const Color(0xff0095D0),
+            style: TextStyle(
+                color: const Color(0xff0095D0),
                 fontSize: 12.dp,
-            fontWeight: FontWeight.bold),
+                fontWeight: FontWeight.bold),
           )),
     );
 
@@ -235,10 +250,8 @@ class _startDateTextFormFieldState extends State<startDateTextFormField> {
       builder: (context, child) {
         return Theme(
             data: ThemeData.light().copyWith(
-              colorScheme: const ColorScheme.light(
-                primary: Color(0xff0095D0)
-              )
-            ),
+                colorScheme:
+                    const ColorScheme.light(primary: Color(0xff0095D0))),
             child: child!);
       },
     );
@@ -313,10 +326,8 @@ class _endDateTextFormFieldState extends State<endDateTextFormField> {
       builder: (context, child) {
         return Theme(
             data: ThemeData.light().copyWith(
-                colorScheme: const ColorScheme.light(
-                    primary: Color(0xff0095D0)
-                )
-            ),
+                colorScheme:
+                    const ColorScheme.light(primary: Color(0xff0095D0))),
             child: child!);
       },
     );

@@ -14,6 +14,7 @@ import 'package:fx_commission_app/view/pages/profile_screen/main_profile_screen.
 import 'package:fx_commission_app/view/pages/profile_screen/registered_from_my_referral/registered_from_my_referral_screen.dart';
 import 'package:fx_commission_app/view/pages/sign_up_screen.dart';
 import 'package:fx_commission_app/view/pages/splash_screen.dart';
+import 'controller/cubit/login/login_cubit.dart';
 import 'view/pages/brokers_screen/brokers_new_account_screen.dart';
 import 'view/pages/on_boarding_screen.dart';
 
@@ -30,8 +31,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AppCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<LoginCubit>(
+          create: (context) => LoginCubit(),
+        ),
+        // Add other BlocProviders here
+        // BlocProvider<AnotherCubit>(
+        //   create: (context) => AnotherCubit(),
+        // ),
+      ],
       child: FlutterSizer(
         builder: (context, orientation, screenType) {
           return MaterialApp(

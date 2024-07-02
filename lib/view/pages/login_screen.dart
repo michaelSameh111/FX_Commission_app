@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
-import 'package:fx_commission_app/controller/cubit/cubit.dart';
-import 'package:fx_commission_app/controller/cubit/states.dart';
-import 'package:fx_commission_app/view/pages/home_layout_screen.dart';
+import 'package:fx_commission_app/controller/cubit/login/login_states.dart';
 import 'package:fx_commission_app/view/pages/sign_up_screen.dart';
-
+import 'package:fx_commission_app/controller/cubit/login/login_cubit.dart';
 import '../widgets/reusable_widgets.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -17,12 +15,22 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   bool isChecked = false;
-  TextEditingController nameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  var formKey = GlobalKey<FormState>();
+  IconData suffixIcon = Icons.visibility_off;
+
+  // void toggleSuffixIcon() {
+  //   setState(() {
+  //     suffixIcon = suffixIcon == Icons.visibility_off
+  //         ? Icons.visibility
+  //         : Icons.visibility_off;
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer <AppCubit,AppStates>(
+    return BlocConsumer <LoginCubit, LoginStates>(
       listener: (context, state) {},
       builder: (context, state) {
         return Scaffold(
@@ -75,117 +83,141 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       borderRadius: BorderRadius.circular(7.dp),
                     ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Full Name*',
-                          style: TextStyle(
-                              fontSize: 15.dp, fontWeight: FontWeight.w600),
-                        ),
-                        SizedBox(
-                          height: 1.h,
-                        ),
-                        defaultTextFormField(
-                            textFormFieldController: nameController,
-                            hintText: 'Enter your name',
-                            keyboardType: TextInputType.name),
-                        SizedBox(
-                          height: 2.h,
-                        ),
-                        Text(
-                          'Password*',
-                          style: TextStyle(
-                              fontSize: 15.dp, fontWeight: FontWeight.w600),
-                        ),
-                        SizedBox(
-                          height: 1.h,
-                        ),
-                        defaultTextFormField(
-                            textFormFieldController: passwordController,
-                            obscureText: true,
-                            hintText: 'Enter your password',
-                            keyboardType: TextInputType.visiblePassword),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            TextButton(
-                                onPressed: () {},
-                                child: Text(
-                                  'Forgot password ?',
-                                  style: TextStyle(
-                                      color: Colors.black, fontSize: 13.dp),
-                                )),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Checkbox(
-                              side: const BorderSide(
-                                color: Color(0xffA2A2A2),
-                              ),
-                              value: isChecked,
-                              onChanged: (bool? value) {
-                                setState(() {
-                                  isChecked = value!;
-                                });
+                    child: Form(
+                      key: formKey,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Email*',
+                            style: TextStyle(
+                                fontSize: 15.dp, fontWeight: FontWeight.w600),
+                          ),
+                          SizedBox(
+                            height: 1.h,
+                          ),
+                          defaultTextFormField(
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'PLease, enter your email';
+                                }
+                                return null;
                               },
-                              activeColor: const Color(0xff0095D0),
-                              checkColor: Colors.white,
-                            ),
-                            Text(
-                              'Remember me',
-                              style: TextStyle(
-                                  fontSize: 14.dp,
-                                  fontWeight: FontWeight.w500),
-                            )
-                          ],
-                        ),
-                        SizedBox(
-                          height: 2.h,
-                        ),
-                        Center(
-                          child: mainElevatedButton(
-                              text: 'Login',
-                              width: 35.w,
-                              height: 5.h,
-                              loading: state is AppLoginLoadingState,
-                              onPressed: () {
-                                AppCubit.get(context).userLogin(
-                                    email: nameController.text,
-                                    password: passwordController.text, context: context);
-                              }),
-                        ),
-                        SizedBox(
-                          height: 2.h,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              'Don\'t have an account ?',
-                              style: TextStyle(
-                                fontSize: 15.dp,
-                                color: const Color(0xff646363),
-                              ),
-                            ),
-                            TextButton(
-                                onPressed: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              SignUpScreen()));
+                              textFormFieldController: emailController,
+                              hintText: 'Enter your email',
+                              keyboardType: TextInputType.emailAddress),
+                          SizedBox(
+                            height: 2.h,
+                          ),
+                          Text(
+                            'Password*',
+                            style: TextStyle(
+                                fontSize: 15.dp, fontWeight: FontWeight.w600),
+                          ),
+                          SizedBox(
+                            height: 1.h,
+                          ),
+                          defaultTextFormField(
+                            suffixIcon: LoginCubit.get(context).suffix,
+                              isPassword: LoginCubit.get(context).isPassword,
+                              suffixPressed: (){
+                                LoginCubit.get(context).changePasswordVisibility;
                                 },
-                                child: Text(
-                                  'Sign up',
-                                  style: TextStyle(
-                                      color: const Color(0xff0095D0),
-                                      fontSize: 15.dp),
-                                ))
-                          ],
-                        )
-                      ],
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'PLease, enter your password';
+                                }
+                                return null;
+                              },
+                              textFormFieldController: passwordController,
+                              obscureText: true,
+                              hintText: 'Enter your password',
+                              keyboardType: TextInputType.visiblePassword),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              TextButton(
+                                  onPressed: () {},
+                                  child: Text(
+                                    'Forgot password ?',
+                                    style: TextStyle(
+                                        color: Colors.black, fontSize: 13.dp),
+                                  )),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Checkbox(
+                                side: const BorderSide(
+                                  color: Color(0xffA2A2A2),
+                                ),
+                                value: isChecked,
+                                onChanged: (bool? value) {
+                                  setState(() {
+                                    isChecked = value!;
+                                  });
+                                },
+                                activeColor: const Color(0xff0095D0),
+                                checkColor: Colors.white,
+                              ),
+                              Text(
+                                'Remember me',
+                                style: TextStyle(
+                                    fontSize: 14.dp,
+                                    fontWeight: FontWeight.w500),
+                              )
+                            ],
+                          ),
+                          SizedBox(
+                            height: 2.h,
+                          ),
+                          Center(
+                            child: mainElevatedButton(
+                                text: 'Login',
+                                width: 35.w,
+                                height: 5.h,
+                                loading: state is LoginLoadingState,
+                                onPressed: () {
+                                  if (formKey.currentState?.validate() ?? false) {
+                                    LoginCubit.get(context).userLogin(
+                                      email: emailController.text,
+                                      password: passwordController.text,
+                                      context: context,
+                                    );
+                                  }
+                                }),
+                          ),
+                          SizedBox(
+                            height: 2.h,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Don\'t have an account ?',
+                                style: TextStyle(
+                                  fontSize: 15.dp,
+                                  color: const Color(0xff646363),
+                                ),
+                              ),
+                              TextButton(
+                                  onPressed: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const SignUpScreen()));
+                                  },
+                                  child: Text(
+                                    'Sign up',
+                                    style: TextStyle(
+                                        color: const Color(0xff0095D0),
+                                        fontSize: 15.dp),
+                                  ))
+                            ],
+                          )
+                        ],
+                      ),
                     ),
                   )
                 ],
