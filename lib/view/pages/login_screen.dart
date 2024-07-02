@@ -30,7 +30,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer <LoginCubit, LoginStates>(
+    return BlocConsumer<LoginCubit, LoginStates>(
       listener: (context, state) {},
       builder: (context, state) {
         return Scaffold(
@@ -117,22 +117,60 @@ class _LoginScreenState extends State<LoginScreen> {
                           SizedBox(
                             height: 1.h,
                           ),
-                          defaultTextFormField(
-                            suffixIcon: LoginCubit.get(context).suffix,
-                              isPassword: LoginCubit.get(context).isPassword,
-                              suffixPressed: (){
-                                LoginCubit.get(context).changePasswordVisibility;
-                                },
+                          // defaultTextFormField(
+                          //   suffixIcon: LoginCubit.get(context).suffix,
+                          //     isPassword: LoginCubit.get(context).isPassword,
+                          //     suffixPressed: (){
+                          //       LoginCubit.get(context).changePasswordVisibility;
+                          //       },
+                          //     validator: (value) {
+                          //       if (value == null || value.isEmpty) {
+                          //         return 'PLease, enter your password';
+                          //       }
+                          //       return null;
+                          //     },
+                          //     textFormFieldController: passwordController,
+                          //     obscureText: LoginCubit.get(context).isPassword,
+                          //     hintText: 'Enter your password',
+                          //     keyboardType: TextInputType.visiblePassword,),
+
+                          Container(
+                            decoration: BoxDecoration(
+                              color: const Color(0xffECECEC),
+                              borderRadius: BorderRadius.circular(6.dp),
+                              border: Border.all(
+                                color: const Color(0xffC4C4C4),
+                                width: 1.5,
+                              ),
+                            ),
+                            child: TextFormField(
+                              keyboardType: TextInputType.visiblePassword,
+                              controller: passwordController,
+                              obscureText: LoginCubit.get(context).isPassword,
+                              decoration: InputDecoration(
+                                contentPadding: EdgeInsets.all(12.dp),
+                                border: InputBorder.none,
+                                hintText: 'Enter your password',
+                                hintStyle: TextStyle(
+                                    color: const Color(0xff808080),
+                                    fontSize: 15.dp),
+                                suffixIcon: GestureDetector(
+                                    onTap: () {
+                                      LoginCubit.get(context)
+                                          .changePasswordVisibility();
+                                    },
+                                    child: LoginCubit.get(context).isPassword
+                                        ? const Icon(Icons.visibility_outlined)
+                                        : const Icon(Icons.visibility_off_outlined)),
+                              ),
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
                                   return 'PLease, enter your password';
                                 }
                                 return null;
                               },
-                              textFormFieldController: passwordController,
-                              obscureText: true,
-                              hintText: 'Enter your password',
-                              keyboardType: TextInputType.visiblePassword),
+                            ),
+                          ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
@@ -178,7 +216,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                 height: 5.h,
                                 loading: state is LoginLoadingState,
                                 onPressed: () {
-                                  if (formKey.currentState?.validate() ?? false) {
+                                  if (formKey.currentState?.validate() ??
+                                      false) {
                                     LoginCubit.get(context).userLogin(
                                       email: emailController.text,
                                       password: passwordController.text,

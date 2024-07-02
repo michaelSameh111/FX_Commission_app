@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
+import 'package:fx_commission_app/controller/cubit/login/login_cubit.dart';
 
 Widget defaultTextFormField(
         {String? hintText,
@@ -13,11 +14,11 @@ Widget defaultTextFormField(
         }) =>
     Container(
       decoration: BoxDecoration(
-        color: const Color(0xffECECEC), // Set the background color
-        borderRadius: BorderRadius.circular(6.dp), // Set the border radius
+        color: const Color(0xffECECEC),
+        borderRadius: BorderRadius.circular(6.dp),
         border: Border.all(
-          color: const Color(0xffC4C4C4), // Set the border color
-          width: 1.5, // Set the border width
+          color: const Color(0xffC4C4C4),
+          width: 1.5,
         ),
       ),
       child: TextFormField(
@@ -33,6 +34,15 @@ Widget defaultTextFormField(
             icon: Icon(suffixIcon),
             onPressed: suffixPressed,
           ) : null,
+            // GestureDetector(
+            //     onTap: () {
+            //       LoginCubit.get(context)
+            //           .changePasswordVisibility();
+            //     },
+            //     child: LoginCubit.get(context).isPassword
+            //         ? Icon(Icons.visibility_outlined)
+            //         : Icon(Icons.visibility_off_outlined))
+
         ),
         validator: validator,
       ),
