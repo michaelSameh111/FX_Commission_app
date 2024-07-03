@@ -1,13 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
+import 'package:fx_commission_app/controller/cubit/login/login_cubit.dart';
+import 'package:fx_commission_app/controller/cubit/login/login_states.dart';
 import 'package:fx_commission_app/view/pages/login_screen.dart';
 import 'package:fx_commission_app/view/widgets/reusable_widgets.dart';
 
-class SignUpScreen extends StatelessWidget {
+class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
 
   @override
+  State<SignUpScreen> createState() => _SignUpScreenState();
+}
+
+class _SignUpScreenState extends State<SignUpScreen> {
+  TextEditingController firstNameController = TextEditingController();
+  TextEditingController lastNameController = TextEditingController();
+  TextEditingController phoneNumberController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController countryController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController passwordConfirmationController = TextEditingController();
+  @override
   Widget build(BuildContext context) {
+    return BlocConsumer<LoginCubit, LoginStates>(
+  listener: (context, state) {},
+  builder: (context, state) {
     return Scaffold(
       body: Padding(
         padding: EdgeInsets.only(left: 3.0.w, right: 3.0.w, top: 6.h, bottom: 2.h),
@@ -73,6 +91,7 @@ class SignUpScreen extends StatelessWidget {
                         height: 1.h,
                       ),
                       defaultTextFormField(
+                        textFormFieldController: firstNameController,
                           hintText: 'First name',
                           keyboardType: TextInputType.name),
                       SizedBox(
@@ -88,6 +107,7 @@ class SignUpScreen extends StatelessWidget {
                         height: 1.h,
                       ),
                       defaultTextFormField(
+                        textFormFieldController: lastNameController,
                           hintText: 'Last Name',
                           keyboardType: TextInputType.name),
                       SizedBox(
@@ -103,6 +123,7 @@ class SignUpScreen extends StatelessWidget {
                         height: 1.h,
                       ),
                       defaultTextFormField(
+                        textFormFieldController: emailController,
                           hintText: 'Enter your mail',
                           keyboardType: TextInputType.emailAddress),
                       SizedBox(
@@ -118,6 +139,7 @@ class SignUpScreen extends StatelessWidget {
                         height: 1.h,
                       ),
                       defaultTextFormField(
+                        textFormFieldController: phoneNumberController,
                           hintText: 'Phone Number',
                           keyboardType: TextInputType.phone),
                       SizedBox(
@@ -133,6 +155,7 @@ class SignUpScreen extends StatelessWidget {
                         height: 1.h,
                       ),
                       defaultTextFormField(
+                        textFormFieldController: countryController,
                           hintText: 'Country', keyboardType: TextInputType.name),
                       SizedBox(
                         height: 2.h,
@@ -147,6 +170,7 @@ class SignUpScreen extends StatelessWidget {
                         height: 1.h,
                       ),
                       defaultTextFormField(
+                        textFormFieldController: passwordController,
                           hintText: 'Password',
                           keyboardType: TextInputType.visiblePassword,
                           obscureText: true),
@@ -163,6 +187,7 @@ class SignUpScreen extends StatelessWidget {
                         height: 1.h,
                       ),
                       defaultTextFormField(
+                        textFormFieldController: passwordConfirmationController,
                           hintText: 'Password Confirmation',
                           keyboardType: TextInputType.visiblePassword,
                           obscureText: true),
@@ -172,6 +197,18 @@ class SignUpScreen extends StatelessWidget {
 
                       Center(
                         child: mainElevatedButton(
+                          loading: state is RegisterLoadingState,
+                            onPressed: (){
+                            LoginCubit.get(context).registerUser(
+                                firstName: firstNameController.text,
+                                lastname: lastNameController.text,
+                                email: emailController.text,
+                                phone: phoneNumberController.text,
+                                country: countryController.text,
+                                password: passwordController.text,
+                                passwordConfirmation: passwordConfirmationController.text,
+                                context: context);
+                            },
                             width: 35.w, height: 5.h, text: 'Sign Up'),
                       ),
 
@@ -214,5 +251,7 @@ class SignUpScreen extends StatelessWidget {
         ),
       ),
     );
+  },
+);
   }
 }

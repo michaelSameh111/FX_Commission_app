@@ -27,8 +27,8 @@ class DioHelper {
   static Future<Response> postData ({
     required String url,
     Map<String, dynamic>? query,
-    required Map<String, dynamic>? data,
-    required String token,
+    var data,
+    String? token,
   }) async {
     dio?.options.headers = {
       'access_token' : token
