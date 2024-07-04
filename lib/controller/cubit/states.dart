@@ -15,9 +15,12 @@ class AppLoginErrorState extends AppStates {
 class AppChangeBottomNavBarState extends AppStates {}
 
 
-// class CounterMinusState extends FxStates{
-// final int counter;
-// CounterMinusState(this.counter);
-// } video 85 min. 30
+class ForexNewsLoadingState extends AppStates {}
 
-//class CounterPlusState extends FxStates{}
+class ForexNewsSuccessState extends AppStates {}
+
+class ForexNewsErrorState extends AppStates {
+  final String error;
+
+  ForexNewsErrorState(this.error);
+}

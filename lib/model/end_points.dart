@@ -1,2 +1,3 @@
-const login = 'api/auth/login';
-const register = 'api/register';
+const loginUrl = 'api/auth/login';
+const registerUrl = 'api/register';
+const forexNewsUrl = 'api/en/news/category/forex';

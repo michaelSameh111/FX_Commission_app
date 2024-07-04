@@ -6,8 +6,10 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:fx_commission_app/controller/constants.dart';
 import 'package:fx_commission_app/controller/cubit/login/login_states.dart';
 import 'package:fx_commission_app/model/dio_helper.dart';
+import 'package:fx_commission_app/model/login/login_model.dart';
 import 'package:fx_commission_app/view/pages/home_layout_screen.dart';
 import '../../../model/end_points.dart';
 
@@ -23,14 +25,16 @@ class LoginCubit extends Cubit <LoginStates>{
   }) {
     emit(LoginLoadingState());
     DioHelper.postData(
-        url: login,
+        url: loginUrl,
         data: {
           'email': email,
           'password': password
         },
         token: '')
         .then((value) {
-      print(value.data);
+          loginDataModel = LoginDataModel.fromJson(value.data);
+          print(loginDataModel.accessToken);
+          //print(value.data);
       emit(LoginSuccessState());
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => HomeLayoutScreen()));
@@ -74,16 +78,20 @@ class LoginCubit extends Cubit <LoginStates>{
       });
 
           Response response = await DioHelper.postData(
-              url: register,
+              url: registerUrl,
               data: formData,
           );
 
           emit(RegisterSuccessState());
+          if(state is RegisterSuccessState){
+            showRegistrationSuccessDialog(context);
+          }
           // if(state is RegisterSuccessState){
           //   userLogin(email: email, password: password, context: context);
           // }
             }catch (error) {
-      if(error is DioException){
+      if(error is DioException)
+      {
         print('Error message: ${error.message}');
         print('Stacktrace: ${error.stackTrace}');
 
@@ -130,10 +138,35 @@ class LoginCubit extends Cubit <LoginStates>{
             print('Error response data: ${error.response?.data}');
           }
         }
-      }else {
+      }
+      else {
         print('Error: $error');
       }
       emit(RegisterErrorState(error.toString()));
     }
+  }
+
+  void showRegistrationSuccessDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: const Text('Registration successful'),
+            content: const Text('You have registered successfully.'),
+            actions: [
+              TextButton(
+                  onPressed: (){
+                    Navigator.pushReplacement(
+                        context, MaterialPageRoute(builder: (context) => HomeLayoutScreen()));
+                  },
+                  child: Text('Login',
+                  style: TextStyle(
+                    color: const Color(0xff0095D0),
+                    fontSize: 15.dp
+                  ),))
+            ],
+          );
+        },
+    );
   }
 }
