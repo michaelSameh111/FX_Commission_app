@@ -33,10 +33,10 @@ class ForexNews {
 
   ForexNews(
       {this.createdBy,
-        this.createdAt,
-        this.image,
-        this.title,
-        this.description});
+      this.createdAt,
+      this.image,
+      this.title,
+      this.description});
 
   ForexNews.fromJson(Map<String, dynamic> json) {
     createdBy = json['created by'];

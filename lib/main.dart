@@ -9,6 +9,7 @@ import 'package:fx_commission_app/model/dio_helper.dart';
 import 'package:fx_commission_app/view/pages/brokers_screen/main_brokers_screen.dart';
 import 'package:fx_commission_app/view/pages/home_layout_screen.dart';
 import 'package:fx_commission_app/view/pages/login_screen.dart';
+import 'package:fx_commission_app/view/pages/more_screen/forex/forex_screen.dart';
 import 'package:fx_commission_app/view/pages/more_screen/main_more_screen.dart';
 import 'package:fx_commission_app/view/pages/profile_screen/main_profile_screen.dart';
 import 'package:fx_commission_app/view/pages/profile_screen/registered_from_my_referral/registered_from_my_referral_screen.dart';
@@ -43,7 +44,7 @@ class MyApp extends StatelessWidget {
       child: FlutterSizer(
         builder: (context, orientation, screenType) {
           return MaterialApp(
-            home: const LoginScreen(),
+            home: const ForexScreen(),
             debugShowCheckedModeBanner: false,
             color: Colors.red,
             theme: ThemeData(
