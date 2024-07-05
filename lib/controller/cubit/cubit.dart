@@ -30,15 +30,10 @@ class AppCubit extends Cubit<AppStates> {
     emit(AppChangeBottomNavBarState());
   }
 
-  void getForexNews({
-    required status,
-    required forexNews,
-    required String token,
-  }) {
+  void getForexNews() {
     emit(ForexNewsLoadingState());
     DioHelper.getData(
       url: forexNewsUrl,
-      query: {'status': status, 'forex news': forexNews},
       token: loginDataModel.accessToken!,
     ).then((value) {
       forexNewsModel = ForexNewsModel.fromJson(value?.data);
@@ -48,7 +43,7 @@ class AppCubit extends Cubit<AppStates> {
       emit(ForexNewsSuccessState());
     }).catchError((error) {
       Fluttertoast.showToast(
-          msg: 'Please, check your email and password', backgroundColor: Colors.red);
+          msg: 'error (getForexNews method)', backgroundColor: Colors.red);
       emit(ForexNewsErrorState(error.toString()));
     });
   }

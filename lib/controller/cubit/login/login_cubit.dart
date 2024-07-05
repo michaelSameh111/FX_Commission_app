@@ -32,13 +32,16 @@ class LoginCubit extends Cubit <LoginStates>{
         },
         token: '')
         .then((value) {
+        //remon@innovationscope.comremon@innovationscope.com  print(int.parse(email));
           loginDataModel = LoginDataModel.fromJson(value.data);
           print(loginDataModel.accessToken);
           //print(value.data);
       emit(LoginSuccessState());
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => HomeLayoutScreen()));
-    }).catchError((error) {
+    }).catchError((error, stackTrace) {
+      print(error.toString());
+      print(stackTrace);
       Fluttertoast.showToast(
           msg: 'Please, check your email and password', backgroundColor: Colors.red);
       emit(LoginErrorState(error.toString()));

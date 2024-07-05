@@ -36,10 +36,9 @@ class MyApp extends StatelessWidget {
         BlocProvider<LoginCubit>(
           create: (context) => LoginCubit(),
         ),
-        // Add other BlocProviders here
-        // BlocProvider<AnotherCubit>(
-        //   create: (context) => AnotherCubit(),
-        // ),
+        BlocProvider<AppCubit>(
+          create: (context) => AppCubit(),
+        ),
       ],
       child: FlutterSizer(
         builder: (context, orientation, screenType) {

@@ -1,13 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
+import 'package:fx_commission_app/controller/constants.dart';
+import 'package:fx_commission_app/controller/cubit/cubit.dart';
 import 'package:fx_commission_app/view/pages/more_screen/forex/analysis/analysis_screen.dart';
 import 'package:fx_commission_app/view/pages/more_screen/forex/forex_blogs/Recent_blogs_posts_screen.dart';
 import 'package:fx_commission_app/view/pages/more_screen/forex/forex_course/forex_course_screen.dart';
 import 'package:fx_commission_app/view/pages/more_screen/forex/insights/insights_screen.dart';
 import 'package:fx_commission_app/view/widgets/reusable_widgets.dart';
 
-class ForexScreen extends StatelessWidget {
+class ForexScreen extends StatefulWidget {
   const ForexScreen({super.key});
+
+  @override
+  State<ForexScreen> createState() => _ForexScreenState();
+}
+
+class _ForexScreenState extends State<ForexScreen> {
+
+  @override
+  void initState() {
+    super.initState();
+    AppCubit.get(context).getForexNews();
+  }
 
   @override
   Widget build(BuildContext context) {
