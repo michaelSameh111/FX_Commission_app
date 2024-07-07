@@ -1,26 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
-import 'package:fx_commission_app/view/widgets/reusable_widgets.dart';
+import 'package:fx_commission_app/model/forex_news/forex_news_model.dart';
 
 class RecentBlogsPostsReadArticleScreen extends StatelessWidget {
-  String issuer = 'Natali Craig';
-  String issueDate = '14 Jan 2022';
-  String recentBlogTitle = 'Lorem ipsum dolor sit amet consectetur. '
-      'Et at eu fames placerat aliquam.';
-  String content = '''Lorem ipsum dolor sit amet consectetur.
-Viverra sit ac viverra et aliquam fermentum tincidunt. Mauris aenean 
-id vel nisi integer neque nam sed leo. Arcu consequat feugiat aliquet
-sollicitudin eleifend ut tortor laoreet. Quisque ut lorem risus elementum
-habitant duis nulla. Parturient tortor elementum etiam sit gravida.
-Fermentum varius integer suscipit orci fermentum consequat molestie
-molestie est.                       
+  ForexNews forexNews;
 
-Elit pretium nunc eget phasellus enim quisque turpis mauris. 
-Porttitor volutpat nunc aliquet sed tincidunt maecenas vitae aenean. 
-Vel nulla nisl arcu tellus arcu senectus scelerisque tellus egestas. Vitae 
-nec facilisis sapien condimentum pellentesque vulputate. Eu pulvinar mi 
-fringilla dis et eget risus quis purus.i fringilla dis et eget risus quis 
-purus.''';
+
+  RecentBlogsPostsReadArticleScreen({
+    required this.forexNews,
+  });
 
 
   @override
@@ -85,9 +73,16 @@ purus.''';
                           borderRadius: BorderRadius.circular(10.dp),
                           child: SizedBox(
                             width: double.infinity,
-                            child: Image.asset(
-                                fit: BoxFit.cover,
-                                'assets/images/laptop_mobile_image.png'),
+                            child: Image.network(
+                              height: 30.h,
+                                width: double.infinity,
+                                fit: BoxFit.fill,
+                                forexNews.image!,
+                              errorBuilder: (context, error, stackTrace) =>
+                              const Text('error tany ya remooo',
+                              style: TextStyle(color: Colors.red),),
+
+                            ),
                           ),
                         ),
                         SizedBox(
@@ -95,7 +90,7 @@ purus.''';
                         ),
                         Row(
                           children: [
-                            Text(issuer,
+                            Text(forexNews.createdBy!,
                               style: TextStyle(
                                   color: const Color(0xff0095D0), fontSize: 13.dp),
                             ),
@@ -104,7 +99,7 @@ purus.''';
                                   color: const Color(0xff0095D0), fontSize: 13.dp),
                             ),
                             Text(
-                              issueDate,
+                              forexNews.createdAt!,
                               style: TextStyle(
                                   color: const Color(0xff0095D0), fontSize: 13.dp),
                             ),
@@ -114,7 +109,7 @@ purus.''';
                           height: 2.h,
                         ),
                         Text(
-                          recentBlogTitle,
+                          forexNews.title!,
                           style:
                           TextStyle(fontSize: 17.dp, fontWeight: FontWeight.bold),
                         ),
@@ -122,7 +117,7 @@ purus.''';
                           height: 2.h,
                         ),
                         Text(
-                          content,
+                          forexNews.description!,
                           style: TextStyle(
                             fontSize: 17.dp,
                           ),

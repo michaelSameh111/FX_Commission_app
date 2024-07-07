@@ -32,7 +32,7 @@ class AppCubit extends Cubit<AppStates> {
     emit(ForexNewsLoadingState());
     DioHelper.getData(
       url: forexNewsUrl,
-      token: loginDataModel.accessToken!,
+      token: loginDataModel.accessToken,
     ).then((value) {
       forexNewsModel = ForexNewsModel.fromJson(value?.data);
       print('ForexNewsModel forex newsssss ${forexNewsModel.forexNews}');
