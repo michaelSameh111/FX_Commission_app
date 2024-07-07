@@ -24,3 +24,14 @@ class ForexNewsErrorState extends AppStates {
 
   ForexNewsErrorState(this.error);
 }
+
+
+class ForexCourseLoadingState extends AppStates {}
+
+class ForexCourseSuccessState extends AppStates {}
+
+class ForexCourseErrorState extends AppStates {
+  final String error;
+
+  ForexCourseErrorState(this.error);
+}

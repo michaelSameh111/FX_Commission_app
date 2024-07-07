@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
       child: FlutterSizer(
         builder: (context, orientation, screenType) {
           return MaterialApp(
-            home:  MainMoreScreen(),
+            home:  const ForexScreen(),
             debugShowCheckedModeBanner: false,
             color: Colors.red,
             theme: ThemeData(
