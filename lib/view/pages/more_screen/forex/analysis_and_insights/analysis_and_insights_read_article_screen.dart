@@ -1,25 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 
-class InsightsReadArticleScreen extends StatelessWidget {
-  String issuer = 'Natali Craig';
-  String issueDate = '14 Jan 2022';
-  String contentTitle = 'Lorem ipsum dolor sit amet consectetur. '
-      'Et at eu fames placerat aliquam.';
-  String content = '''Lorem ipsum dolor sit amet consectetur.
-Viverra sit ac viverra et aliquam fermentum tincidunt. Mauris aenean 
-id vel nisi integer neque nam sed leo. Arcu consequat feugiat aliquet
-sollicitudin eleifend ut tortor laoreet. Quisque ut lorem risus elementum
-habitant duis nulla. Parturient tortor elementum etiam sit gravida.
-Fermentum varius integer suscipit orci fermentum consequat molestie
-molestie est.                       
+import '../../../../../model/analysis_and_insights/analysis_and_insights_model.dart';
 
-Elit pretium nunc eget phasellus enim quisque turpis mauris. 
-Porttitor volutpat nunc aliquet sed tincidunt maecenas vitae aenean. 
-Vel nulla nisl arcu tellus arcu senectus scelerisque tellus egestas. Vitae 
-nec facilisis sapien condimentum pellentesque vulputate. Eu pulvinar mi 
-fringilla dis et eget risus quis purus.i fringilla dis et eget risus quis 
-purus.''';
+class InsightsReadArticleScreen extends StatelessWidget {
+
+  Insights insights;
+  InsightsReadArticleScreen({
+    required this.insights,
+});
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +17,7 @@ purus.''';
         backgroundColor: Colors.white,
         automaticallyImplyLeading: false,
       ),
+
       body: Column(
         children: [
           Container(
@@ -60,7 +50,7 @@ purus.''';
                     width: 2.w,
                   ),
                   Text(
-                    'Insights',
+                    'Analysis and Insights',
                     style: TextStyle(fontSize: 18.dp),
                   ),
                 ],
@@ -81,9 +71,9 @@ purus.''';
                           borderRadius: BorderRadius.circular(10.dp),
                           child: SizedBox(
                             width: double.infinity,
-                            child: Image.asset(
+                            child: Image.network(
                                 fit: BoxFit.cover,
-                                'assets/images/laptop_mobile_image.png'),
+                                '${insights.image}'),
                           ),
                         ),
                         SizedBox(
@@ -91,7 +81,7 @@ purus.''';
                         ),
                         Row(
                           children: [
-                            Text(issuer,
+                            Text('${insights.createdBy}',
                               style: TextStyle(
                                   color: const Color(0xff0095D0), fontSize: 13.dp),
                             ),
@@ -100,7 +90,7 @@ purus.''';
                                   color: const Color(0xff0095D0), fontSize: 13.dp),
                             ),
                             Text(
-                              issueDate,
+                              '${insights.createdAt}',
                               style: TextStyle(
                                   color: const Color(0xff0095D0), fontSize: 13.dp),
                             ),
@@ -110,7 +100,7 @@ purus.''';
                           height: 2.h,
                         ),
                         Text(
-                          contentTitle,
+                          '${insights.title}',
                           style:
                           TextStyle(fontSize: 17.dp, fontWeight: FontWeight.bold),
                         ),
@@ -118,7 +108,7 @@ purus.''';
                           height: 2.h,
                         ),
                         Text(
-                          content,
+                          'descriptionnnnssssssssssssssssssssssssssssssss',
                           style: TextStyle(
                             fontSize: 17.dp,
                           ),

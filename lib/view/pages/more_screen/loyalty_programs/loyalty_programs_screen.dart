@@ -10,11 +10,11 @@ class LoyaltyProgramsScreen extends StatelessWidget {
 For new customers, simply you must activate your membership in our website, open and activate your trading account, activate the loyalty program and finally start trading and get the points of the loyalty program.
 
 for old customers, all what you need is to activate the program from the control panel of your trading account in our site and the program will immediately calculate the points for any new commissions yield after the time of activation of the service.''';
-
   String noteTitle = 'Alive Action Service';
   String note = 'Trading commissions will be deposited to our valued clients’ accounts on our site every Saturday, i.e. once a week. Immediately after deposit, the loyalty points will be automatically calculated by the special software as a follow, \$1=points in the loyalty program.';
   String exampleTitle = 'For example :';
   String theExample = 'if a client traded during the week and earned \$100 as a commission, which is automatically exchanged to 100 points in the loyalty program.';
+
 
   @override
   Widget build(BuildContext context) {

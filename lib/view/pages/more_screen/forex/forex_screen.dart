@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
+import 'package:fx_commission_app/view/pages/more_screen/forex/analysis_and_insights/analysis_and_insights_screen.dart';
 import 'package:fx_commission_app/view/pages/more_screen/forex/forex_blogs/Recent_blogs_posts_screen.dart';
 import 'package:fx_commission_app/view/pages/more_screen/forex/forex_course/forex_course_screen.dart';
-import 'package:fx_commission_app/view/pages/more_screen/forex/insights/insights_screen.dart';
 import 'package:fx_commission_app/view/widgets/reusable_widgets.dart';
 
 class ForexScreen extends StatelessWidget {
@@ -69,7 +69,7 @@ class ForexScreen extends StatelessWidget {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => InsightsScreen()));
+                                  builder: (context) => AnalysisAndInsightsScreen()));
                         },
                         child: Row(
                           children: [

@@ -35,3 +35,14 @@ class ForexCourseErrorState extends AppStates {
 
   ForexCourseErrorState(this.error);
 }
+
+
+class AnalysisAndInsightsLoadingState extends AppStates {}
+
+class AnalysisAndInsightsSuccessState extends AppStates {}
+
+class AnalysisAndInsightsErrorState extends AppStates {
+  final String error;
+
+  AnalysisAndInsightsErrorState(this.error);
+}

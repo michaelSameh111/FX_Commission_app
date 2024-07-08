@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
-import 'package:fx_commission_app/model/dio_helper.dart';
 import 'package:fx_commission_app/view/pages/more_screen/blogs/blogs_read_article_screen.dart';
 import 'package:fx_commission_app/view/widgets/reusable_widgets.dart';
 

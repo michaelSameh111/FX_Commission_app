@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fx_commission_app/controller/constants.dart';
 import 'package:fx_commission_app/controller/cubit/states.dart';
+import 'package:fx_commission_app/model/analysis_and_insights/analysis_and_insights_model.dart';
 import 'package:fx_commission_app/model/dio_helper.dart';
 import 'package:fx_commission_app/model/end_points.dart';
 import 'package:fx_commission_app/model/forex_course/forex_course_model.dart';
@@ -58,11 +59,31 @@ class AppCubit extends Cubit<AppStates> {
       print('we have got forex course dataaaaaa here : ${value?.data}');
 
       emit(ForexCourseSuccessState());
-    }).catchError((error){
+    }).catchError((error, stacktrace){
       print('error (getForexCourse methoooooooooooood)');
       print(error.toString());
-      //Print(StackTrace);
+      print('stack trace : $stacktrace');
+
       emit(ForexCourseErrorState(error.toString()));
+    });
+  }
+
+  void getAnalysisAndInsights(){
+    emit(AnalysisAndInsightsLoadingState());
+
+    DioHelper.getData(
+        url: 'api/en/insights/category/forex'
+    ).then((value){
+          analysisAndInsightsModel = AnalysisAndInsightsModel.fromJson(value?.data);
+          print('we have got analysis and insights dataaaaaa heeeeeeeere');
+
+          emit(AnalysisAndInsightsSuccessState());
+    }).catchError((error, stacktrace){
+      print('error (getAnalysisAndInsights methoooooooooooood)');
+      print(error.toString());
+      print('stack trace : $stacktrace');
+
+      emit(AnalysisAndInsightsErrorState(error));
     });
   }
 }

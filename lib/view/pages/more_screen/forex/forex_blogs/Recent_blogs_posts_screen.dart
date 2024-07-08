@@ -39,6 +39,7 @@ class _RecentBlogsPostsScreenState extends State<RecentBlogsPostsScreen> {
       builder: (context, state) {
         return Scaffold(
           appBar: reusableAppBar(context: context, text: 'FOREX'),
+
           body: state is ForexNewsLoadingState
               ? const Center(
                   child: CircularProgressIndicator(
