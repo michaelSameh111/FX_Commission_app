@@ -2,7 +2,7 @@ class LoyaltyProgramModel {
   String? message;
   Page? page;
   List<PageMetas>? pageMetas;
-  // List<Null>? advertisingBanners;
+ // List<Null>? advertisingBanners;
   Null? video;
   List<LoyaltyProgramStages>? loyaltyProgramStages;
 
@@ -10,7 +10,7 @@ class LoyaltyProgramModel {
       {this.message,
         this.page,
         this.pageMetas,
-        // this.advertisingBanners,
+        //this.advertisingBanners,
         this.video,
         this.loyaltyProgramStages});
 
@@ -63,18 +63,21 @@ class LoyaltyProgramModel {
 class Page {
   String? title;
   String? description;
+  String? image;
 
-  Page({this.title, this.description});
+  Page({this.title, this.description, this.image});
 
   Page.fromJson(Map<String, dynamic> json) {
     title = json['title'];
     description = json['description'];
+    image = json['image'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['title'] = this.title;
     data['description'] = this.description;
+    data['image'] = this.image;
     return data;
   }
 }
