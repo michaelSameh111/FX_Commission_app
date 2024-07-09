@@ -68,3 +68,14 @@ class LoyaltyProgramsErrorState extends AppStates {
 
   LoyaltyProgramsErrorState(this.error);
 }
+
+
+class LastNewsLoadingState extends AppStates {}
+
+class LastNewsSuccessState extends AppStates {}
+
+class LastNewsErrorState extends AppStates {
+  final String error;
+
+  LastNewsErrorState(this.error);
+}

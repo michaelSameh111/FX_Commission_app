@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
-import 'package:fx_commission_app/model/forex_news/forex_news_model.dart';
+import 'package:fx_commission_app/model/blogs/last_news/last_news_model.dart';
 
-class RecentBlogsPostsReadArticleScreen extends StatelessWidget {
-  ForexNews forexNews;
+class LastNewsReadArticleScreen extends StatelessWidget {
+  LastNews lastNews;
 
-
-  RecentBlogsPostsReadArticleScreen({
-    required this.forexNews,
-  });
-
+  LastNewsReadArticleScreen({required this.lastNews});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +14,6 @@ class RecentBlogsPostsReadArticleScreen extends StatelessWidget {
         backgroundColor: Colors.white,
         automaticallyImplyLeading: false,
       ),
-
       body: Column(
         children: [
           Container(
@@ -35,7 +30,7 @@ class RecentBlogsPostsReadArticleScreen extends StatelessWidget {
                   color: Colors.grey.withOpacity(0.5),
                   spreadRadius: 1,
                   blurRadius: 4,
-                  offset: Offset(0, 1), // changes position of shadow
+                  offset: const Offset(0, 1), // changes position of shadow
                 ),
               ],
             ),
@@ -51,7 +46,7 @@ class RecentBlogsPostsReadArticleScreen extends StatelessWidget {
                     width: 2.w,
                   ),
                   Text(
-                    'Recent blogs posts',
+                    'Blogs',
                     style: TextStyle(fontSize: 18.dp),
                   ),
                 ],
@@ -63,9 +58,9 @@ class RecentBlogsPostsReadArticleScreen extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 3.0.w, vertical: 4.h),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 3.0.w, vertical: 4.h),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -75,49 +70,39 @@ class RecentBlogsPostsReadArticleScreen extends StatelessWidget {
                             width: double.infinity,
                             child: Image.network(
                               // height: 30.h,
-                                width: double.infinity,
-                                fit: BoxFit.fill,
-                                forexNews.image!,
+                              width: double.infinity,
+                              fit: BoxFit.fill,
+                              '${lastNews.image}',
                               errorBuilder: (context, error, stackTrace) =>
-                              const Text('no image returned',
-                              style: TextStyle(color: Colors.red),),
-
+                                  const Center(
+                                      child: Text(
+                                'no image returned',
+                                style: TextStyle(color: Colors.red),
+                              )),
                             ),
                           ),
                         ),
                         SizedBox(
                           height: 2.h,
                         ),
-                        Row(
-                          children: [
-                            Text(forexNews.createdBy!,
-                              style: TextStyle(
-                                  color: const Color(0xff0095D0), fontSize: 13.dp),
-                            ),
-                            Text(' • ',
-                              style: TextStyle(
-                                  color: const Color(0xff0095D0), fontSize: 13.dp),
-                            ),
-                            Text(
-                              forexNews.createdAt!,
-                              style: TextStyle(
-                                  color: const Color(0xff0095D0), fontSize: 13.dp),
-                            ),
-                          ],
+                        Text(
+                          '${lastNews.createdAt}',
+                          style: TextStyle(
+                              color: const Color(0xff0095D0), fontSize: 13.dp),
                         ),
                         SizedBox(
                           height: 2.h,
                         ),
                         Text(
-                          forexNews.title!,
-                          style:
-                          TextStyle(fontSize: 17.dp, fontWeight: FontWeight.bold),
+                          '${lastNews.title}',
+                          style: TextStyle(
+                              fontSize: 17.dp, fontWeight: FontWeight.bold),
                         ),
                         SizedBox(
                           height: 2.h,
                         ),
                         Text(
-                          forexNews.description!,
+                          '${lastNews.description}',
                           style: TextStyle(
                             fontSize: 17.dp,
                           ),
@@ -131,7 +116,6 @@ class RecentBlogsPostsReadArticleScreen extends StatelessWidget {
           ),
         ],
       ),
-
     );
   }
 }
