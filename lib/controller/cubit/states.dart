@@ -46,3 +46,14 @@ class AnalysisAndInsightsErrorState extends AppStates {
 
   AnalysisAndInsightsErrorState(this.error);
 }
+
+
+class ServicesLoadingState extends AppStates {}
+
+class ServicesSuccessState extends AppStates {}
+
+class ServicesErrorState extends AppStates {
+  final String error;
+
+  ServicesErrorState(this.error);
+}

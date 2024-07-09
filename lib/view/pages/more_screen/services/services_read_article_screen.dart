@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
+import 'package:fx_commission_app/model/services/services_model.dart';
 
 class ServicesReadArticleScreen extends StatelessWidget {
   String serviceTitle = 'Lorem ipsum dolor sit amet consectetur. '
@@ -18,6 +19,11 @@ Vel nulla nisl arcu tellus arcu senectus scelerisque tellus egestas. Vitae
 nec facilisis sapien condimentum pellentesque vulputate. Eu pulvinar mi 
 fringilla dis et eget risus quis purus.i fringilla dis et eget risus quis 
 purus.''';
+  Services services;
+
+  ServicesReadArticleScreen({
+    required this.services,
+});
 
   @override
   Widget build(BuildContext context) {
@@ -80,13 +86,13 @@ purus.''';
                           borderRadius: BorderRadius.circular(10.dp),
                           child: SizedBox(
                             width: double.infinity,
-                            child: Image.asset(
+                            child: Image.network(
                                 fit: BoxFit.cover,
-                                'assets/images/laptop_mobile_image.png'),
+                                '${services.image}'),
                           ),
                         ),
                         SizedBox(height: 2.h,),
-                        Text('$serviceTitle',
+                        Text('${services.title}',
                           style: TextStyle(
                             color: const Color(0xff0379A8),
                               fontSize: 17.dp,
@@ -94,7 +100,7 @@ purus.''';
                           ),
                         ),
                         SizedBox(height: 2.h,),
-                        Text('$content',
+                        Text('${services.description}',
                           style: TextStyle(
                             fontSize: 17.dp,
                           ),

@@ -7,6 +7,7 @@ import 'package:fx_commission_app/model/dio_helper.dart';
 import 'package:fx_commission_app/model/end_points.dart';
 import 'package:fx_commission_app/model/forex_course/forex_course_model.dart';
 import 'package:fx_commission_app/model/forex_news/forex_news_model.dart';
+import 'package:fx_commission_app/model/services/services_model.dart';
 import 'package:fx_commission_app/view/pages/brokers_screen/main_brokers_screen.dart';
 import 'package:fx_commission_app/view/pages/more_screen/main_more_screen.dart';
 import 'package:fx_commission_app/view/pages/profile_screen/main_profile_screen.dart';
@@ -42,10 +43,11 @@ class AppCubit extends Cubit<AppStates> {
       print('ForexNewsModel statusss ${forexNewsModel.status}');
 
       emit(ForexNewsSuccessState());
-    }).catchError((error) {
+    }).catchError((error, stackTrace) {
       print('error (getForexNews method)');
-      // Fluttertoast.showToast(
-      //     msg: 'error (getForexNews method)', backgroundColor: Colors.red);
+      print(error.toString());
+      print('stack trace : $stackTrace');
+
       emit(ForexNewsErrorState(error.toString()));
     });
   }
@@ -59,10 +61,10 @@ class AppCubit extends Cubit<AppStates> {
       print('we have got forex course dataaaaaa here : ${value?.data}');
 
       emit(ForexCourseSuccessState());
-    }).catchError((error, stacktrace){
+    }).catchError((error, stackTrace){
       print('error (getForexCourse methoooooooooooood)');
       print(error.toString());
-      print('stack trace : $stacktrace');
+      print('stack trace : $stackTrace');
 
       emit(ForexCourseErrorState(error.toString()));
     });
@@ -72,18 +74,37 @@ class AppCubit extends Cubit<AppStates> {
     emit(AnalysisAndInsightsLoadingState());
 
     DioHelper.getData(
-        url: 'api/en/insights/category/forex'
+        url: analysisAndInsightsUrl
     ).then((value){
           analysisAndInsightsModel = AnalysisAndInsightsModel.fromJson(value?.data);
           print('we have got analysis and insights dataaaaaa heeeeeeeere');
 
           emit(AnalysisAndInsightsSuccessState());
-    }).catchError((error, stacktrace){
-      print('error (getAnalysisAndInsights methooooxoooooooood)');
+    }).catchError((error, stackTrace){
+      print('error (getAnalysisAndInsights methoooooooooooood)');
       print(error.toString());
-      print('stack trace : $stacktrace');
+      print('stack trace : $stackTrace');
 
       emit(AnalysisAndInsightsErrorState(error));
+    });
+  }
+
+  void getServices (){
+    emit(ServicesLoadingState());
+
+    DioHelper.getData(
+        url: servicesUrl
+    ).then((value){
+      servicesModel = ServicesModel.fromJson(value?.data);
+      print('we have got services dataaaaaa heeeeeeeere');
+
+      emit(ServicesSuccessState());
+    }).catchError((error, stackTrace){
+      print('error (getServices methoooooooooooood)');
+      print(error.toString());
+      print('stack trace : $stackTrace');
+
+      emit(ServicesErrorState(error));
     });
   }
 }

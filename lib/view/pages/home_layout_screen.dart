@@ -4,7 +4,7 @@ import 'package:fx_commission_app/controller/cubit/cubit.dart';
 import 'package:fx_commission_app/controller/cubit/states.dart';
 
 class HomeLayoutScreen extends StatelessWidget {
-  // const HomeLayoutScreen({super.key});
+  const HomeLayoutScreen({super.key});
 
 
 
