@@ -7,6 +7,7 @@ import 'package:fx_commission_app/model/dio_helper.dart';
 import 'package:fx_commission_app/model/end_points.dart';
 import 'package:fx_commission_app/model/forex_course/forex_course_model.dart';
 import 'package:fx_commission_app/model/forex_news/forex_news_model.dart';
+import 'package:fx_commission_app/model/loyalty_program/loyalty_program_model.dart';
 import 'package:fx_commission_app/model/services/services_model.dart';
 import 'package:fx_commission_app/view/pages/brokers_screen/main_brokers_screen.dart';
 import 'package:fx_commission_app/view/pages/more_screen/main_more_screen.dart';
@@ -107,4 +108,24 @@ class AppCubit extends Cubit<AppStates> {
       emit(ServicesErrorState(error));
     });
   }
+
+  void getLoyaltyPrograms (){
+    emit(LoyaltyProgramsLoadingState());
+
+    DioHelper.getData(
+        url: loyaltyProgramsUrl
+    ).then((value){
+      loyaltyProgramsModel = LoyaltyProgramModel.fromJson(value?.data);
+      print('we have got loyalty programs dataaaaaa heeeeeeeere');
+
+      emit(LoyaltyProgramsSuccessState());
+    }).catchError((error, stackTrace){
+      print('error (getLoyaltyPrograms methoooooooooooood)');
+      print(error.toString());
+      print('stack trace : $stackTrace');
+
+      emit(LoyaltyProgramsErrorState(error));
+    });
+  }
+
 }

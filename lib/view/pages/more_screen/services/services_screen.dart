@@ -14,13 +14,6 @@ class ServicesScreen extends StatefulWidget {
 }
 
 class _ServicesScreenState extends State<ServicesScreen> {
-  String serviceImage = 'assets/images/laptop_mobile_image.png';
-
-  String serviceTitle = 'USA lifts sanctions against Xiaomi';
-
-  String serviceContent = 'The US Department of Defense and Xiaomi have'
-      ' reached an agreement to lift the ban on investing'
-      ' in this Chinese company.in this Chinese company.in this Chinese company.';
 
   @override
   void initState() {

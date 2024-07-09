@@ -57,3 +57,14 @@ class ServicesErrorState extends AppStates {
 
   ServicesErrorState(this.error);
 }
+
+
+class LoyaltyProgramsLoadingState extends AppStates {}
+
+class LoyaltyProgramsSuccessState extends AppStates {}
+
+class LoyaltyProgramsErrorState extends AppStates {
+  final String error;
+
+  LoyaltyProgramsErrorState(this.error);
+}
