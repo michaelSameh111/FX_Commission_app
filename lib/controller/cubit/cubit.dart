@@ -79,7 +79,7 @@ class AppCubit extends Cubit<AppStates> {
 
           emit(AnalysisAndInsightsSuccessState());
     }).catchError((error, stacktrace){
-      print('error (getAnalysisAndInsights methoooooooooooood)');
+      print('error (getAnalysisAndInsights methooooxoooooooood)');
       print(error.toString());
       print('stack trace : $stacktrace');
 
