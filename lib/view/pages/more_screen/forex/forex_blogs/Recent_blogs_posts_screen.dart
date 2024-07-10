@@ -91,7 +91,7 @@ class _RecentBlogsPostsScreenState extends State<RecentBlogsPostsScreen> {
     required ForexNews forexNews,
   }) {
     return Container(
-      height: 48.h,
+      height: 50.h,
       width: double.infinity,
       decoration: BoxDecoration(
         color: Colors.white,
@@ -111,7 +111,7 @@ class _RecentBlogsPostsScreenState extends State<RecentBlogsPostsScreen> {
                 forexNews.image!,
                 errorBuilder: (context, error, stackTrace) => const Center(
                     child: Text(
-                  'BackEndTeaaaam errorrr',
+                  'no image returned',
                   style: TextStyle(color: Colors.red),
                 )),
               ),

@@ -4,6 +4,7 @@ import 'package:fx_commission_app/controller/constants.dart';
 import 'package:fx_commission_app/controller/cubit/states.dart';
 import 'package:fx_commission_app/model/analysis_and_insights/analysis_and_insights_model.dart';
 import 'package:fx_commission_app/model/blogs/last_news/last_news_model.dart';
+import 'package:fx_commission_app/model/broker_news/broker_news_model.dart';
 import 'package:fx_commission_app/model/dio_helper.dart';
 import 'package:fx_commission_app/model/end_points.dart';
 import 'package:fx_commission_app/model/forex_course/forex_course_model.dart';
@@ -145,6 +146,44 @@ class AppCubit extends Cubit<AppStates> {
       print('stack trace : $stackTrace');
 
       emit(LastNewsErrorState(error));
+    });
+  }
+
+  void getFxCommNews (){
+    emit(LastNewsLoadingState());
+
+    DioHelper.getData(
+        url: lastNewsUrl
+    ).then((value){
+      lastNewsModel = LastNewsModel.fromJson(value?.data);
+      print('we have got last news dataaaaaa heeeeeeeere');
+
+      emit(LastNewsSuccessState());
+    }).catchError((error, stackTrace){
+      print('error (getLastNews methoooooooooooood)');
+      print(error.toString());
+      print('stack trace : $stackTrace');
+
+      emit(LastNewsErrorState(error));
+    });
+  }
+
+  void getBrokerNews (){
+    emit(BrokerNewsLoadingState());
+
+    DioHelper.getData(
+        url: brokerNewsUrl
+    ).then((value){
+      brokerNewsModel = BrokerNewsModel.fromJson(value?.data);
+      print('we have got broker news dataaaaaa heeeeeeeere');
+
+      emit(BrokerNewsSuccessState());
+    }).catchError((error, stackTrace){
+      print('error (getBrokerNews methoooooooooooood)');
+      print(error.toString());
+      print('stack trace : $stackTrace');
+
+      emit(BrokerNewsErrorState(error));
     });
   }
 

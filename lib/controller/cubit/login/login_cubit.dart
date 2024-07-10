@@ -32,7 +32,6 @@ class LoginCubit extends Cubit <LoginStates>{
         },
         token: '')
         .then((value) {
-        //remon@innovationscope.comremon@innovationscope.com  print(int.parse(email));
           loginDataModel = LoginDataModel.fromJson(value.data);
           print(loginDataModel.accessToken);
           //print(value.data);

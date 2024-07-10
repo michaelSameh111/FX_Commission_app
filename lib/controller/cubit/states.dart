@@ -79,3 +79,25 @@ class LastNewsErrorState extends AppStates {
 
   LastNewsErrorState(this.error);
 }
+
+
+class FxCommNewsLoadingState extends AppStates {}
+
+class FxCommNewsSuccessState extends AppStates {}
+
+class FxCommNewsErrorState extends AppStates {
+  final String error;
+
+  FxCommNewsErrorState(this.error);
+}
+
+
+class BrokerNewsLoadingState extends AppStates {}
+
+class BrokerNewsSuccessState extends AppStates {}
+
+class BrokerNewsErrorState extends AppStates {
+  final String error;
+
+  BrokerNewsErrorState(this.error);
+}

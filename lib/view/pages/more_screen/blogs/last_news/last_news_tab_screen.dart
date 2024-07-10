@@ -45,46 +45,50 @@ class _LastNewsTabScreenState extends State<LastNewsTabScreen> {
                   color: Color(0xff0095D0),
                 ),
               )
-            : Expanded(
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 3.0.w, vertical: 4.h),
-                        child: Column(
-                          children: [
-                            Row(
+            : Column(
+              children: [
+                Expanded(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 3.0.w, vertical: 4.h),
+                            child: Column(
                               children: [
-                                Text(
-                                  'Latest posts',
-                                  style: TextStyle(
-                                      color: const Color(0xff0095D0),
-                                      fontSize: 18.dp,
-                                      fontWeight: FontWeight.bold),
+                                Row(
+                                  children: [
+                                    Text(
+                                      'Latest posts',
+                                      style: TextStyle(
+                                          color: const Color(0xff0095D0),
+                                          fontSize: 18.dp,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
                                 ),
+                                SizedBox(
+                                  height: 3.h,
+                                ),
+                                ListView.separated(
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  separatorBuilder: (context, index) => SizedBox(
+                                    height: 2.h,
+                                  ),
+                                  itemBuilder: (context, index) => lastNewsContainer(
+                                      lastNews: lastNewsModel.lastNews![index]),
+                                  itemCount: lastNewsModel.lastNews!.length,
+                                  shrinkWrap: true,
+                                )
                               ],
                             ),
-                            SizedBox(
-                              height: 3.h,
-                            ),
-                            ListView.separated(
-                              physics: const NeverScrollableScrollPhysics(),
-                              separatorBuilder: (context, index) => SizedBox(
-                                height: 2.h,
-                              ),
-                              itemBuilder: (context, index) => lastNewsContainer(
-                                  lastNews: lastNewsModel.lastNews![index]),
-                              itemCount: lastNewsModel.lastNews!.length,
-                              shrinkWrap: true,
-                            )
-                          ],
-                        ),
-                      )
-                    ],
+                          )
+                        ],
+                      ),
+                    ),
                   ),
-                ),
-              );
+              ],
+            );
       },
     );
   }
