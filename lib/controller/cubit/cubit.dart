@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fx_commission_app/controller/constants.dart';
 import 'package:fx_commission_app/controller/cubit/states.dart';
+import 'package:fx_commission_app/model/about_us/about_us_model.dart';
 import 'package:fx_commission_app/model/analysis_and_insights/analysis_and_insights_model.dart';
 import 'package:fx_commission_app/model/blogs/last_news/last_news_model.dart';
 import 'package:fx_commission_app/model/broker_news/broker_news_model.dart';
@@ -187,4 +188,23 @@ class AppCubit extends Cubit<AppStates> {
     });
   }
 
+  void getAboutUs() {
+    emit(AboutUsLoadingState());
+    DioHelper.getData(
+      url: aboutUsUrl,
+      token: loginDataModel.accessToken,
+    ).then((value) {
+     // aboutUsModel = AboutUsModel().fromJson(value?.data);
+      print('we have got broker news dataaaaaa heeeeeeeere');
+
+
+      emit(AboutUsSuccessState());
+    }).catchError((error, stackTrace) {
+      print('error (getAboutUs method)');
+      print(error.toString());
+      print('stack trace : $stackTrace');
+
+      emit(AboutUsErrorState(error.toString()));
+    });
+  }
 }

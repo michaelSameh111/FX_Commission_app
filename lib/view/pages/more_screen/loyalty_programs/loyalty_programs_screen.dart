@@ -83,8 +83,29 @@ class _LoyaltyProgramsScreenState extends State<LoyaltyProgramsScreen> {
                                   SizedBox(
                                     height: 2.h,
                                   ),
+                                  Text(
+                                    '${loyaltyProgramsModel.page!.description}',
+                                    style: TextStyle(
+                                        color: const Color(0xff646363),
+                                        fontSize: 16.dp),
+                                  ),
+                                  // SizedBox(
+                                  //   height: 12.h,
+                                  // ),
+                                  // ClipRRect(
+                                  //   borderRadius: BorderRadius.circular(10.dp),
+                                  //   child: SizedBox(
+                                  //     width: double.infinity,
+                                  //     child: Image.network(
+                                  //         fit: BoxFit.cover,
+                                  //         '${loyaltyProgramsModel.page!.image}'),
+                                  //   ),
+                                  // ),
+                                  // SizedBox(
+                                  //   height: 2.h,
+                                  // ),
                                   // Text(
-                                  //   question,
+                                  //   noteTitle,
                                   //   style: TextStyle(
                                   //       fontWeight: FontWeight.bold,
                                   //       fontSize: 18.dp),
@@ -92,60 +113,30 @@ class _LoyaltyProgramsScreenState extends State<LoyaltyProgramsScreen> {
                                   // SizedBox(
                                   //   height: 2.h,
                                   // ),
-                                  Text(
-                                    '${loyaltyProgramsModel.page!.description}',
-                                    style: TextStyle(
-                                        color: const Color(0xff646363),
-                                        fontSize: 16.dp),
-                                  ),
-                                  SizedBox(
-                                    height: 12.h,
-                                  ),
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(10.dp),
-                                    child: SizedBox(
-                                      width: double.infinity,
-                                      child: Image.network(
-                                          fit: BoxFit.cover,
-                                          '${loyaltyProgramsModel.page!.image}'),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 2.h,
-                                  ),
-                                  Text(
-                                    noteTitle,
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 18.dp),
-                                  ),
-                                  SizedBox(
-                                    height: 2.h,
-                                  ),
-                                  Text(
-                                    note,
-                                    style: TextStyle(
-                                        color: const Color(0xff646363),
-                                        fontSize: 16.dp),
-                                  ),
-                                  SizedBox(
-                                    height: 2.h,
-                                  ),
-                                  Text(
-                                    exampleTitle,
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 16.dp),
-                                  ),
-                                  Text(
-                                    theExample,
-                                    style: TextStyle(
-                                        color: const Color(0xff646363),
-                                        fontSize: 16.dp),
-                                  ),
-                                  SizedBox(
-                                    height: 12.h,
-                                  ),
+                                  // Text(
+                                  //   note,
+                                  //   style: TextStyle(
+                                  //       color: const Color(0xff646363),
+                                  //       fontSize: 16.dp),
+                                  // ),
+                                  // SizedBox(
+                                  //   height: 2.h,
+                                  // ),
+                                  // Text(
+                                  //   exampleTitle,
+                                  //   style: TextStyle(
+                                  //       fontWeight: FontWeight.bold,
+                                  //       fontSize: 16.dp),
+                                  // ),
+                                  // Text(
+                                  //   theExample,
+                                  //   style: TextStyle(
+                                  //       color: const Color(0xff646363),
+                                  //       fontSize: 16.dp),
+                                  // ),
+                                  // SizedBox(
+                                  //   height: 12.h,
+                                  // ),
                                 ],
                               ),
                             )

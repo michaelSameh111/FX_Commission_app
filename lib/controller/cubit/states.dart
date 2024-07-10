@@ -101,3 +101,14 @@ class BrokerNewsErrorState extends AppStates {
 
   BrokerNewsErrorState(this.error);
 }
+
+
+class AboutUsLoadingState extends AppStates {}
+
+class AboutUsSuccessState extends AppStates {}
+
+class AboutUsErrorState extends AppStates {
+  final String error;
+
+  AboutUsErrorState(this.error);
+}
