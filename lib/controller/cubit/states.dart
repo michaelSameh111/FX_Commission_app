@@ -112,3 +112,14 @@ class AboutUsErrorState extends AppStates {
 
   AboutUsErrorState(this.error);
 }
+
+
+class AdvertiseWithUsLoadingState extends AppStates {}
+
+class AdvertiseWithUsSuccessState extends AppStates {}
+
+class AdvertiseWithUsErrorState extends AppStates {
+  final String error;
+
+  AdvertiseWithUsErrorState(this.error);
+}

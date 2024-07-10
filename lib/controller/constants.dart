@@ -1,4 +1,5 @@
 import 'package:fx_commission_app/model/about_us/about_us_model.dart';
+import 'package:fx_commission_app/model/advertise_with_us/advertise_with_us_model.dart';
 import 'package:fx_commission_app/model/analysis_and_insights/analysis_and_insights_model.dart';
 import 'package:fx_commission_app/model/blogs/last_news/last_news_model.dart';
 import 'package:fx_commission_app/model/broker_news/broker_news_model.dart';
@@ -25,5 +26,7 @@ LastNewsModel lastNewsModel = LastNewsModel();
 BrokerNewsModel brokerNewsModel = BrokerNewsModel();
 
 AboutUsModel aboutUsModel = AboutUsModel();
+
+AdvertiseWithUsModel advertiseWithUsModel = AdvertiseWithUsModel();
 
 // Courses courses = Courses();

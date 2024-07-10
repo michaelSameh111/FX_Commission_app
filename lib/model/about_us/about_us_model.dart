@@ -1,6 +1,6 @@
 class AboutUsModel {
   String? status;
-  Page? page;
+  Pageee? page;
   List<PageMetas>? pageMetas;
   List<AdvertisingBanners>? advertisingBanners;
   Null? vision;
@@ -14,9 +14,9 @@ class AboutUsModel {
         this.vision,
         this.mission});
 
-   AboutUsModel.fromJson(Map<String, dynamic> json) {
+  AboutUsModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
-    page = json['page'] != null ? new Page.fromJson(json['page']) : null;
+    page = json['page'] != null ? new Pageee.fromJson(json['page']) : null;
     if (json['page metas'] != null) {
       pageMetas = <PageMetas>[];
       json['page metas'].forEach((v) {
@@ -56,13 +56,13 @@ class AboutUsModel {
   }
 }
 
-class Page {
+class Pageee {
   String? title;
   String? description;
 
-  Page({this.title, this.description});
+  Pageee({this.title, this.description});
 
-  Page.fromJson(Map<String, dynamic> json) {
+  Pageee.fromJson(Map<String, dynamic> json) {
     title = json['title'];
     description = json['description'];
   }

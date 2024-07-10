@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fx_commission_app/controller/constants.dart';
 import 'package:fx_commission_app/controller/cubit/states.dart';
 import 'package:fx_commission_app/model/about_us/about_us_model.dart';
+import 'package:fx_commission_app/model/advertise_with_us/advertise_with_us_model.dart';
 import 'package:fx_commission_app/model/analysis_and_insights/analysis_and_insights_model.dart';
 import 'package:fx_commission_app/model/blogs/last_news/last_news_model.dart';
 import 'package:fx_commission_app/model/broker_news/broker_news_model.dart';
@@ -192,10 +193,9 @@ class AppCubit extends Cubit<AppStates> {
     emit(AboutUsLoadingState());
     DioHelper.getData(
       url: aboutUsUrl,
-      token: loginDataModel.accessToken,
     ).then((value) {
-     // aboutUsModel = AboutUsModel().fromJson(value?.data);
-      print('we have got broker news dataaaaaa heeeeeeeere');
+      aboutUsModel = AboutUsModel.fromJson(value?.data);
+      print('we have about us dataaaaaa heeeeeeeere');
 
 
       emit(AboutUsSuccessState());
@@ -207,4 +207,24 @@ class AppCubit extends Cubit<AppStates> {
       emit(AboutUsErrorState(error.toString()));
     });
   }
+
+  void getAdvertiseWithUs() {
+    emit(AdvertiseWithUsLoadingState());
+    DioHelper.getData(
+      url: advertiseWithUsUrl,
+    ).then((value) {
+      advertiseWithUsModel = AdvertiseWithUsModel.fromJson(value?.data);
+      print('we have advertise with us dataaaaaa heeeeeeeere');
+
+
+      emit(AdvertiseWithUsSuccessState());
+    }).catchError((error, stackTrace) {
+      print('error (getAdvertiseWithUs method)');
+      print(error.toString());
+      print('stack trace : $stackTrace');
+
+      emit(AdvertiseWithUsErrorState(error.toString()));
+    });
+  }
+
 }
