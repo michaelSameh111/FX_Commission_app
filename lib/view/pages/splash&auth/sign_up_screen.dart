@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:fx_commission_app/controller/cubit/login/login_cubit.dart';
 import 'package:fx_commission_app/controller/cubit/login/login_states.dart';
-import 'package:fx_commission_app/view/pages/login_screen.dart';
+import 'package:fx_commission_app/view/pages/splash&auth/login_screen.dart';
 import 'package:fx_commission_app/view/widgets/reusable_widgets.dart';
 
 class SignUpScreen extends StatefulWidget {

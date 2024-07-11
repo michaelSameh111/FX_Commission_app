@@ -134,3 +134,14 @@ class FaqsErrorState extends AppStates {
 
   FaqsErrorState(this.error);
 }
+
+
+class ContactUsLoadingState extends AppStates {}
+
+class ContactUsSuccessState extends AppStates {}
+
+class ContactUsErrorState extends AppStates {
+  final String error;
+
+  ContactUsErrorState(this.error);
+}

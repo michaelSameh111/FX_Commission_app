@@ -1,5 +1,7 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:fx_commission_app/controller/constants.dart';
 import 'package:fx_commission_app/controller/cubit/states.dart';
 import 'package:fx_commission_app/model/FAQs/faqs_model.dart';
@@ -247,4 +249,114 @@ class AppCubit extends Cubit<AppStates> {
     });
   }
 
+  void postContactUs ({
+    required String name,
+    required String email,
+    required String phone,
+    required String subject,
+    required String message,
+    required BuildContext context,
+  }) async {
+    emit(ContactUsLoadingState());
+
+    try{
+      FormData formData = FormData.fromMap({
+        'name' : name,
+        'email' : email,
+        'phone' : phone,
+        'subject' : subject,
+        'message' : message,
+      });
+
+      Response response = await DioHelper.postData(
+        url: contactUsUrl,
+        data: formData,
+      );
+
+      emit(ContactUsSuccessState());
+      print('MESSAGE SENT SUCCESSFULLYYY ${response.data}');
+
+      if(state is ContactUsSuccessState){
+        showRegistrationSuccessDialog(context);
+      }
+
+    }catch (error) {
+      if(error is DioException)
+      {
+        print('Error message: ${error.message}');
+        print('Stacktrace: ${error.stackTrace}');
+
+        // if(error.response != null){
+        //   print('Errorrrrr : ${error.response}');
+        //   if(error.response?.statusCode == 400){
+        //     var errors = error.response?.data['errors'];
+        //     if(errors != null){
+        //       if(errors.containsKey('email') && errors.containsKey('phone'))
+        //       {
+        //         Fluttertoast.showToast(
+        //           msg: 'Email & Phone are already taken',
+        //           toastLength: Toast.LENGTH_LONG,
+        //           gravity: ToastGravity.BOTTOM,
+        //           backgroundColor: Colors.red,
+        //           textColor: Colors.white,
+        //           fontSize: 16.dp,
+        //         );
+        //       }
+        //       else if(errors.containsKey('email'))
+        //       {
+        //         Fluttertoast.showToast(
+        //           msg: 'Email is already taken',
+        //           toastLength: Toast.LENGTH_SHORT,
+        //           gravity: ToastGravity.BOTTOM,
+        //           backgroundColor: Colors.red,
+        //           textColor: Colors.white,
+        //           fontSize: 16.dp,
+        //         );
+        //       }
+        //       else if(errors.containsKey('phone'))
+        //       {
+        //         Fluttertoast.showToast(
+        //           msg: 'Phone is already taken',
+        //           toastLength: Toast.LENGTH_SHORT,
+        //           gravity: ToastGravity.BOTTOM,
+        //           backgroundColor: Colors.red,
+        //           textColor: Colors.white,
+        //           fontSize: 16.dp,
+        //         );
+        //       }
+        //     }
+        //   } else {
+        //     print('Error response data: ${error.response?.data}');
+        //   }
+        // }
+      }
+      else {
+        print('Error: $error');
+      }
+      emit(ContactUsErrorState(error.toString()));
+    }
+  }
+
+  void showRegistrationSuccessDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('We have received your message and will contact you shortly.'),
+          //content: const Text('You have registered successfully.'),
+          actions: [
+            TextButton(
+                onPressed: (){
+                  Navigator.pop(context);
+                },
+                child: Text('Login',
+                  style: TextStyle(
+                      color: const Color(0xff0095D0),
+                      fontSize: 15.dp
+                  ),))
+          ],
+        );
+      },
+    );
+  }
 }

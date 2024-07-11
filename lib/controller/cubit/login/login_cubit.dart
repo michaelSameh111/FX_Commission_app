@@ -88,9 +88,7 @@ class LoginCubit extends Cubit <LoginStates>{
           if(state is RegisterSuccessState){
             showRegistrationSuccessDialog(context);
           }
-          // if(state is RegisterSuccessState){
-          //   userLogin(email: email, password: password, context: context);
-          // }
+
             }catch (error) {
       if(error is DioException)
       {

@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:fx_commission_app/controller/cubit/login/login_states.dart';
-import 'package:fx_commission_app/view/pages/sign_up_screen.dart';
+import 'package:fx_commission_app/view/pages/splash&auth/forgot_password_screen.dart';
+import 'package:fx_commission_app/view/pages/splash&auth/sign_up_screen.dart';
 import 'package:fx_commission_app/controller/cubit/login/login_cubit.dart';
-import '../widgets/reusable_widgets.dart';
+import '../../widgets/reusable_widgets.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -175,7 +176,13 @@ class _LoginScreenState extends State<LoginScreen> {
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               TextButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                            ForgotPasswordScreen()));
+                                  },
                                   child: Text(
                                     'Forgot password ?',
                                     style: TextStyle(
