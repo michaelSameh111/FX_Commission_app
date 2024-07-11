@@ -123,3 +123,14 @@ class AdvertiseWithUsErrorState extends AppStates {
 
   AdvertiseWithUsErrorState(this.error);
 }
+
+
+class FaqsLoadingState extends AppStates {}
+
+class FaqsSuccessState extends AppStates {}
+
+class FaqsErrorState extends AppStates {
+  final String error;
+
+  FaqsErrorState(this.error);
+}

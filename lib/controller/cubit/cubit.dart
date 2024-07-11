@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fx_commission_app/controller/constants.dart';
 import 'package:fx_commission_app/controller/cubit/states.dart';
+import 'package:fx_commission_app/model/FAQs/faqs_model.dart';
 import 'package:fx_commission_app/model/about_us/about_us_model.dart';
 import 'package:fx_commission_app/model/advertise_with_us/advertise_with_us_model.dart';
 import 'package:fx_commission_app/model/analysis_and_insights/analysis_and_insights_model.dart';
@@ -224,6 +225,25 @@ class AppCubit extends Cubit<AppStates> {
       print('stack trace : $stackTrace');
 
       emit(AdvertiseWithUsErrorState(error.toString()));
+    });
+  }
+
+  void getFaqs() {
+    emit(FaqsLoadingState());
+    DioHelper.getData(
+      url: faqsUrl,
+    ).then((value) {
+      faqsModel = FaqsModel.fromJson(value?.data);
+      print('we have faqs dataaaaaa heeeeeeeere');
+
+
+      emit(FaqsSuccessState());
+    }).catchError((error, stackTrace) {
+      print('error (getFaqs method)');
+      print(error.toString());
+      print('stack trace : $stackTrace');
+
+      emit(FaqsErrorState(error.toString()));
     });
   }
 

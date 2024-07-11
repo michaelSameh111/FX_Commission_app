@@ -9,3 +9,4 @@ const lastNewsUrl = 'api/en/news/latest';
 const brokerNewsUrl = 'api/en/news/category/stocks';
 const aboutUsUrl = 'api/en/about';
 const advertiseWithUsUrl = 'api/en/advertise-with-us';
+const faqsUrl = 'api/en/faqs';
