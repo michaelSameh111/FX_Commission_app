@@ -60,16 +60,16 @@ class AppCubit extends Cubit<AppStates> {
     });
   }
 
-  void getForexCourse(){
+  void getForexCourse() {
     emit(ForexCourseLoadingState());
     DioHelper.getData(
-        url: forexCourseUrl,
-    ).then((value){
+      url: forexCourseUrl,
+    ).then((value) {
       forexCourseModel = ForexCourseModel.fromJson(value?.data);
       print('we have got forex course dataaaaaa here : ${value?.data}');
 
       emit(ForexCourseSuccessState());
-    }).catchError((error, stackTrace){
+    }).catchError((error, stackTrace) {
       print('error (getForexCourse methoooooooooooood)');
       print(error.toString());
       print('stack trace : $stackTrace');
@@ -78,17 +78,15 @@ class AppCubit extends Cubit<AppStates> {
     });
   }
 
-  void getAnalysisAndInsights(){
+  void getAnalysisAndInsights() {
     emit(AnalysisAndInsightsLoadingState());
 
-    DioHelper.getData(
-        url: analysisAndInsightsUrl
-    ).then((value){
-          analysisAndInsightsModel = AnalysisAndInsightsModel.fromJson(value?.data);
-          print('we have got analysis and insights dataaaaaa heeeeeeeere');
+    DioHelper.getData(url: analysisAndInsightsUrl).then((value) {
+      analysisAndInsightsModel = AnalysisAndInsightsModel.fromJson(value?.data);
+      print('we have got analysis and insights dataaaaaa heeeeeeeere');
 
-          emit(AnalysisAndInsightsSuccessState());
-    }).catchError((error, stackTrace){
+      emit(AnalysisAndInsightsSuccessState());
+    }).catchError((error, stackTrace) {
       print('error (getAnalysisAndInsights methoooooooooooood)');
       print(error.toString());
       print('stack trace : $stackTrace');
@@ -97,17 +95,15 @@ class AppCubit extends Cubit<AppStates> {
     });
   }
 
-  void getServices (){
+  void getServices() {
     emit(ServicesLoadingState());
 
-    DioHelper.getData(
-        url: servicesUrl
-    ).then((value){
+    DioHelper.getData(url: servicesUrl).then((value) {
       servicesModel = ServicesModel.fromJson(value?.data);
       print('we have got services dataaaaaa heeeeeeeere');
 
       emit(ServicesSuccessState());
-    }).catchError((error, stackTrace){
+    }).catchError((error, stackTrace) {
       print('error (getServices methoooooooooooood)');
       print(error.toString());
       print('stack trace : $stackTrace');
@@ -116,17 +112,15 @@ class AppCubit extends Cubit<AppStates> {
     });
   }
 
-  void getLoyaltyPrograms (){
+  void getLoyaltyPrograms() {
     emit(LoyaltyProgramsLoadingState());
 
-    DioHelper.getData(
-        url: loyaltyProgramsUrl
-    ).then((value){
+    DioHelper.getData(url: loyaltyProgramsUrl).then((value) {
       loyaltyProgramsModel = LoyaltyProgramModel.fromJson(value?.data);
       print('we have got loyalty programs dataaaaaa heeeeeeeere');
 
       emit(LoyaltyProgramsSuccessState());
-    }).catchError((error, stackTrace){
+    }).catchError((error, stackTrace) {
       print('error (getLoyaltyPrograms methoooooooooooood)');
       print(error.toString());
       print('stack trace : $stackTrace');
@@ -135,17 +129,15 @@ class AppCubit extends Cubit<AppStates> {
     });
   }
 
-  void getLastNews (){
+  void getLastNews() {
     emit(LastNewsLoadingState());
 
-    DioHelper.getData(
-        url: lastNewsUrl
-    ).then((value){
+    DioHelper.getData(url: lastNewsUrl).then((value) {
       lastNewsModel = LastNewsModel.fromJson(value?.data);
       print('we have got last news dataaaaaa heeeeeeeere');
 
       emit(LastNewsSuccessState());
-    }).catchError((error, stackTrace){
+    }).catchError((error, stackTrace) {
       print('error (getLastNews methoooooooooooood)');
       print(error.toString());
       print('stack trace : $stackTrace');
@@ -154,17 +146,15 @@ class AppCubit extends Cubit<AppStates> {
     });
   }
 
-  void getFxCommNews (){
+  void getFxCommNews() {
     emit(LastNewsLoadingState());
 
-    DioHelper.getData(
-        url: lastNewsUrl
-    ).then((value){
+    DioHelper.getData(url: lastNewsUrl).then((value) {
       lastNewsModel = LastNewsModel.fromJson(value?.data);
       print('we have got last news dataaaaaa heeeeeeeere');
 
       emit(LastNewsSuccessState());
-    }).catchError((error, stackTrace){
+    }).catchError((error, stackTrace) {
       print('error (getLastNews methoooooooooooood)');
       print(error.toString());
       print('stack trace : $stackTrace');
@@ -173,17 +163,15 @@ class AppCubit extends Cubit<AppStates> {
     });
   }
 
-  void getBrokerNews (){
+  void getBrokerNews() {
     emit(BrokerNewsLoadingState());
 
-    DioHelper.getData(
-        url: brokerNewsUrl
-    ).then((value){
+    DioHelper.getData(url: brokerNewsUrl).then((value) {
       brokerNewsModel = BrokerNewsModel.fromJson(value?.data);
       print('we have got broker news dataaaaaa heeeeeeeere');
 
       emit(BrokerNewsSuccessState());
-    }).catchError((error, stackTrace){
+    }).catchError((error, stackTrace) {
       print('error (getBrokerNews methoooooooooooood)');
       print(error.toString());
       print('stack trace : $stackTrace');
@@ -199,7 +187,6 @@ class AppCubit extends Cubit<AppStates> {
     ).then((value) {
       aboutUsModel = AboutUsModel.fromJson(value?.data);
       print('we have about us dataaaaaa heeeeeeeere');
-
 
       emit(AboutUsSuccessState());
     }).catchError((error, stackTrace) {
@@ -219,7 +206,6 @@ class AppCubit extends Cubit<AppStates> {
       advertiseWithUsModel = AdvertiseWithUsModel.fromJson(value?.data);
       print('we have advertise with us dataaaaaa heeeeeeeere');
 
-
       emit(AdvertiseWithUsSuccessState());
     }).catchError((error, stackTrace) {
       print('error (getAdvertiseWithUs method)');
@@ -238,7 +224,6 @@ class AppCubit extends Cubit<AppStates> {
       faqsModel = FaqsModel.fromJson(value?.data);
       print('we have faqs dataaaaaa heeeeeeeere');
 
-
       emit(FaqsSuccessState());
     }).catchError((error, stackTrace) {
       print('error (getFaqs method)');
@@ -249,7 +234,7 @@ class AppCubit extends Cubit<AppStates> {
     });
   }
 
-  void postContactUs ({
+  void postContactUs({
     required String name,
     required String email,
     required String phone,
@@ -259,13 +244,13 @@ class AppCubit extends Cubit<AppStates> {
   }) async {
     emit(ContactUsLoadingState());
 
-    try{
+    try {
       FormData formData = FormData.fromMap({
-        'name' : name,
-        'email' : email,
-        'phone' : phone,
-        'subject' : subject,
-        'message' : message,
+        'name': name,
+        'email': email,
+        'phone': phone,
+        'subject': subject,
+        'message': message,
       });
 
       Response response = await DioHelper.postData(
@@ -276,13 +261,11 @@ class AppCubit extends Cubit<AppStates> {
       emit(ContactUsSuccessState());
       print('MESSAGE SENT SUCCESSFULLYYY ${response.data}');
 
-      if(state is ContactUsSuccessState){
+      if (state is ContactUsSuccessState) {
         showRegistrationSuccessDialog(context);
       }
-
-    }catch (error) {
-      if(error is DioException)
-      {
+    } catch (error) {
+      if (error is DioException) {
         print('Error message: ${error.message}');
         print('Stacktrace: ${error.stackTrace}');
 
@@ -329,8 +312,7 @@ class AppCubit extends Cubit<AppStates> {
         //     print('Error response data: ${error.response?.data}');
         //   }
         // }
-      }
-      else {
+      } else {
         print('Error: $error');
       }
       emit(ContactUsErrorState(error.toString()));
@@ -342,18 +324,21 @@ class AppCubit extends Cubit<AppStates> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: const Text('We have received your message and will contact you shortly.'),
-          //content: const Text('You have registered successfully.'),
+          //  title: const Text('We have received your message and will contact you shortly.'),
+          content: Text(
+            'We have received your message and will contact you shortly.',
+            style: TextStyle(fontSize: 18.dp),
+          ),
           actions: [
             TextButton(
-                onPressed: (){
+                onPressed: () {
                   Navigator.pop(context);
                 },
-                child: Text('Login',
+                child: Text(
+                  'Login',
                   style: TextStyle(
-                      color: const Color(0xff0095D0),
-                      fontSize: 15.dp
-                  ),))
+                      color: const Color(0xff0095D0), fontSize: 18.dp),
+                ))
           ],
         );
       },

@@ -100,7 +100,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           defaultTextFormField(
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
-                                  return 'PLease, enter your email';
+                                  return 'Please, enter your email';
                                 }
                                 return null;
                               },
@@ -166,7 +166,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               ),
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
-                                  return 'PLease, enter your password';
+                                  return 'Please, enter your password';
                                 }
                                 return null;
                               },
