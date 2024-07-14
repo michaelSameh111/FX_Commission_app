@@ -47,7 +47,7 @@ class EditProfileScreen extends StatelessWidget {
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 border: Border.all(
-                                  color: Color(0xff0095D0)
+                                  color: const Color(0xff0095D0)
                                 )
                               ),
                               child: CircleAvatar(
@@ -62,7 +62,7 @@ class EditProfileScreen extends StatelessWidget {
                               onPressed: (){
                                 //upload photo
                               },
-                              child: Text('Upload your photo',
+                              child: const Text('Upload your photo',
                               style: TextStyle(
                                 color: Color(0xff808080)
                               ),)),
@@ -70,7 +70,7 @@ class EditProfileScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Full Name*',
+                                'First Name*',
                                 style:
                                 TextStyle(fontSize: 15.dp, fontWeight: FontWeight.w600),
                               ),

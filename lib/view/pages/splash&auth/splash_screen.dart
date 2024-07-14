@@ -1,7 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:fx_commission_app/controller/cubit/login/login_cubit.dart';
+import 'package:fx_commission_app/controller/shared_preferences.dart';
 import 'package:fx_commission_app/view/pages/splash&auth/on_boarding_screen.dart';
-
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -11,13 +12,19 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  // ignore: must_call_super
   @override
   void initState() {
+    super.initState();
     Timer(const Duration(seconds: 2), () {
-      Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => OnBoardingScreen()));
+      if (CacheHelper.getData(key: 'loggedin') == null) {
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) => const OnBoardingScreen()));
+      } else {
+        LoginCubit.get(context).userLogin(
+            email: CacheHelper.getData(key: 'username'),
+            password: CacheHelper.getData(key: 'password'),
+            context: context);
+      }
     });
   }
 

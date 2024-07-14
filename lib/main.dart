@@ -5,6 +5,7 @@ import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:fx_commission_app/controller/cubit/bloc_observer.dart';
 import 'package:fx_commission_app/controller/cubit/cubit.dart';
 import 'package:fx_commission_app/controller/cubit/states.dart';
+import 'package:fx_commission_app/controller/shared_preferences.dart';
 import 'package:fx_commission_app/model/dio_helper.dart';
 import 'package:fx_commission_app/view/pages/brokers_screen/main_brokers_screen.dart';
 import 'package:fx_commission_app/view/pages/splash&auth/forgot_password_screen.dart';
@@ -27,6 +28,7 @@ void main() {
   DioHelper.init();
   Bloc.observer = MyBlocObserver();
   runApp(const MyApp());
+  CacheHelper.init();
 }
 
 class MyApp extends StatelessWidget {

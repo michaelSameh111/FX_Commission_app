@@ -8,6 +8,7 @@ import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:fx_commission_app/controller/constants.dart';
 import 'package:fx_commission_app/controller/cubit/login/login_states.dart';
+import 'package:fx_commission_app/controller/shared_preferences.dart';
 import 'package:fx_commission_app/model/dio_helper.dart';
 import 'package:fx_commission_app/model/login/login_model.dart';
 import 'package:fx_commission_app/view/pages/home_layout_screen.dart';
@@ -36,9 +37,35 @@ class LoginCubit extends Cubit <LoginStates>{
           print(loginDataModel.accessToken);
           //print(value.data);
       emit(LoginSuccessState());
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => HomeLayoutScreen()));
+      if(state is LoginSuccessState){
+        if (rememberMe == true) {
+          CacheHelper.saveData(
+              key: 'username', value: loginEmailController.text);
+          CacheHelper.saveData(
+              key: 'password', value: loginPasswordController.text);
+          CacheHelper.saveData(key: 'loggedin', value: true);
+        }
+      }else{
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => HomeLayoutScreen()));
+      }
     }).catchError((error, stackTrace) {
+      if (CacheHelper.getData(key: 'loggedin') == null) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Container(
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                  color: Colors.red, borderRadius: BorderRadius.circular(20)),
+              height: 5.h,
+              child: const Text('Your Username or Password is Incorrect'),
+            ),
+            behavior: SnackBarBehavior.floating,
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+          ),
+        );
+      }
       print(error.toString());
       print(stackTrace);
       Fluttertoast.showToast(

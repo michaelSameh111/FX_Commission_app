@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:fx_commission_app/model/FAQs/faqs_model.dart';
 import 'package:fx_commission_app/model/about_us/about_us_model.dart';
 import 'package:fx_commission_app/model/advertise_with_us/advertise_with_us_model.dart';
@@ -32,4 +33,8 @@ AdvertiseWithUsModel advertiseWithUsModel = AdvertiseWithUsModel();
 
 FaqsModel faqsModel = FaqsModel();
 
-// Courses courses = Courses();
+TextEditingController loginEmailController = TextEditingController();
+
+TextEditingController loginPasswordController = TextEditingController();
+
+bool rememberMe = false;

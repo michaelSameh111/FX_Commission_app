@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
+import 'package:fx_commission_app/controller/constants.dart';
 import 'package:fx_commission_app/controller/cubit/login/login_states.dart';
 import 'package:fx_commission_app/view/pages/splash&auth/forgot_password_screen.dart';
 import 'package:fx_commission_app/view/pages/splash&auth/sign_up_screen.dart';
@@ -16,8 +17,8 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   bool isChecked = false;
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  // TextEditingController loginEmailController = TextEditingController();
+  // TextEditingController loginPasswordController = TextEditingController();
   var formKey = GlobalKey<FormState>();
   IconData suffixIcon = Icons.visibility_off;
 
@@ -104,7 +105,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 }
                                 return null;
                               },
-                              textFormFieldController: emailController,
+                              textFormFieldController: loginEmailController,
                               hintText: 'Enter your email',
                               keyboardType: TextInputType.emailAddress),
                           SizedBox(
@@ -146,7 +147,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                             child: TextFormField(
                               keyboardType: TextInputType.visiblePassword,
-                              controller: passwordController,
+                              controller: loginPasswordController,
                               obscureText: LoginCubit.get(context).isPassword,
                               decoration: InputDecoration(
                                 contentPadding: EdgeInsets.all(12.dp),
@@ -226,8 +227,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                   if (formKey.currentState?.validate() ??
                                       false) {
                                     LoginCubit.get(context).userLogin(
-                                      email: emailController.text,
-                                      password: passwordController.text,
+                                      email: loginEmailController.text,
+                                      password: loginPasswordController.text,
                                       context: context,
                                     );
                                   }
