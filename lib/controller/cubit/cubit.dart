@@ -10,6 +10,7 @@ import 'package:fx_commission_app/model/advertise_with_us/advertise_with_us_mode
 import 'package:fx_commission_app/model/analysis_and_insights/analysis_and_insights_model.dart';
 import 'package:fx_commission_app/model/blogs/last_news/last_news_model.dart';
 import 'package:fx_commission_app/model/broker_news/broker_news_model.dart';
+import 'package:fx_commission_app/model/companies/companies_model.dart';
 import 'package:fx_commission_app/model/dio_helper.dart';
 import 'package:fx_commission_app/model/end_points.dart';
 import 'package:fx_commission_app/model/forex_course/forex_course_model.dart';
@@ -343,5 +344,23 @@ class AppCubit extends Cubit<AppStates> {
         );
       },
     );
+  }
+
+  void getCompanies() {
+    emit(CompaniesLoadingState());
+    DioHelper.getData(
+      url: companiesUrl,
+    ).then((value) {
+      companiesModel = CompaniesModel.fromJson(value?.data);
+      print('we have companies dataaaaaa heeeeeeeere');
+
+      emit(CompaniesSuccessState());
+    }).catchError((error, stackTrace) {
+      print('error (getCompanies method)');
+      print(error.toString());
+      print('stack trace : $stackTrace');
+
+      emit(CompaniesErrorState(error.toString()));
+    });
   }
 }

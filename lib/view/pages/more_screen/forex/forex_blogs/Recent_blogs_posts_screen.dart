@@ -39,7 +39,6 @@ class _RecentBlogsPostsScreenState extends State<RecentBlogsPostsScreen> {
       builder: (context, state) {
         return Scaffold(
           appBar: reusableAppBar(context: context, text: 'FOREX'),
-
           body: state is ForexNewsLoadingState
               ? const Center(
                   child: CircularProgressIndicator(
@@ -49,7 +48,6 @@ class _RecentBlogsPostsScreenState extends State<RecentBlogsPostsScreen> {
               : Column(
                   children: [
                     containerBelowAppBar(text: 'Recent blogs posts'),
-
                     Expanded(
                       child: SingleChildScrollView(
                         child: Column(
@@ -90,103 +88,103 @@ class _RecentBlogsPostsScreenState extends State<RecentBlogsPostsScreen> {
   Widget blogPostContainer({
     required ForexNews forexNews,
   }) {
-    return Container(
-      height: 50.h,
-      width: double.infinity,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(10.dp),
-      ),
-      child: Column(
-        children: [
-          Expanded(
-            child: ClipRRect(
-              borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(10.dp),
-                  topRight: Radius.circular(10.dp)),
-              child: Image.network(
-                fit: BoxFit.fill,
-                width: double.infinity,
-                height: 15.h,
-                forexNews.image!,
-                errorBuilder: (context, error, stackTrace) => const Center(
-                    child: Text(
-                  'no image returned',
-                  style: TextStyle(color: Colors.red),
-                )),
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => RecentBlogsPostsReadArticleScreen(
+                      forexNews: forexNews,
+                    )));
+      },
+      child: Container(
+        height: 50.h,
+        width: double.infinity,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10.dp),
+        ),
+        child: Column(
+          children: [
+            Expanded(
+              child: ClipRRect(
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(10.dp),
+                    topRight: Radius.circular(10.dp)),
+                child: Image.network(
+                  fit: BoxFit.fill,
+                  width: double.infinity,
+                  height: 15.h,
+                  forexNews.image!,
+                  errorBuilder: (context, error, stackTrace) => const Center(
+                      child: Text(
+                    'no image returned',
+                    style: TextStyle(color: Colors.red),
+                  )),
+                ),
               ),
             ),
-          ),
-          Expanded(
-              child: Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10.dp),
-            ),
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 3.0.w, vertical: 2.h),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Text(
-                    forexNews.createdBy!,
-                    style: TextStyle(
-                        color: const Color(0xff808080),
-                        fontSize: 14.dp,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(
-                    height: 0.5.h,
-                  ),
-                  Text(
-                    forexNews.title!,
-                    style:
-                        TextStyle(fontSize: 17.dp, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(
-                    height: 0.5.h,
-                  ),
-                  Text(
-                    forexNews.description!,
-                    maxLines: 3,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      fontSize: 17.dp,
+            Expanded(
+                child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10.dp),
+              ),
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 3.0.w, vertical: 2.h),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Text(
+                      forexNews.createdBy!,
+                      style: TextStyle(
+                          color: const Color(0xff808080),
+                          fontSize: 14.dp,
+                          fontWeight: FontWeight.bold),
                     ),
-                  ),
-                  TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    RecentBlogsPostsReadArticleScreen(
-                                      forexNews: forexNews,
-                                    )));
-                      },
-                      child: Row(
-                        children: [
-                          Text(
-                            'Read Article',
-                            style: TextStyle(
-                                color: const Color(0xff0095D0),
-                                fontSize: 17.dp),
-                          ),
-                          SizedBox(
-                            width: 2.w,
-                          ),
-                          Icon(
-                            Icons.arrow_forward_ios,
-                            size: 15.dp,
-                            color: const Color(0xff0095D0),
-                          )
-                        ],
-                      ))
-                ],
+                    SizedBox(
+                      height: 0.5.h,
+                    ),
+                    Text(
+                      forexNews.title!,
+                      style: TextStyle(
+                          fontSize: 17.dp, fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(
+                      height: 0.5.h,
+                    ),
+                    Text(
+                      forexNews.description!,
+                      maxLines: 3,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        fontSize: 17.dp,
+                      ),
+                    ),
+                    SizedBox(height: 3.h,),
+                    Row(
+                      children: [
+                        Text(
+                          'Read Article',
+                          style: TextStyle(
+                              color: const Color(0xff0095D0), fontSize: 17.dp),
+                        ),
+                        SizedBox(
+                          width: 2.w,
+                        ),
+                        Icon(
+                          Icons.arrow_forward_ios,
+                          size: 15.dp,
+                          color: const Color(0xff0095D0),
+                        )
+                      ],
+                    )
+                  ],
+                ),
               ),
-            ),
-          ))
-        ],
+            ))
+          ],
+        ),
       ),
     );
   }

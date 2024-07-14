@@ -145,3 +145,14 @@ class ContactUsErrorState extends AppStates {
 
   ContactUsErrorState(this.error);
 }
+
+
+class CompaniesLoadingState extends AppStates {}
+
+class CompaniesSuccessState extends AppStates {}
+
+class CompaniesErrorState extends AppStates {
+  final String error;
+
+  CompaniesErrorState(this.error);
+}
