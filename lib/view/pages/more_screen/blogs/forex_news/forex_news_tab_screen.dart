@@ -18,17 +18,6 @@ class ForexNewsTabScreen extends StatefulWidget {
 }
 
 class _ForexNewsTabScreenState extends State<ForexNewsTabScreen> {
-  String blogImage = 'assets/images/laptop_mobile_image.png';
-
-  String issuer = 'Natali Craig';
-
-  String issueDate = '14 Jan 2022';
-
-  String blogTitle = 'USA lifts sanctions against Xiaomi';
-
-  String blogContent = 'The US Department of Defense and Xiaomi have'
-      ' reached an agreement to lift the ban on investing'
-      ' in this Chinese company.in this Chinese company.in this Chinese company.';
 
   @override
   void initState() {

@@ -26,6 +26,17 @@ class ForexNewsErrorState extends AppStates {
 }
 
 
+class FxCommNewsLoadingState extends AppStates {}
+
+class FxCommNewsSuccessState extends AppStates {}
+
+class FxCommNewsErrorState extends AppStates {
+  final String error;
+
+  FxCommNewsErrorState(this.error);
+}
+
+
 class ForexCourseLoadingState extends AppStates {}
 
 class ForexCourseSuccessState extends AppStates {}
@@ -78,17 +89,6 @@ class LastNewsErrorState extends AppStates {
   final String error;
 
   LastNewsErrorState(this.error);
-}
-
-
-class FxCommNewsLoadingState extends AppStates {}
-
-class FxCommNewsSuccessState extends AppStates {}
-
-class FxCommNewsErrorState extends AppStates {
-  final String error;
-
-  FxCommNewsErrorState(this.error);
 }
 
 

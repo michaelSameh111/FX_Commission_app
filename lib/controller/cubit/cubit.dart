@@ -15,6 +15,7 @@ import 'package:fx_commission_app/model/dio_helper.dart';
 import 'package:fx_commission_app/model/end_points.dart';
 import 'package:fx_commission_app/model/forex_course/forex_course_model.dart';
 import 'package:fx_commission_app/model/forex_news/forex_news_model.dart';
+import 'package:fx_commission_app/model/fx_commission_news/fx_Commission_news_model.dart';
 import 'package:fx_commission_app/model/loyalty_program/loyalty_program_model.dart';
 import 'package:fx_commission_app/model/services/services_model.dart';
 import 'package:fx_commission_app/view/pages/brokers_screen/main_brokers_screen.dart';
@@ -148,19 +149,19 @@ class AppCubit extends Cubit<AppStates> {
   }
 
   void getFxCommNews() {
-    emit(LastNewsLoadingState());
+    emit(FxCommNewsLoadingState());
 
-    DioHelper.getData(url: lastNewsUrl).then((value) {
-      lastNewsModel = LastNewsModel.fromJson(value?.data);
-      print('we have got last news dataaaaaa heeeeeeeere');
+    DioHelper.getData(url: fxCommNewsUrl).then((value) {
+      fxCommNewsModel = FxCommNewsModel.fromJson(value?.data);
+      print('we have got fx commission news dataaaaaa heeeeeeeere');
 
-      emit(LastNewsSuccessState());
+      emit(FxCommNewsSuccessState());
     }).catchError((error, stackTrace) {
-      print('error (getLastNews methoooooooooooood)');
+      print('error (getFxCommNews methoooooooooooood)');
       print(error.toString());
       print('stack trace : $stackTrace');
 
-      emit(LastNewsErrorState(error));
+      emit(FxCommNewsErrorState(error));
     });
   }
 
@@ -269,50 +270,6 @@ class AppCubit extends Cubit<AppStates> {
       if (error is DioException) {
         print('Error message: ${error.message}');
         print('Stacktrace: ${error.stackTrace}');
-
-        // if(error.response != null){
-        //   print('Errorrrrr : ${error.response}');
-        //   if(error.response?.statusCode == 400){
-        //     var errors = error.response?.data['errors'];
-        //     if(errors != null){
-        //       if(errors.containsKey('email') && errors.containsKey('phone'))
-        //       {
-        //         Fluttertoast.showToast(
-        //           msg: 'Email & Phone are already taken',
-        //           toastLength: Toast.LENGTH_LONG,
-        //           gravity: ToastGravity.BOTTOM,
-        //           backgroundColor: Colors.red,
-        //           textColor: Colors.white,
-        //           fontSize: 16.dp,
-        //         );
-        //       }
-        //       else if(errors.containsKey('email'))
-        //       {
-        //         Fluttertoast.showToast(
-        //           msg: 'Email is already taken',
-        //           toastLength: Toast.LENGTH_SHORT,
-        //           gravity: ToastGravity.BOTTOM,
-        //           backgroundColor: Colors.red,
-        //           textColor: Colors.white,
-        //           fontSize: 16.dp,
-        //         );
-        //       }
-        //       else if(errors.containsKey('phone'))
-        //       {
-        //         Fluttertoast.showToast(
-        //           msg: 'Phone is already taken',
-        //           toastLength: Toast.LENGTH_SHORT,
-        //           gravity: ToastGravity.BOTTOM,
-        //           backgroundColor: Colors.red,
-        //           textColor: Colors.white,
-        //           fontSize: 16.dp,
-        //         );
-        //       }
-        //     }
-        //   } else {
-        //     print('Error response data: ${error.response?.data}');
-        //   }
-        // }
       } else {
         print('Error: $error');
       }
