@@ -5,6 +5,7 @@ class CacheHelper {
 
   static Future<void> init() async {
     preferences = await SharedPreferences.getInstance();
+    print('CACHE INITIALIZEDDD');
   }
 
   static void putString({required String key, required String value}) async {

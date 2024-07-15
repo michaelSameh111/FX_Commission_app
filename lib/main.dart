@@ -22,13 +22,15 @@ import 'controller/cubit/login/login_cubit.dart';
 import 'view/pages/brokers_screen/brokers_new_account_screen.dart';
 import 'view/pages/splash&auth/on_boarding_screen.dart';
 
-void main() {
+void main()async {
   WidgetsFlutterBinding.ensureInitialized();
   // debugPaintSizeEnabled = false;
   DioHelper.init();
   Bloc.observer = MyBlocObserver();
+  await CacheHelper.init();
+
   runApp(const MyApp());
-  CacheHelper.init();
+
 }
 
 class MyApp extends StatelessWidget {
@@ -48,7 +50,7 @@ class MyApp extends StatelessWidget {
       child: FlutterSizer(
         builder: (context, orientation, screenType) {
           return MaterialApp(
-            home: const HomeLayoutScreen(),
+            home: const SplashScreen(),
             debugShowCheckedModeBanner: false,
             color: Colors.red,
             theme: ThemeData(

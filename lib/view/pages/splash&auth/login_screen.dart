@@ -16,19 +16,9 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  bool isChecked = false;
-  // TextEditingController loginEmailController = TextEditingController();
-  // TextEditingController loginPasswordController = TextEditingController();
+  //bool rememberMe = false;
   var formKey = GlobalKey<FormState>();
   IconData suffixIcon = Icons.visibility_off;
-
-  // void toggleSuffixIcon() {
-  //   setState(() {
-  //     suffixIcon = suffixIcon == Icons.visibility_off
-  //         ? Icons.visibility
-  //         : Icons.visibility_off;
-  //   });
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -119,22 +109,6 @@ class _LoginScreenState extends State<LoginScreen> {
                           SizedBox(
                             height: 1.h,
                           ),
-                          // defaultTextFormField(
-                          //   suffixIcon: LoginCubit.get(context).suffix,
-                          //     isPassword: LoginCubit.get(context).isPassword,
-                          //     suffixPressed: (){
-                          //       LoginCubit.get(context).changePasswordVisibility;
-                          //       },
-                          //     validator: (value) {
-                          //       if (value == null || value.isEmpty) {
-                          //         return 'PLease, enter your password';
-                          //       }
-                          //       return null;
-                          //     },
-                          //     textFormFieldController: passwordController,
-                          //     obscureText: LoginCubit.get(context).isPassword,
-                          //     hintText: 'Enter your password',
-                          //     keyboardType: TextInputType.visiblePassword,),
 
                           Container(
                             decoration: BoxDecoration(
@@ -197,10 +171,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                 side: const BorderSide(
                                   color: Color(0xffA2A2A2),
                                 ),
-                                value: isChecked,
+                                value: rememberMe,
                                 onChanged: (bool? value) {
                                   setState(() {
-                                    isChecked = value!;
+                                    rememberMe = value!;
                                   });
                                 },
                                 activeColor: const Color(0xff0095D0),
