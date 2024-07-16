@@ -17,11 +17,14 @@ class DioHelper {
     required String url,
     Map<String, dynamic>? query,
     String? token,
+    int? id,
   }) async {
     dio?.options.headers = {
-      'access_token' : token
+      'auth-token' : token,
+      'id' : id
     };
-    return await dio?.get(url, queryParameters: query);
+    return await dio?.get(
+        url, queryParameters: query);
   }
 
 

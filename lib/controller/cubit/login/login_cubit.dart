@@ -9,7 +9,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:fx_commission_app/controller/constants.dart';
 import 'package:fx_commission_app/controller/cubit/login/login_states.dart';
 import 'package:fx_commission_app/controller/shared_preferences.dart';
-import 'package:fx_commission_app/model/dio_helper.dart';
+import 'package:fx_commission_app/controller/dio_helper.dart';
 import 'package:fx_commission_app/model/login/login_model.dart';
 import 'package:fx_commission_app/view/pages/home_layout_screen.dart';
 import '../../../model/end_points.dart';

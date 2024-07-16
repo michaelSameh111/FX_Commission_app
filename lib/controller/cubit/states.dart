@@ -26,14 +26,14 @@ class ForexNewsErrorState extends AppStates {
 }
 
 
-class FxCommNewsLoadingState extends AppStates {}
+class CryptoNewsLoadingState extends AppStates {}
 
-class FxCommNewsSuccessState extends AppStates {}
+class CryptoNewsSuccessState extends AppStates {}
 
-class FxCommNewsErrorState extends AppStates {
+class CryptoNewsErrorState extends AppStates {
   final String error;
 
-  FxCommNewsErrorState(this.error);
+  CryptoNewsErrorState(this.error);
 }
 
 

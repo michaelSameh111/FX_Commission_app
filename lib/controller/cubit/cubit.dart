@@ -11,11 +11,11 @@ import 'package:fx_commission_app/model/analysis_and_insights/analysis_and_insig
 import 'package:fx_commission_app/model/blogs/last_news/last_news_model.dart';
 import 'package:fx_commission_app/model/broker_news/broker_news_model.dart';
 import 'package:fx_commission_app/model/companies/companies_model.dart';
-import 'package:fx_commission_app/model/dio_helper.dart';
+import 'package:fx_commission_app/controller/dio_helper.dart';
+import 'package:fx_commission_app/model/crypto_news/crypto_news_model.dart';
 import 'package:fx_commission_app/model/end_points.dart';
 import 'package:fx_commission_app/model/forex_course/forex_course_model.dart';
 import 'package:fx_commission_app/model/forex_news/forex_news_model.dart';
-import 'package:fx_commission_app/model/fx_commission_news/fx_Commission_news_model.dart';
 import 'package:fx_commission_app/model/loyalty_program/loyalty_program_model.dart';
 import 'package:fx_commission_app/model/services/services_model.dart';
 import 'package:fx_commission_app/view/pages/brokers_screen/main_brokers_screen.dart';
@@ -148,20 +148,20 @@ class AppCubit extends Cubit<AppStates> {
     });
   }
 
-  void getFxCommNews() {
-    emit(FxCommNewsLoadingState());
+  void getCryptoNews() {
+    emit(CryptoNewsLoadingState());
 
-    DioHelper.getData(url: fxCommNewsUrl).then((value) {
-      fxCommNewsModel = FxCommNewsModel.fromJson(value?.data);
-      print('we have got fx commission news dataaaaaa heeeeeeeere');
+    DioHelper.getData(url: cryptoNewsUrl).then((value) {
+      cryptoNewsModel = CryptoNewsModel.fromJson(value?.data);
+      print('we have got crypto news dataaaaaa heeeeeeeere');
 
-      emit(FxCommNewsSuccessState());
+      emit(CryptoNewsSuccessState());
     }).catchError((error, stackTrace) {
-      print('error (getFxCommNews methoooooooooooood)');
+      print('error (getCryptoNews methoooooooooooood)');
       print(error.toString());
       print('stack trace : $stackTrace');
 
-      emit(FxCommNewsErrorState(error));
+      emit(CryptoNewsErrorState(error));
     });
   }
 

@@ -30,61 +30,61 @@ class _BrokerNewsTabScreenState extends State<BrokerNewsTabScreen> {
       builder: (context, state) {
         return state is BrokerNewsLoadingState
             ? const Center(
-                child: CircularProgressIndicator(
-                  color: Color(0xff0095D0),
-                ),
-              )
+          child: CircularProgressIndicator(
+            color: Color(0xff0095D0),
+          ),
+        )
             : Column(
-              children: [
-                Expanded(
-                    child: SingleChildScrollView(
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 3.0.w, vertical: 4.h),
                       child: Column(
                         children: [
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 3.0.w, vertical: 4.h),
-                            child: Column(
-                              children: [
-                                Row(
-                                  children: [
-                                    Text(
-                                      'Broker posts',
-                                      style: TextStyle(
-                                          color: const Color(0xff0095D0),
-                                          fontSize: 18.dp,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 3.h,
-                                ),
-                                ListView.separated(
-                                  physics: const NeverScrollableScrollPhysics(),
-                                  separatorBuilder: (context, index) => SizedBox(
-                                    height: 2.h,
-                                  ),
-                                  itemBuilder: (context, index) => brokerNewsContainer(
-                                    stocksNews: brokerNewsModel.stocksNews![index]
-                                  ),
-                                  itemCount: brokerNewsModel.stocksNews!.length,
-                                  shrinkWrap: true,
-                                )
-                              ],
+                          Row(
+                            children: [
+                              Text(
+                                'Broker posts',
+                                style: TextStyle(
+                                    color: const Color(0xff0095D0),
+                                    fontSize: 18.dp,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 3.h,
+                          ),
+                          ListView.separated(
+                            physics: const NeverScrollableScrollPhysics(),
+                            separatorBuilder: (context, index) => SizedBox(
+                              height: 2.h,
                             ),
+                            itemBuilder: (context, index) => brokerNewsContainer(
+                                stocksNews: brokerNewsModel.stocksNews![index]
+                            ),
+                            itemCount: brokerNewsModel.stocksNews!.length,
+                            shrinkWrap: true,
                           )
                         ],
                       ),
-                    ),
-                  ),
-              ],
-            );
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ],
+        );
       },
     );
   }
   Widget brokerNewsContainer ({
     required StocksNews stocksNews
-}){
+  }){
     return Container(
       height: 50.h,
       width: double.infinity,
@@ -100,15 +100,15 @@ class _BrokerNewsTabScreenState extends State<BrokerNewsTabScreen> {
                   topLeft: Radius.circular(10.dp),
                   topRight: Radius.circular(10.dp)),
               child: Image.network(
-                  fit: BoxFit.fill,
-                  width: double.infinity,
-                  height: 15.h,
-                  '${stocksNews.image}',
-              errorBuilder: (context, error, stackTrace) => const Center(
-                  child: Text(
-                    'no image returned',
-                    style: TextStyle(color: Colors.red),
-                  )),
+                fit: BoxFit.fill,
+                width: double.infinity,
+                height: 15.h,
+                '${stocksNews.image}',
+                errorBuilder: (context, error, stackTrace) => const Center(
+                    child: Text(
+                      'no image returned',
+                      style: TextStyle(color: Colors.red),
+                    )),
               ),
             ),
           ),

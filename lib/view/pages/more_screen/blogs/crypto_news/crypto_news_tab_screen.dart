@@ -2,19 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
+import 'package:fx_commission_app/controller/constants.dart';
 import 'package:fx_commission_app/controller/cubit/cubit.dart';
 import 'package:fx_commission_app/controller/cubit/states.dart';
+import 'package:fx_commission_app/model/crypto_news/crypto_news_model.dart';
 import 'package:fx_commission_app/view/pages/more_screen/blogs/blogs_read_article_screen.dart';
+import 'package:fx_commission_app/view/pages/more_screen/blogs/crypto_news/crypto_news_read_article_screen.dart';
 
-class FxCommissionNewsTabScreen extends StatefulWidget {
-  const FxCommissionNewsTabScreen({super.key});
+class CryptoNewsTabScreen extends StatefulWidget {
+  const CryptoNewsTabScreen({super.key});
 
   @override
-  State<FxCommissionNewsTabScreen> createState() =>
-      _FxCommissionNewsTabScreenState();
+  State<CryptoNewsTabScreen> createState() => _CryptoNewsTabScreenState();
 }
 
-class _FxCommissionNewsTabScreenState extends State<FxCommissionNewsTabScreen> {
+class _CryptoNewsTabScreenState extends State<CryptoNewsTabScreen> {
   String blogImage = 'assets/images/laptop_mobile_image.png';
 
   String issuer = 'Natali Craig';
@@ -30,7 +32,7 @@ class _FxCommissionNewsTabScreenState extends State<FxCommissionNewsTabScreen> {
   @override
   void initState() {
     super.initState();
-    AppCubit.get(context).getFxCommNews();
+    AppCubit.get(context).getCryptoNews();
   }
 
   @override
@@ -38,7 +40,7 @@ class _FxCommissionNewsTabScreenState extends State<FxCommissionNewsTabScreen> {
     return BlocConsumer<AppCubit, AppStates>(
       listener: (context, state) {},
       builder: (context, state) {
-        return state is FxCommNewsLoadingState
+        return state is CryptoNewsLoadingState
             ? const Center(
                 child: CircularProgressIndicator(
                   color: Color(0xff0095D0),
@@ -69,16 +71,24 @@ class _FxCommissionNewsTabScreenState extends State<FxCommissionNewsTabScreen> {
                                 SizedBox(
                                   height: 3.h,
                                 ),
-                                ListView.separated(
-                                  physics: const NeverScrollableScrollPhysics(),
-                                  separatorBuilder: (context, index) =>
-                                      SizedBox(
-                                    height: 2.h,
-                                  ),
-                                  itemBuilder: (context, index) => fxCommNewsContainer(),
-                                  itemCount: 3,
-                                  shrinkWrap: true,
-                                )
+                                cryptoNewsModel.cryptoNews == null ||
+                                        cryptoNewsModel.cryptoNews!.isEmpty
+                                    ? SizedBox()
+                                    : ListView.separated(
+                                        physics:
+                                            const NeverScrollableScrollPhysics(),
+                                        separatorBuilder: (context, index) =>
+                                            SizedBox(
+                                          height: 2.h,
+                                        ),
+                                        itemBuilder: (context, index) =>
+                                            cryptoNewsContainer(
+                                                cryptoNews: cryptoNewsModel
+                                                    .cryptoNews![index]),
+                                        itemCount:
+                                            cryptoNewsModel.cryptoNews!.length,
+                                        shrinkWrap: true,
+                                      )
                               ],
                             ),
                           )
@@ -92,9 +102,9 @@ class _FxCommissionNewsTabScreenState extends State<FxCommissionNewsTabScreen> {
     );
   }
 
-  Widget fxCommNewsContainer() {
+  Widget cryptoNewsContainer({required CryptoNews cryptoNews}) {
     return Container(
-      height: 56.h,
+      height: 44.h,
       width: double.infinity,
       decoration: BoxDecoration(
         color: Colors.white,
@@ -107,11 +117,11 @@ class _FxCommissionNewsTabScreenState extends State<FxCommissionNewsTabScreen> {
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(10.dp),
                   topRight: Radius.circular(10.dp)),
-              child: Image.asset(
+              child: Image.network(
                   fit: BoxFit.fill,
                   width: double.infinity,
                   height: 15.h,
-                  blogImage),
+                  '${cryptoNews.image}'),
             ),
           ),
           Expanded(
@@ -126,7 +136,7 @@ class _FxCommissionNewsTabScreenState extends State<FxCommissionNewsTabScreen> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Text(
-                    '$issuer • $issueDate',
+                    '${cryptoNews.createdBy} • ${cryptoNews.createdAt}',
                     style: TextStyle(
                         color: const Color(0xff808080),
                         fontSize: 15.dp,
@@ -136,7 +146,7 @@ class _FxCommissionNewsTabScreenState extends State<FxCommissionNewsTabScreen> {
                     height: 0.5.h,
                   ),
                   Text(
-                    '$blogTitle',
+                    '${cryptoNews.title}',
                     style:
                         TextStyle(fontSize: 18.dp, fontWeight: FontWeight.bold),
                   ),
@@ -144,8 +154,8 @@ class _FxCommissionNewsTabScreenState extends State<FxCommissionNewsTabScreen> {
                     height: 0.5.h,
                   ),
                   Text(
-                    '$blogContent',
-                    maxLines: 4,
+                    '${cryptoNews.description}',
+                    maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                       fontSize: 18.dp,
@@ -157,7 +167,9 @@ class _FxCommissionNewsTabScreenState extends State<FxCommissionNewsTabScreen> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    BlogsReadArticleScreen()));
+                                    CryptoNewsReadArticleScreen(
+                                      cryptoNews: cryptoNews,
+                                    )));
                       },
                       child: Row(
                         children: [
