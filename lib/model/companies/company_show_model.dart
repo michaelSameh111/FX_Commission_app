@@ -24,9 +24,9 @@ class Company {
   int? id;
   String? title;
   int? reviews;
-  Null? rate;
+  var rate;
   String? description;
-  Null? brief;
+  var brief;
   String? views;
   String? logo;
   String? video;

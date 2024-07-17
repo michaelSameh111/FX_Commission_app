@@ -29,8 +29,8 @@ class Companies {
   String? title;
   String? logo;
   int? reviews;
-  Null? rate;
-  Null? highlights;
+  var rate;
+  var highlights;
 
   Companies(
       {this.id,

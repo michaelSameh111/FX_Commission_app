@@ -17,7 +17,7 @@
         </intent>
     </queries>
     <application
-        android:label="fx_commission_app"
+        android:label="FX Commission"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

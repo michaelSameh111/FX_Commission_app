@@ -1,4 +1,3 @@
-import 'package:animated_rating_stars/animated_rating_stars.dart';
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,10 +10,13 @@ import 'package:fx_commission_app/view/widgets/reusable_widgets.dart';
 import 'package:video_player/video_player.dart';
 
 class BrokersNewAccountScreen extends StatefulWidget {
-   int? id;
-   Company? company;
+   int id;
+   // Company? company;
 
-   BrokersNewAccountScreen({required this.id, required this.company});
+   BrokersNewAccountScreen({
+     required this.id,
+     // required this.company
+   });
 
   @override
   State<BrokersNewAccountScreen> createState() =>
@@ -38,7 +40,9 @@ class _BrokersNewAccountScreenState extends State<BrokersNewAccountScreen> {
   @override
   void initState() {
     super.initState();
-    AppCubit.get(context).getCompanyShow(id: widget.company!.id);
+    AppCubit.get(context).getCompanyShow(
+        id: widget.id,
+    );
 
     // Initialize the controller and load the video from a URL or an asset
     _videoPlayerController = VideoPlayerController.network(
@@ -158,21 +162,21 @@ class _BrokersNewAccountScreenState extends State<BrokersNewAccountScreen> {
                                       height: 3.h,
                                     ),
                                     Center(
-                                      child: AnimatedRatingStars(
-                                        initialRating: 2.5,
-                                        onChanged: (rating) {
-                                          setState(() {
-                                            _rating = rating;
-                                            //print('Rating : $rating');
-                                          });
-                                        },
-                                        starSize: 15.dp,
-                                        customFilledIcon: Icons.star,
-                                        customHalfFilledIcon: Icons.star_half,
-                                        customEmptyIcon: Icons.star_border,
-                                        interactiveTooltips: true,
-                                        filledColor: const Color(0xff0095D0),
-                                      ),
+                                      // child: AnimatedRatingStars(
+                                      //   initialRating: 2.5,
+                                      //   onChanged: (rating) {
+                                      //     setState(() {
+                                      //       _rating = rating;
+                                      //       //print('Rating : $rating');
+                                      //     });
+                                      //   },
+                                      //   starSize: 15.dp,
+                                      //   customFilledIcon: Icons.star,
+                                      //   customHalfFilledIcon: Icons.star_half,
+                                      //   customEmptyIcon: Icons.star_border,
+                                      //   interactiveTooltips: true,
+                                      //   filledColor: const Color(0xff0095D0),
+                                      // ),
                                     ),
                                     SizedBox(
                                       height: 1.h,
@@ -330,7 +334,7 @@ class _BrokersNewAccountScreenState extends State<BrokersNewAccountScreen> {
                                       ),
                                     ),
                                     Container(
-                                      padding: EdgeInsets.all(12.dp),
+                                        padding: EdgeInsets.all(12.dp),
                                       width: double.infinity,
                                       height: 10.h,
                                       color: const Color(0xffbcdbe6),

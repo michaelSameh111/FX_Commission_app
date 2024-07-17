@@ -1,12 +1,11 @@
-import 'package:animated_rating_stars/animated_rating_stars.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:fx_commission_app/controller/constants.dart';
 import 'package:fx_commission_app/controller/cubit/cubit.dart';
 import 'package:fx_commission_app/controller/cubit/states.dart';
 import 'package:fx_commission_app/model/companies/companies_model.dart';
-import 'package:fx_commission_app/model/companies/company_show_model.dart';
 import 'package:fx_commission_app/view/pages/brokers_screen/brokers_new_account_screen.dart';
 import 'package:fx_commission_app/view/widgets/reusable_widgets.dart';
 
@@ -18,7 +17,7 @@ class MainBrokersScreen extends StatefulWidget {
 }
 
 class _MainBrokersScreenState extends State<MainBrokersScreen> {
-  double _rating = 2.5;
+  // double _rating = 2.5;
 
   @override
   void initState() {
@@ -71,7 +70,6 @@ class _MainBrokersScreenState extends State<MainBrokersScreen> {
                             color: const Color(0xff0379A8)),
                       ),
                     ),
-
                     Expanded(
                       child: SingleChildScrollView(
                         child: Column(
@@ -120,9 +118,8 @@ class _MainBrokersScreenState extends State<MainBrokersScreen> {
                                       companies:
                                           companiesModel.companies![index],
 
-                                 //  id: companyShowModel.company!.id
-                                  id: companiesModel.companies![index].id
-                                  ),
+                                      //  id: companyShowModel.company!.id
+                                      id: companiesModel.companies![index].id),
                               itemCount: companiesModel.companies!.length,
                             )
                           ],
@@ -136,7 +133,8 @@ class _MainBrokersScreenState extends State<MainBrokersScreen> {
     );
   }
 
-  Widget companiesContainer({required Companies companies,
+  Widget companiesContainer({
+    required Companies companies,
     required int? id,
   }) {
     return Padding(
@@ -155,7 +153,7 @@ class _MainBrokersScreenState extends State<MainBrokersScreen> {
                     borderRadius: BorderRadius.circular(8.dp),
                     child: Image.network(
                       fit: BoxFit.fill,
-                       width: 14.w,
+                      width: 14.w,
                       height: 7.2.h,
                       '${companies.logo}',
                       errorBuilder: (context, error, stackTrace) =>
@@ -164,8 +162,7 @@ class _MainBrokersScreenState extends State<MainBrokersScreen> {
                         'no image returned',
                         style: TextStyle(color: Colors.red),
                       )),
-                    )
-                    ),
+                    )),
                 SizedBox(
                   width: 3.w,
                 ),
@@ -179,20 +176,15 @@ class _MainBrokersScreenState extends State<MainBrokersScreen> {
                     ),
                     Row(
                       children: [
-                        AnimatedRatingStars(
-                          initialRating: 5.0,
-                          onChanged: (rating) {
-                            setState(() {
-                              _rating = rating;
-                              //print('Rating : $rating');
-                            });
-                          },
-                          starSize: 15.dp,
-                          customFilledIcon: Icons.star,
-                          customHalfFilledIcon: Icons.star_half,
-                          customEmptyIcon: Icons.star_border,
-                          interactiveTooltips: true,
-                          filledColor: const Color(0xff0095D0),
+                        RatingBarIndicator(
+                          rating: companies.rate ?? 0,
+                          itemBuilder: (context, index) => const Icon(
+                            Icons.star,
+                            color: Color(0xff0095D0),
+                          ),
+                          itemCount: 5,
+                          itemSize: 6.w,
+                          direction: Axis.horizontal,
                         ),
                         SizedBox(
                           width: 2.w,
@@ -237,10 +229,8 @@ class _MainBrokersScreenState extends State<MainBrokersScreen> {
                           context,
                           MaterialPageRoute(
                               builder: (context) => BrokersNewAccountScreen(
-                                 //id: companyShowModel.company!.id,
-                                id: companies.id,
-                                company: companyShowModel.company,
-                              )));
+                                    id: companies.id!,
+                                  )));
                     },
                     width: 43.w,
                     height: 5.h,

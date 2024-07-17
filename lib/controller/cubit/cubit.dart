@@ -278,6 +278,50 @@ class AppCubit extends Cubit<AppStates> {
     }
   }
 
+
+  // void postEditAccount({
+  //   required String firstName,
+  //   required String lastName,
+  //   required String email,
+  //   required String subject,
+  //   required String message,
+  //   required BuildContext context,
+  // }) async {
+  //   emit(ContactUsLoadingState());
+  //
+  //   try {
+  //     FormData formData = FormData.fromMap({
+  //       'first_name': firstName,
+  //       'last_name': lastName,
+  //       'email': email,
+  //       'subject': subject,
+  //       'message': message,
+  //     });
+  //
+  //     Response response = await DioHelper.postData(
+  //       url: contactUsUrl,
+  //       data: formData,
+  //       token: loginDataModel.accessToken
+  //     );
+  //
+  //     emit(ContactUsSuccessState());
+  //     print('MESSAGE SENT SUCCESSFULLYYY ${response.data}');
+  //
+  //     if (state is ContactUsSuccessState) {
+  //       showRegistrationSuccessDialog(context);
+  //     }
+  //   } catch (error) {
+  //     if (error is DioException) {
+  //       print('Error message: ${error.message}');
+  //       print('Stacktrace: ${error.stackTrace}');
+  //     } else {
+  //       print('Error: $error');
+  //     }
+  //     emit(ContactUsErrorState(error.toString()));
+  //   }
+  // }
+
+
   void showRegistrationSuccessDialog(BuildContext context) {
     showDialog(
       context: context,
