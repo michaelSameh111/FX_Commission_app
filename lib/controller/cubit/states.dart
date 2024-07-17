@@ -156,3 +156,14 @@ class CompaniesErrorState extends AppStates {
 
   CompaniesErrorState(this.error);
 }
+
+
+class CompanyShowLoadingState extends AppStates {}
+
+class CompanyShowSuccessState extends AppStates {}
+
+class CompanyShowErrorState extends AppStates {
+  final String error;
+
+  CompanyShowErrorState(this.error);
+}

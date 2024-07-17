@@ -60,7 +60,7 @@ class _CryptoNewsTabScreenState extends State<CryptoNewsTabScreen> {
                                 Row(
                                   children: [
                                     Text(
-                                      'FX Commission posts',
+                                      'Crypto posts',
                                       style: TextStyle(
                                           color: const Color(0xff0095D0),
                                           fontSize: 18.dp,
@@ -102,98 +102,102 @@ class _CryptoNewsTabScreenState extends State<CryptoNewsTabScreen> {
     );
   }
 
-  Widget cryptoNewsContainer({required CryptoNews cryptoNews}) {
-    return Container(
-      height: 44.h,
-      width: double.infinity,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(10.dp),
-      ),
-      child: Column(
-        children: [
-          Expanded(
-            child: ClipRRect(
-              borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(10.dp),
-                  topRight: Radius.circular(10.dp)),
-              child: Image.network(
-                  fit: BoxFit.fill,
-                  width: double.infinity,
-                  height: 15.h,
-                  '${cryptoNews.image}'),
-            ),
-          ),
-          Expanded(
-              child: Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10.dp),
-            ),
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 3.0.w, vertical: 2.h),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Text(
-                    '${cryptoNews.createdBy} • ${cryptoNews.createdAt}',
-                    style: TextStyle(
-                        color: const Color(0xff808080),
-                        fontSize: 15.dp,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(
-                    height: 0.5.h,
-                  ),
-                  Text(
-                    '${cryptoNews.title}',
-                    style:
-                        TextStyle(fontSize: 18.dp, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(
-                    height: 0.5.h,
-                  ),
-                  Text(
-                    '${cryptoNews.description}',
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      fontSize: 18.dp,
-                    ),
-                  ),
-                  TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    CryptoNewsReadArticleScreen(
-                                      cryptoNews: cryptoNews,
-                                    )));
-                      },
-                      child: Row(
-                        children: [
-                          Text(
-                            'Read Article',
-                            style: TextStyle(
-                                color: const Color(0xff0095D0),
-                                fontSize: 18.dp),
-                          ),
-                          SizedBox(
-                            width: 2.w,
-                          ),
-                          Icon(
-                            Icons.arrow_forward_ios,
-                            size: 15.dp,
-                            color: const Color(0xff0095D0),
-                          )
-                        ],
-                      ))
-                ],
+  Widget cryptoNewsContainer({
+    required CryptoNews cryptoNews,
+  }) {
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => CryptoNewsReadArticleScreen(
+                      cryptoNews: cryptoNews,
+                    )));
+      },
+      child: Container(
+        height: 44.h,
+        width: double.infinity,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10.dp),
+        ),
+        child: Column(
+          children: [
+            Expanded(
+              child: ClipRRect(
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(10.dp),
+                    topRight: Radius.circular(10.dp)),
+                child: Image.network(
+                    fit: BoxFit.fill,
+                    width: double.infinity,
+                    height: 15.h,
+                    '${cryptoNews.image}'),
               ),
             ),
-          ))
-        ],
+            Expanded(
+                child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10.dp),
+              ),
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 3.0.w, vertical: 2.h),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Text(
+                      '${cryptoNews.createdBy} • ${cryptoNews.createdAt}',
+                      style: TextStyle(
+                          color: const Color(0xff808080),
+                          fontSize: 15.dp,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(
+                      height: 0.5.h,
+                    ),
+                    Text(
+                      '${cryptoNews.title}',
+                      style: TextStyle(
+                          fontSize: 18.dp, fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(
+                      height: 0.5.h,
+                    ),
+                    Text(
+                      '${cryptoNews.description}',
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        fontSize: 18.dp,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 2.h,
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          'Read Article',
+                          style: TextStyle(
+                              color: const Color(0xff0095D0), fontSize: 18.dp),
+                        ),
+                        SizedBox(
+                          width: 2.w,
+                        ),
+                        Icon(
+                          Icons.arrow_forward_ios,
+                          size: 15.dp,
+                          color: const Color(0xff0095D0),
+                        )
+                      ],
+                    )
+                  ],
+                ),
+              ),
+            ))
+          ],
+        ),
       ),
     );
   }

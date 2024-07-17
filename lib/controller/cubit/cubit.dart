@@ -12,6 +12,7 @@ import 'package:fx_commission_app/model/blogs/last_news/last_news_model.dart';
 import 'package:fx_commission_app/model/broker_news/broker_news_model.dart';
 import 'package:fx_commission_app/model/companies/companies_model.dart';
 import 'package:fx_commission_app/controller/dio_helper.dart';
+import 'package:fx_commission_app/model/companies/company_show_model.dart';
 import 'package:fx_commission_app/model/crypto_news/crypto_news_model.dart';
 import 'package:fx_commission_app/model/end_points.dart';
 import 'package:fx_commission_app/model/forex_course/forex_course_model.dart';
@@ -320,4 +321,24 @@ class AppCubit extends Cubit<AppStates> {
       emit(CompaniesErrorState(error.toString()));
     });
   }
+
+  void getCompanyShow({required int? id}) {
+    emit(CompanyShowLoadingState());
+    DioHelper.getData(
+      url: companyShowUrl,
+      id: id
+    ).then((value) {
+      companyShowModel = CompanyShowModel.fromJson(value?.data);
+      print('we have company show dataaaaaa heeeeeeeere');
+
+      emit(CompanyShowSuccessState());
+    }).catchError((error, stackTrace) {
+      print('error (getCompanyShow method)');
+      print(error.toString());
+      print('stack trace : $stackTrace');
+
+      emit(CompanyShowErrorState(error.toString()));
+    });
+  }
+
 }

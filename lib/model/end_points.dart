@@ -13,3 +13,4 @@ const advertiseWithUsUrl = 'api/en/advertise-with-us';
 const faqsUrl = 'api/en/faqs';
 const contactUsUrl = 'api/en/contact';
 const companiesUrl = 'api/en/companies';
+const companyShowUrl = 'api/en/companies/show';

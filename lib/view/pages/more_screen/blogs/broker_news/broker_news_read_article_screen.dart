@@ -3,23 +3,6 @@ import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:fx_commission_app/model/broker_news/broker_news_model.dart';
 
 class BrokerNewsReadArticleScreen extends StatelessWidget {
-  String issueDate = 'OCTOBER 17, 2023';
-  String contentTitle = 'Lorem ipsum dolor sit amet consectetur. '
-      'Et at eu fames placerat aliquam.';
-  String content = '''Lorem ipsum dolor sit amet consectetur.
-Viverra sit ac viverra et aliquam fermentum tincidunt. Mauris aenean 
-id vel nisi integer neque nam sed leo. Arcu consequat feugiat aliquet
-sollicitudin eleifend ut tortor laoreet. Quisque ut lorem risus elementum
-habitant duis nulla. Parturient tortor elementum etiam sit gravida.
-Fermentum varius integer suscipit orci fermentum consequat molestie
-molestie est.                       
-
-Elit pretium nunc eget phasellus enim quisque turpis mauris. 
-Porttitor volutpat nunc aliquet sed tincidunt maecenas vitae aenean. 
-Vel nulla nisl arcu tellus arcu senectus scelerisque tellus egestas. Vitae 
-nec facilisis sapien condimentum pellentesque vulputate. Eu pulvinar mi 
-fringilla dis et eget risus quis purus.i fringilla dis et eget risus quis 
-purus.''';
 
   StocksNews stockNews;
 

@@ -6,6 +6,7 @@ import 'package:fx_commission_app/controller/constants.dart';
 import 'package:fx_commission_app/controller/cubit/cubit.dart';
 import 'package:fx_commission_app/controller/cubit/states.dart';
 import 'package:fx_commission_app/model/companies/companies_model.dart';
+import 'package:fx_commission_app/model/companies/company_show_model.dart';
 import 'package:fx_commission_app/view/pages/brokers_screen/brokers_new_account_screen.dart';
 import 'package:fx_commission_app/view/widgets/reusable_widgets.dart';
 
@@ -70,6 +71,7 @@ class _MainBrokersScreenState extends State<MainBrokersScreen> {
                             color: const Color(0xff0379A8)),
                       ),
                     ),
+
                     Expanded(
                       child: SingleChildScrollView(
                         child: Column(
@@ -115,8 +117,12 @@ class _MainBrokersScreenState extends State<MainBrokersScreen> {
                               shrinkWrap: true,
                               itemBuilder: (context, index) =>
                                   companiesContainer(
-                                      company:
-                                          companiesModel.companies![index]),
+                                      companies:
+                                          companiesModel.companies![index],
+
+                                 //  id: companyShowModel.company!.id
+                                  id: companiesModel.companies![index].id
+                                  ),
                               itemCount: companiesModel.companies!.length,
                             )
                           ],
@@ -130,7 +136,9 @@ class _MainBrokersScreenState extends State<MainBrokersScreen> {
     );
   }
 
-  Widget companiesContainer({required Companies company}) {
+  Widget companiesContainer({required Companies companies,
+    required int? id,
+  }) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 3.0.w, vertical: 2.h),
       child: Container(
@@ -149,7 +157,7 @@ class _MainBrokersScreenState extends State<MainBrokersScreen> {
                       fit: BoxFit.fill,
                        width: 14.w,
                       height: 7.2.h,
-                      '${company.logo}',
+                      '${companies.logo}',
                       errorBuilder: (context, error, stackTrace) =>
                           const Center(
                               child: Text(
@@ -165,7 +173,7 @@ class _MainBrokersScreenState extends State<MainBrokersScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      '${company.title}',
+                      '${companies.title}',
                       style: TextStyle(
                           fontSize: 16.dp, fontWeight: FontWeight.bold),
                     ),
@@ -190,7 +198,7 @@ class _MainBrokersScreenState extends State<MainBrokersScreen> {
                           width: 2.w,
                         ),
                         Text(
-                          '(14025)',
+                          '(${companies.reviews})',
                           style: TextStyle(fontSize: 15.dp),
                         )
                       ],
@@ -203,21 +211,21 @@ class _MainBrokersScreenState extends State<MainBrokersScreen> {
               height: 3.h,
             ),
             Text(
-              'Weekly cashback',
+              companies.highlights ?? '',
               style: TextStyle(color: const Color(0xff646363), fontSize: 15.dp),
             ),
-            Text(
-              'Islamic account',
-              style: TextStyle(color: const Color(0xff646363), fontSize: 15.dp),
-            ),
-            Text(
-              'Start from 0.1 spread for EUR/USD',
-              style: TextStyle(color: const Color(0xff646363), fontSize: 15.dp),
-            ),
-            Text(
-              'CySEC , FCA , FSA , CBCS , FSC',
-              style: TextStyle(color: const Color(0xff646363), fontSize: 15.dp),
-            ),
+            // Text(
+            //   'Islamic account',
+            //   style: TextStyle(color: const Color(0xff646363), fontSize: 15.dp),
+            // ),
+            // Text(
+            //   'Start from 0.1 spread for EUR/USD',
+            //   style: TextStyle(color: const Color(0xff646363), fontSize: 15.dp),
+            // ),
+            // Text(
+            //   'CySEC , FCA , FSA , CBCS , FSC',
+            //   style: TextStyle(color: const Color(0xff646363), fontSize: 15.dp),
+            // ),
             SizedBox(
               height: 2.h,
             ),
@@ -228,7 +236,11 @@ class _MainBrokersScreenState extends State<MainBrokersScreen> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => BrokersNewAccountScreen()));
+                              builder: (context) => BrokersNewAccountScreen(
+                                 //id: companyShowModel.company!.id,
+                                id: companies.id,
+                                company: companyShowModel.company,
+                              )));
                     },
                     width: 43.w,
                     height: 5.h,
