@@ -147,6 +147,18 @@ class ContactUsErrorState extends AppStates {
 }
 
 
+class EditAccountLoadingState extends AppStates {}
+
+class EditAccountSuccessState extends AppStates {}
+
+class EditAccountErrorState extends AppStates {
+  final String error;
+
+  EditAccountErrorState(this.error);
+}
+
+
+
 class CompaniesLoadingState extends AppStates {}
 
 class CompaniesSuccessState extends AppStates {}

@@ -265,7 +265,7 @@ class AppCubit extends Cubit<AppStates> {
       print('MESSAGE SENT SUCCESSFULLYYY ${response.data}');
 
       if (state is ContactUsSuccessState) {
-        showRegistrationSuccessDialog(context);
+        contactUsSuccessDialog(context);
       }
     } catch (error) {
       if (error is DioException) {
@@ -278,51 +278,7 @@ class AppCubit extends Cubit<AppStates> {
     }
   }
 
-
-  // void postEditAccount({
-  //   required String firstName,
-  //   required String lastName,
-  //   required String email,
-  //   required String subject,
-  //   required String message,
-  //   required BuildContext context,
-  // }) async {
-  //   emit(ContactUsLoadingState());
-  //
-  //   try {
-  //     FormData formData = FormData.fromMap({
-  //       'first_name': firstName,
-  //       'last_name': lastName,
-  //       'email': email,
-  //       'subject': subject,
-  //       'message': message,
-  //     });
-  //
-  //     Response response = await DioHelper.postData(
-  //       url: contactUsUrl,
-  //       data: formData,
-  //       token: loginDataModel.accessToken
-  //     );
-  //
-  //     emit(ContactUsSuccessState());
-  //     print('MESSAGE SENT SUCCESSFULLYYY ${response.data}');
-  //
-  //     if (state is ContactUsSuccessState) {
-  //       showRegistrationSuccessDialog(context);
-  //     }
-  //   } catch (error) {
-  //     if (error is DioException) {
-  //       print('Error message: ${error.message}');
-  //       print('Stacktrace: ${error.stackTrace}');
-  //     } else {
-  //       print('Error: $error');
-  //     }
-  //     emit(ContactUsErrorState(error.toString()));
-  //   }
-  // }
-
-
-  void showRegistrationSuccessDialog(BuildContext context) {
+  void contactUsSuccessDialog(BuildContext context) {
     showDialog(
       context: context,
       builder: (context) {
@@ -347,6 +303,81 @@ class AppCubit extends Cubit<AppStates> {
       },
     );
   }
+
+
+  void postEditAccount({
+    required String firstName,
+    required String lastName,
+    required String email,
+    required String phone,
+    required String country,
+    required String password,
+    required String passwordConfirmation,
+    required String image,
+    required BuildContext context,
+  }) async {
+    emit(EditAccountLoadingState());
+
+    try {
+      FormData formData = FormData.fromMap({
+        'first_name': firstName,
+        'last_name': lastName,
+        'email': email,
+        'phone': phone,
+        'country': country,
+        'password': password,
+        'password_confirmation': passwordConfirmation,
+        'image': image,
+      });
+
+      Response response = await DioHelper.postData(
+        url: editAccountUrl,
+        data: formData,
+        token: loginDataModel.accessToken
+      );
+
+      emit(EditAccountSuccessState());
+      print('ACCOUNT EDITED SUCCESSFULLYYY ${response.data}');
+
+      if (state is EditAccountSuccessState) {
+        editAccountSuccessDialog(context);
+      }
+    } catch (error) {
+      if (error is DioException) {
+        print('Error message: ${error.message}');
+        print('Stacktrace: ${error.stackTrace}');
+      } else {
+        print('Error: $error');
+      }
+      emit(EditAccountErrorState(error.toString()));
+    }
+  }
+
+  void editAccountSuccessDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          content: Text(
+            'Account edited successfully.',
+            style: TextStyle(fontSize: 18.dp),
+          ),
+          actions: [
+            TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text(
+                  'Ok',
+                  style: TextStyle(
+                      color: const Color(0xff0095D0), fontSize: 18.dp),
+                ))
+          ],
+        );
+      },
+    );
+  }
+
 
   void getCompanies() {
     emit(CompaniesLoadingState());

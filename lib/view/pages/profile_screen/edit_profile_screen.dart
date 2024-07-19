@@ -1,12 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
+import 'package:fx_commission_app/controller/cubit/cubit.dart';
+import 'package:fx_commission_app/controller/cubit/states.dart';
 import 'package:fx_commission_app/view/widgets/reusable_widgets.dart';
 
 class EditProfileScreen extends StatelessWidget {
-  const EditProfileScreen({super.key});
+  TextEditingController firstNameController = TextEditingController();
+  TextEditingController lastNameController = TextEditingController();
+  TextEditingController mobileNumberController = TextEditingController();
+  TextEditingController countryController = TextEditingController();
+  TextEditingController fullNameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController confirmPasswordController = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
+    return BlocConsumer <AppCubit, AppStates>(
+  listener: (context, state) {},
+  builder: (context, state) {
     return Scaffold(
       appBar: reusableAppBar(context: context, text: 'My Profile'),
       body: Column(
@@ -43,29 +57,32 @@ class EditProfileScreen extends StatelessWidget {
                             onTap: (){
                               //upload picture
                             },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                border: Border.all(
-                                  color: const Color(0xff0095D0)
-                                )
-                              ),
-                              child: CircleAvatar(
-                                radius: 10.w,
-                                backgroundColor: Colors.white,
-                                child: const Icon(Icons.upload,
-                                color: Color(0xff0095D0),),
-                              ),
+                            child: Column(
+                              children: [
+                                Container(
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    border: Border.all(
+                                      color: const Color(0xff0095D0)
+                                    )
+                                  ),
+                                  child: CircleAvatar(
+                                    radius: 10.w,
+                                    backgroundColor: Colors.white,
+                                    child: const Icon(Icons.upload,
+                                    color: Color(0xff0095D0),),
+                                  ),
+                                ),
+                                SizedBox(height: 2.h,),
+                                Text('Upload your photo',
+                                  style: TextStyle(
+                                      color: Color(0xff808080),
+                                    fontWeight: FontWeight.bold
+                                  ),)
+                              ],
                             ),
                           ),
-                          TextButton(
-                              onPressed: (){
-                                //upload photo
-                              },
-                              child: const Text('Upload your photo',
-                              style: TextStyle(
-                                color: Color(0xff808080)
-                              ),)),
+                          SizedBox(height: 1.h,),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -78,6 +95,7 @@ class EditProfileScreen extends StatelessWidget {
                                 height: 1.h,
                               ),
                               defaultTextFormField(
+                                textFormFieldController: firstNameController,
                                   hintText: 'Enter your name',
                                   keyboardType: TextInputType.name),
                               SizedBox(
@@ -93,6 +111,7 @@ class EditProfileScreen extends StatelessWidget {
                                 height: 1.h,
                               ),
                               defaultTextFormField(
+                                textFormFieldController: lastNameController,
                                   hintText: 'Enter your name',
                                   keyboardType: TextInputType.name),
                               SizedBox(
@@ -108,6 +127,7 @@ class EditProfileScreen extends StatelessWidget {
                                 height: 1.h,
                               ),
                               defaultTextFormField(
+                                textFormFieldController: mobileNumberController,
                                   hintText: 'Mobile Number',
                                   keyboardType: TextInputType.number),
                               SizedBox(
@@ -123,6 +143,7 @@ class EditProfileScreen extends StatelessWidget {
                                 height: 1.h,
                               ),
                               defaultTextFormField(
+                                textFormFieldController: countryController,
                                   hintText: 'Country',
                                   keyboardType: TextInputType.number),
                               SizedBox(
@@ -168,6 +189,7 @@ class EditProfileScreen extends StatelessWidget {
                                 height: 1.h,
                               ),
                               defaultTextFormField(
+                                textFormFieldController: fullNameController,
                                   hintText: 'Ahmed Mohamed',
                                   keyboardType: TextInputType.name),
                               SizedBox(
@@ -183,6 +205,7 @@ class EditProfileScreen extends StatelessWidget {
                                 height: 1.h,
                               ),
                               defaultTextFormField(
+                                textFormFieldController: emailController,
                                   hintText: 'ahmed.moham66@gmail.com',
                                   keyboardType: TextInputType.emailAddress),
                               SizedBox(
@@ -198,6 +221,7 @@ class EditProfileScreen extends StatelessWidget {
                                 height: 1.h,
                               ),
                               defaultTextFormField(
+                                textFormFieldController: passwordController,
                                 obscureText: true,
                                   hintText: 'Your password',
                                   keyboardType: TextInputType.visiblePassword),
@@ -214,6 +238,7 @@ class EditProfileScreen extends StatelessWidget {
                                 height: 1.h,
                               ),
                               defaultTextFormField(
+                                textFormFieldController: confirmPasswordController,
                                   obscureText: true,
                                   hintText: 'Confirm password',
                                   keyboardType: TextInputType.visiblePassword),
@@ -244,5 +269,7 @@ class EditProfileScreen extends StatelessWidget {
         ],
       ),
     );
+  },
+);
   }
 }

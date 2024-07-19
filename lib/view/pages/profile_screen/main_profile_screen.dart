@@ -60,7 +60,7 @@ class MainProfileScreen extends StatelessWidget {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                      const EditProfileScreen()));
+                                       EditProfileScreen()));
                             },
                             child: Icon(
                               Icons.mode_edit_outline_outlined,
@@ -74,7 +74,7 @@ class MainProfileScreen extends StatelessWidget {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                        const EditProfileScreen()));
+                                            EditProfileScreen()));
                               },
                               child: Text(
                                 'Edit my profile',
