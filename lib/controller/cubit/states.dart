@@ -179,3 +179,14 @@ class CompanyShowErrorState extends AppStates {
 
   CompanyShowErrorState(this.error);
 }
+
+
+class GetOneCompanyLoadingState extends AppStates {}
+
+class GetOneCompanySuccessState extends AppStates {}
+
+class GetOneCompanyErrorState extends AppStates {
+  final String error;
+
+  GetOneCompanyErrorState(this.error);
+}

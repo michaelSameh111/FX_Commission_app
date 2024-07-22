@@ -1,20 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
+import 'package:fx_commission_app/controller/constants.dart';
 import 'package:fx_commission_app/controller/cubit/cubit.dart';
 import 'package:fx_commission_app/controller/cubit/states.dart';
 import 'package:fx_commission_app/view/widgets/reusable_widgets.dart';
 
-class EditProfileScreen extends StatelessWidget {
+class EditProfileScreen extends StatefulWidget {
+  @override
+  State<EditProfileScreen> createState() => _EditProfileScreenState();
+}
+
+class _EditProfileScreenState extends State<EditProfileScreen> {
   TextEditingController firstNameController = TextEditingController();
+
   TextEditingController lastNameController = TextEditingController();
+
   TextEditingController mobileNumberController = TextEditingController();
+
   TextEditingController countryController = TextEditingController();
+
   TextEditingController fullNameController = TextEditingController();
+
   TextEditingController emailController = TextEditingController();
+
   TextEditingController passwordController = TextEditingController();
+
   TextEditingController confirmPasswordController = TextEditingController();
 
+  @override
+  void initState() {
+    emailController.text = loginDataModel.userName!;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +92,8 @@ class EditProfileScreen extends StatelessWidget {
                                   ),
                                 ),
                                 SizedBox(height: 2.h,),
-                                Text('Upload your photo',
+                                Text(
+                                  'Upload your photo',
                                   style: TextStyle(
                                       color: Color(0xff808080),
                                     fontWeight: FontWeight.bold
@@ -190,7 +209,7 @@ class EditProfileScreen extends StatelessWidget {
                               ),
                               defaultTextFormField(
                                 textFormFieldController: fullNameController,
-                                  hintText: 'Ahmed Mohamed',
+                                  hintText: '${loginDataModel.userName}',
                                   keyboardType: TextInputType.name),
                               SizedBox(
                                 height: 2.h,
@@ -206,7 +225,8 @@ class EditProfileScreen extends StatelessWidget {
                               ),
                               defaultTextFormField(
                                 textFormFieldController: emailController,
-                                  hintText: 'ahmed.moham66@gmail.com',
+                                 // hintText: 'ahmed.moham66@gmail.com',
+
                                   keyboardType: TextInputType.emailAddress),
                               SizedBox(
                                 height: 2.h,
@@ -253,6 +273,19 @@ class EditProfileScreen extends StatelessWidget {
                   ),
                   Center(
                     child: mainElevatedButton(
+                      loading: state is EditAccountLoadingState,
+                      onPressed: (){
+                        AppCubit.get(context).postEditAccount(
+                            firstName: firstNameController.text,
+                            lastName: lastNameController.text,
+                            email: emailController.text,
+                            phone: mobileNumberController.text,
+                            country: countryController.text,
+                            password: passwordController.text,
+                            passwordConfirmation: confirmPasswordController.text,
+                           // image: ,
+                            context: context);
+                      },
                         text: 'Done',
                         width: 35.w,
                         height: 5.h

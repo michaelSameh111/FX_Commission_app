@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
-import 'package:fx_commission_app/controller/dio_helper.dart';
+import 'package:fx_commission_app/controller/constants.dart';
 import 'package:fx_commission_app/view/pages/profile_screen/edit_profile_screen.dart';
 import 'package:fx_commission_app/view/pages/profile_screen/inactive_fees/inactive_fees_screen.dart';
 import 'package:fx_commission_app/view/pages/profile_screen/loyalty_program/loyalty_program_screen.dart';
@@ -28,16 +28,17 @@ class MainProfileScreen extends StatelessWidget {
                   color: Colors.white),
               child: Row(
                 children: [
-                  CircleAvatar(
-                    radius: 8.w,
-                    child: const ClipOval(
-                      child: Image(
-                        image: AssetImage(
-                          'assets/images/profile_picture.png',
-                        ),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
+                  ClipRRect(
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(10.dp),
+                        topRight: Radius.circular(10.dp)),
+                    child: Image.network(
+                        fit: BoxFit.fill,
+                        //width: double.infinity,
+                        height: 8.h,
+                        '${loginDataModel.userImage}',
+                    errorBuilder: (context, error, stackTrace) =>
+                        Text('no image returned'),),
                   ),
                   SizedBox(
                     width: 6.w,
@@ -46,7 +47,7 @@ class MainProfileScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Ahmed Mohamed',
+                        '${loginDataModel.userName}',
                         style: TextStyle(
                             color: const Color(0xff0095D0),
                             fontSize: 25.dp,
@@ -60,7 +61,7 @@ class MainProfileScreen extends StatelessWidget {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                       EditProfileScreen()));
+                                        EditProfileScreen()));
                             },
                             child: Icon(
                               Icons.mode_edit_outline_outlined,
@@ -118,7 +119,7 @@ class MainProfileScreen extends StatelessWidget {
                                   fontSize: 22.dp, fontWeight: FontWeight.bold),
                             ),
                             Text(
-                              'Welcome, your current balance is 0.00 \$',
+                              'Welcome, your current balance is ${loginDataModel.userBalance}',
                               style: TextStyle(
                                   color: const Color(0xff808080),
                                   fontSize: 15.dp,

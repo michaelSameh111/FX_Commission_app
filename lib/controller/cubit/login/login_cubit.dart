@@ -28,13 +28,17 @@ class LoginCubit extends Cubit<LoginStates> {
     DioHelper.postData(
             url: loginUrl,
             data: {'email': email, 'password': password},
-            token: '')
+            //token: ''
+    )
+
         .then((value) {
       loginDataModel = LoginDataModel.fromJson(value.data);
-      print(loginDataModel.accessToken);
+    // print(loginDataModel.accessToken);
 
       emit(LoginSuccessState());
       print('ay 7aga ya mo7a awel marraaaa');
+      print('token enteredddd ${loginDataModel.accessToken}');
+
 
       if (state is LoginSuccessState) {
         if (rememberMe == true) {
@@ -52,22 +56,23 @@ class LoginCubit extends Cubit<LoginStates> {
             MaterialPageRoute(builder: (context) => HomeLayoutScreen()));
       }
     }).catchError((error, stackTrace) {
-      if (CacheHelper.getData(key: 'loggedin') == null) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Container(
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                  color: Colors.red, borderRadius: BorderRadius.circular(20)),
-              height: 5.h,
-              child: const Text('Your Username or Password is Incorrect'),
-            ),
-            behavior: SnackBarBehavior.floating,
-            backgroundColor: Colors.transparent,
-            elevation: 0,
-          ),
-        );
-      }
+     if(error is DioException){
+       print(error.response!.data);
+     }
+        // ScaffoldMessenger.of(context).showSnackBar(
+        //   SnackBar(
+        //     content: Container(
+        //       alignment: Alignment.center,
+        //       decoration: BoxDecoration(
+        //           color: Colors.red, borderRadius: BorderRadius.circular(20)),
+        //       height: 5.h,
+        //       child: const Text('Your Username or Password is Incorrect'),
+        //     ),
+        //     behavior: SnackBarBehavior.floating,
+        //     backgroundColor: Colors.transparent,
+        //     elevation: 0,
+        //   ),
+        // );
       print(error.toString());
       print(stackTrace);
       Fluttertoast.showToast(

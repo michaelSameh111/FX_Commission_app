@@ -313,7 +313,7 @@ class AppCubit extends Cubit<AppStates> {
     required String country,
     required String password,
     required String passwordConfirmation,
-    required String image,
+    //required String image,
     required BuildContext context,
   }) async {
     emit(EditAccountLoadingState());
@@ -327,7 +327,7 @@ class AppCubit extends Cubit<AppStates> {
         'country': country,
         'password': password,
         'password_confirmation': passwordConfirmation,
-        'image': image,
+       // 'image': image,
       });
 
       Response response = await DioHelper.postData(
@@ -336,6 +336,7 @@ class AppCubit extends Cubit<AppStates> {
         token: loginDataModel.accessToken
       );
 
+      print('token now ${loginDataModel.accessToken}');
       emit(EditAccountSuccessState());
       print('ACCOUNT EDITED SUCCESSFULLYYY ${response.data}');
 
@@ -344,6 +345,9 @@ class AppCubit extends Cubit<AppStates> {
       }
     } catch (error) {
       if (error is DioException) {
+        print(error.response!.data);
+        print('token nowww ${loginDataModel.accessToken}');
+
         print('Error message: ${error.message}');
         print('Stacktrace: ${error.stackTrace}');
       } else {
@@ -397,7 +401,7 @@ class AppCubit extends Cubit<AppStates> {
     });
   }
 
-  void getCompanyShow({required int? id}) {
+  void getOneCompanyShow({required int? id}) {
     emit(CompanyShowLoadingState());
     DioHelper.getData(
       url: companyShowUrl,
@@ -415,5 +419,46 @@ class AppCubit extends Cubit<AppStates> {
       emit(CompanyShowErrorState(error.toString()));
     });
   }
+
+
+  Future <CompanyShowModel?> getCompanyShow({required int? oneCompanyId,required CompanyShowModel companyShowModel})  {
+    emit(GetOneCompanyLoadingState());
+    return DioHelper.getData(
+        url: companyShowUrl,
+      id: oneCompanyId
+    ).then((value){
+      companyShowModel = CompanyShowModel.fromJson(value!.data);
+      print(value.data);
+      emit(GetOneCompanySuccessState());
+      return companyShowModel;
+     }).catchError((error){
+       if(error is DioException){
+         if(error.response != null){
+           print(error.response!.data);
+         }
+         emit(GetOneCompanyErrorState(error.toString()));
+       }
+       return companyShowModel;
+     });
+
+
+
+    // DioHelper.getData(
+    //     url: companyShowUrl,
+    //     id: oneCompanyId
+    // ).then((value) {
+    //   companyShowModel = CompanyShowModel.fromJson(value?.data);
+    //   print('we have company show dataaaaaa heeeeeeeere');
+    //
+    //   emit(GetOneCompanySuccessState());
+    // }).catchError((error, stackTrace) {
+    //   print('error (getCompanyShow method)');
+    //   print(error.toString());
+    //   print('stack trace : $stackTrace');
+    //
+    //   emit(GetOneCompanyErrorState(error.toString()));
+    // });
+  }
+
 
 }

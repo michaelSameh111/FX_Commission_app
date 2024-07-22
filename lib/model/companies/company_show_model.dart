@@ -40,9 +40,9 @@ class Company {
   String? minimumDeposit;
   String? minTradeSize;
   String? founded;
-  Null? headquarters;
-  Null? offices;
-  Null? officesAr;
+  dynamic headquarters;
+  dynamic offices;
+  dynamic officesAr;
   String? regulators;
   String? accountCurrency;
   String? supportLanguages;
@@ -63,8 +63,8 @@ class Company {
   String? hedging;
   String? goldSpread20;
   String? stopOut30Percent;
-  Null? notes;
-  Null? highlights;
+  dynamic notes;
+  dynamic highlights;
   List<Null>? companyMetas;
   List<Null>? companyOffers;
   List<Null>? companyComments;

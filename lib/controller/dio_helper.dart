@@ -35,7 +35,7 @@ class DioHelper {
     String? token,
   }) async {
     dio?.options.headers = {
-      'access_token' : token
+      'auth-token' : token
     };
     return dio!.post(
       url,

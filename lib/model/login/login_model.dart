@@ -6,6 +6,8 @@ class LoginDataModel {
   String? userName;
   String? userPhone;
   String? userRole;
+  String? userBalance;
+  String? userImage;
 
   LoginDataModel(
       {this.accessToken,
@@ -14,7 +16,9 @@ class LoginDataModel {
         this.userId,
         this.userName,
         this.userPhone,
-        this.userRole});
+        this.userRole,
+        this.userBalance,
+        this.userImage});
 
   LoginDataModel.fromJson(Map<String, dynamic> json) {
     accessToken = json['access_token'];
@@ -24,6 +28,8 @@ class LoginDataModel {
     userName = json['user_name'];
     userPhone = json['user_phone'];
     userRole = json['user_role'];
+    userBalance = json['user_balance'];
+    userImage = json['user_image'];
   }
 
   Map<String, dynamic> toJson() {
@@ -35,6 +41,8 @@ class LoginDataModel {
     data['user_name'] = this.userName;
     data['user_phone'] = this.userPhone;
     data['user_role'] = this.userRole;
+    data['user_balance'] = this.userBalance;
+    data['user_image'] = this.userImage;
     return data;
   }
 }
