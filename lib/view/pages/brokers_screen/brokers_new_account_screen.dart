@@ -10,13 +10,13 @@ import 'package:fx_commission_app/view/widgets/reusable_widgets.dart';
 import 'package:video_player/video_player.dart';
 
 class BrokersNewAccountScreen extends StatefulWidget {
-   int id;
-   // Company? company;
+  int id;
+  // Company? company;
 
-   BrokersNewAccountScreen({
-     required this.id,
-     // required this.company
-   });
+  BrokersNewAccountScreen({
+    required this.id,
+    // required this.company
+  });
 
   @override
   State<BrokersNewAccountScreen> createState() =>
@@ -27,9 +27,9 @@ class _BrokersNewAccountScreenState extends State<BrokersNewAccountScreen> {
   // double rating = 3.5;
   // double _rating = 2.5;
   // String accountTitle = 'XM Group';
- //  String accountContent =
- //      '''Exness Group was founded by a group of like-minded professionals in the area of finance and information technology in 2008. Leadership In the past years the Exness Group has come a long way, becoming an industry leader: by the middle of 2014 Exness Group clients' monthly trading volume was more than 180 billion USD and the number of trading accounts opened each month by traders around the world exceeds 15,000.
- // Currently Exness Group offers the ability to trade more than 120 financial instruments, with some of the best-on-the-market order execution and record-tight spreads for the main currency pairs. Priorities Continuous development, guided primarily by systematic improvement of trading conditions, is the key to Exness Group's long-term and successful work. ''';
+  //  String accountContent =
+  //      '''Exness Group was founded by a group of like-minded professionals in the area of finance and information technology in 2008. Leadership In the past years the Exness Group has come a long way, becoming an industry leader: by the middle of 2014 Exness Group clients' monthly trading volume was more than 180 billion USD and the number of trading accounts opened each month by traders around the world exceeds 15,000.
+  // Currently Exness Group offers the ability to trade more than 120 financial instruments, with some of the best-on-the-market order execution and record-tight spreads for the main currency pairs. Priorities Continuous development, guided primarily by systematic improvement of trading conditions, is the key to Exness Group's long-term and successful work. ''';
   String noticesContent =
       '''XM Group is a group of regulated online brokers. Trading Point of Financial Instruments Ltd was established in 2009 and it is regulated by the Cyprus Securities and Exchange Commission (CySEC 120/10), Trading Point of Financial Instruments Pty Ltd was established in 2015 and it is regulated by the Australian Securities and Investments Commission (ASIC 443670), and XM Global Limited was established in 2017 and it is regulated by the International Financial Services Commission IFSC/60/354/TS/19
 ''';
@@ -37,13 +37,14 @@ class _BrokersNewAccountScreenState extends State<BrokersNewAccountScreen> {
   late Future<void> _initializeVideoPlayerFuture;
   late ChewieController _chewieController;
   late CompanyShowModel oneCompanyModel = CompanyShowModel();
-  String? x;
 
   @override
   void initState() {
     super.initState();
 
-    AppCubit.get(context).getCompanyShow(oneCompanyId: 2,companyShowModel: oneCompanyModel).then((value)=>oneCompanyModel=value!);
+    AppCubit.get(context)
+        .getCompanyShow(oneCompanyId: 2, companyShowModel: oneCompanyModel)
+        .then((value) => oneCompanyModel = value!);
     // AppCubit.get(context).getOneCompanyShow(
     //     id: widget.id,
     //
@@ -52,11 +53,9 @@ class _BrokersNewAccountScreenState extends State<BrokersNewAccountScreen> {
     // AppCubit.get(context).getCompanyShow(oneCompanyId: 3);
 
     // Initialize the controller and load the video from a URL or an asset
-    _videoPlayerController = VideoPlayerController.network(
-             '${companyShowModel.company?.video}'
-    );
+    _videoPlayerController =
+        VideoPlayerController.network('${companyShowModel.company?.video}');
     _videoPlayerController.initialize().then((_) {
-
       setState(() {});
     });
 
@@ -67,7 +66,6 @@ class _BrokersNewAccountScreenState extends State<BrokersNewAccountScreen> {
       looping: true,
       // Custom controls can be added here
       materialProgressColors: ChewieProgressColors(
-
         playedColor: Color(0xff0095D0),
         handleColor: Color(0xff0379A8),
         backgroundColor: Colors.grey,
@@ -79,7 +77,6 @@ class _BrokersNewAccountScreenState extends State<BrokersNewAccountScreen> {
     // Start playing the video automatically
     _videoPlayerController.setLooping(true);
     _videoPlayerController.play();
-
   }
 
   @override
@@ -105,35 +102,36 @@ class _BrokersNewAccountScreenState extends State<BrokersNewAccountScreen> {
                 )
               : Column(
                   children: [
-            Container(
-            width: double.infinity,
-            height: 12.h,
-            padding: EdgeInsets.symmetric(vertical: 22.dp, horizontal: 4.w),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
-                  bottomRight: Radius.circular(20.dp),
-                  bottomLeft: Radius.circular(20.dp)),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.5),
-                  spreadRadius: 1,
-                  blurRadius: 4,
-                  offset: Offset(0, 1), // changes position of shadow
-                ),
-              ],
-            ),
-            child: Center(
-              child: Text(
-                '${oneCompanyModel.company!.title}',
-                //  'oneCompanyModel.company!.title',
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 25.dp,
-                    color: const Color(0xff0379A8)),
-              ),
-            ),
-          ),
+                    Container(
+                      width: double.infinity,
+                      height: 12.h,
+                      padding: EdgeInsets.symmetric(
+                          vertical: 22.dp, horizontal: 4.w),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                            bottomRight: Radius.circular(20.dp),
+                            bottomLeft: Radius.circular(20.dp)),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.5),
+                            spreadRadius: 1,
+                            blurRadius: 4,
+                            offset: Offset(0, 1), // changes position of shadow
+                          ),
+                        ],
+                      ),
+                      child: Center(
+                        child: Text(
+                          '${oneCompanyModel.company!.title}',
+                          //  'oneCompanyModel.company!.title',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 25.dp,
+                              color: const Color(0xff0379A8)),
+                        ),
+                      ),
+                    ),
                     Expanded(
                       child: SingleChildScrollView(
                         child: Column(
@@ -154,13 +152,13 @@ class _BrokersNewAccountScreenState extends State<BrokersNewAccountScreen> {
                                           child: Image.network(
                                             fit: BoxFit.fill,
                                             '${companyShowModel.company?.logo}',
-                                            errorBuilder: (context, error,
-                                                    stackTrace) =>
-                                                const Center(
-                                                    child: Text(
+                                            errorBuilder:
+                                                (context, error, stackTrace) =>
+                                                    const Center(
+                                                        child: Text(
                                               'no image returned',
-                                              style: TextStyle(
-                                                  color: Colors.red),
+                                              style:
+                                                  TextStyle(color: Colors.red),
                                             )),
                                           )),
                                     ),
@@ -169,22 +167,22 @@ class _BrokersNewAccountScreenState extends State<BrokersNewAccountScreen> {
                                     height: 3.h,
                                   ),
                                   Center(
-                                    // child: AnimatedRatingStars(
-                                    //   initialRating: 2.5,
-                                    //   onChanged: (rating) {
-                                    //     setState(() {
-                                    //       _rating = rating;
-                                    //       //print('Rating : $rating');
-                                    //     });
-                                    //   },
-                                    //   starSize: 15.dp,
-                                    //   customFilledIcon: Icons.star,
-                                    //   customHalfFilledIcon: Icons.star_half,
-                                    //   customEmptyIcon: Icons.star_border,
-                                    //   interactiveTooltips: true,
-                                    //   filledColor: const Color(0xff0095D0),
-                                    // ),
-                                  ),
+                                      // child: AnimatedRatingStars(
+                                      //   initialRating: 2.5,
+                                      //   onChanged: (rating) {
+                                      //     setState(() {
+                                      //       _rating = rating;
+                                      //       //print('Rating : $rating');
+                                      //     });
+                                      //   },
+                                      //   starSize: 15.dp,
+                                      //   customFilledIcon: Icons.star,
+                                      //   customHalfFilledIcon: Icons.star_half,
+                                      //   customEmptyIcon: Icons.star_border,
+                                      //   interactiveTooltips: true,
+                                      //   filledColor: const Color(0xff0095D0),
+                                      // ),
+                                      ),
                                   SizedBox(
                                     height: 1.h,
                                   ),
@@ -242,8 +240,7 @@ class _BrokersNewAccountScreenState extends State<BrokersNewAccountScreen> {
                                           Text(
                                             'Learn more',
                                             style: TextStyle(
-                                                color:
-                                                    const Color(0xff0095D0),
+                                                color: const Color(0xff0095D0),
                                                 fontSize: 18.dp),
                                           ),
                                           SizedBox(
@@ -288,8 +285,7 @@ class _BrokersNewAccountScreenState extends State<BrokersNewAccountScreen> {
                                           Text(
                                             'Learn more',
                                             style: TextStyle(
-                                                color:
-                                                    const Color(0xff0095D0),
+                                                color: const Color(0xff0095D0),
                                                 fontSize: 18.dp),
                                           ),
                                           SizedBox(
@@ -341,7 +337,7 @@ class _BrokersNewAccountScreenState extends State<BrokersNewAccountScreen> {
                                     ),
                                   ),
                                   Container(
-                                      padding: EdgeInsets.all(12.dp),
+                                    padding: EdgeInsets.all(12.dp),
                                     width: double.infinity,
                                     height: 10.h,
                                     color: const Color(0xffbcdbe6),
@@ -618,15 +614,13 @@ class _BrokersNewAccountScreenState extends State<BrokersNewAccountScreen> {
                                           children: [
                                             ClipRRect(
                                               borderRadius:
-                                                  BorderRadius.circular(
-                                                      15.dp),
+                                                  BorderRadius.circular(15.dp),
                                               child: AspectRatio(
                                                 aspectRatio:
                                                     _videoPlayerController
                                                         .value.aspectRatio,
                                                 child: Chewie(
-                                                  controller:
-                                                      _chewieController,
+                                                  controller: _chewieController,
                                                 ),
                                               ),
                                             ),

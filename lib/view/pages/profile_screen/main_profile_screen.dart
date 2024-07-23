@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:fx_commission_app/controller/constants.dart';
+import 'package:fx_commission_app/controller/cubit/cubit.dart';
 import 'package:fx_commission_app/view/pages/profile_screen/edit_profile_screen.dart';
 import 'package:fx_commission_app/view/pages/profile_screen/inactive_fees/inactive_fees_screen.dart';
 import 'package:fx_commission_app/view/pages/profile_screen/loyalty_program/loyalty_program_screen.dart';
@@ -8,6 +9,7 @@ import 'package:fx_commission_app/view/pages/profile_screen/payment_history/paym
 import 'package:fx_commission_app/view/pages/profile_screen/referral/referral_screen.dart';
 import 'package:fx_commission_app/view/pages/profile_screen/registered_from_my_referral/registered_from_my_referral_screen.dart';
 import 'package:fx_commission_app/view/pages/profile_screen/trading_accounts/trading_accounts_screen.dart';
+import 'package:fx_commission_app/view/pages/splash&auth/login_screen.dart';
 
 import 'withdrawals/withdrawals_screen.dart';
 
@@ -134,7 +136,7 @@ class MainProfileScreen extends StatelessWidget {
 
                     Container(
                       width: double.infinity,
-                      height: 54.h,
+                      //height: 54.h,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10.dp),
                           color: Colors.white),
@@ -424,6 +426,39 @@ class MainProfileScreen extends StatelessWidget {
                                 ],
                               ),
                             ),
+                            SizedBox(height: 1.h,),
+                            const Divider(
+                              color: Color(0xffF5F4F4),
+                            ),
+                            SizedBox(height: 1.h,),
+
+                            InkWell(
+                              onTap: () {
+                                AppCubit.get(context).logout(context);
+                              },
+                              child: Row(
+                                children: [
+                                  const Icon(
+                                    Icons.logout,
+                                    color: Color(0xff0095D0),
+                                  ),
+                                  SizedBox(
+                                    width: 3.w,
+                                  ),
+                                  Text(
+                                    'Logout',
+                                    style: TextStyle(fontSize: 15.dp),
+                                  ),
+                                  const Spacer(),
+                                  Icon(
+                                    Icons.arrow_forward_ios,
+                                    color: const Color(0xffA2A2A2),
+                                    size: 17.dp,
+                                  )
+                                ],
+                              ),
+                            ),
+
                           ],
                         ),
                       ),

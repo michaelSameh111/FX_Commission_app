@@ -16,9 +16,9 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  //bool rememberMe = false;
   var formKey = GlobalKey<FormState>();
   IconData suffixIcon = Icons.visibility_off;
+
 
   @override
   Widget build(BuildContext context) {

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,6 +24,8 @@ import 'package:fx_commission_app/model/services/services_model.dart';
 import 'package:fx_commission_app/view/pages/brokers_screen/main_brokers_screen.dart';
 import 'package:fx_commission_app/view/pages/more_screen/main_more_screen.dart';
 import 'package:fx_commission_app/view/pages/profile_screen/main_profile_screen.dart';
+import 'package:fx_commission_app/view/pages/splash&auth/login_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AppCubit extends Cubit<AppStates> {
   AppCubit() : super(AppInitialState());
@@ -304,7 +308,6 @@ class AppCubit extends Cubit<AppStates> {
     );
   }
 
-
   void postEditAccount({
     required String firstName,
     required String lastName,
@@ -313,11 +316,10 @@ class AppCubit extends Cubit<AppStates> {
     required String country,
     required String password,
     required String passwordConfirmation,
-    //required String image,
+    File? image,
     required BuildContext context,
   }) async {
     emit(EditAccountLoadingState());
-
     try {
       FormData formData = FormData.fromMap({
         'first_name': firstName,
@@ -327,13 +329,15 @@ class AppCubit extends Cubit<AppStates> {
         'country': country,
         'password': password,
         'password_confirmation': passwordConfirmation,
-       // 'image': image,
+        if (image != null)
+          'image':
+              await MultipartFile.fromFile(image.path, filename: image.path),
       });
 
       Response response = await DioHelper.postData(
         url: editAccountUrl,
         data: formData,
-        token: loginDataModel.accessToken
+        token: loginDataModel.accessToken,
       );
 
       print('token now ${loginDataModel.accessToken}');
@@ -354,6 +358,33 @@ class AppCubit extends Cubit<AppStates> {
         print('Error: $error');
       }
       emit(EditAccountErrorState(error.toString()));
+    }
+  }
+
+  void postTradingAccounts({
+    required BuildContext context,
+  }) async {
+    emit(TradingAccountsLoadingState());
+    try {
+      // FormData formData = FormData.fromMap({});
+      Response response = await DioHelper.postData(
+        url: tradingAccountsUrl,
+        //data: formData,
+        token: loginDataModel.accessToken,
+      );
+
+      emit(TradingAccountsSuccessState());
+      print('GOT TRADING ACCOUNTS SUCCESSFULLYYY ${response.data}');
+    } catch (error) {
+      if (error is DioException) {
+        print(error.response!.data);
+
+        print('Error message: ${error.message}');
+        print('Stacktrace: ${error.stackTrace}');
+      } else {
+        print('Error: ${error.toString()}');
+      }
+      emit(TradingAccountsErrorState(error.toString()));
     }
   }
 
@@ -382,7 +413,6 @@ class AppCubit extends Cubit<AppStates> {
     );
   }
 
-
   void getCompanies() {
     emit(CompaniesLoadingState());
     DioHelper.getData(
@@ -403,10 +433,7 @@ class AppCubit extends Cubit<AppStates> {
 
   void getOneCompanyShow({required int? id}) {
     emit(CompanyShowLoadingState());
-    DioHelper.getData(
-      url: companyShowUrl,
-      id: id
-    ).then((value) {
+    DioHelper.getData(url: companyShowUrl, id: id).then((value) {
       companyShowModel = CompanyShowModel.fromJson(value?.data);
       print('we have company show dataaaaaa heeeeeeeere');
 
@@ -420,28 +447,25 @@ class AppCubit extends Cubit<AppStates> {
     });
   }
 
-
-  Future <CompanyShowModel?> getCompanyShow({required int? oneCompanyId,required CompanyShowModel companyShowModel})  {
+  Future<CompanyShowModel?> getCompanyShow(
+      {required int? oneCompanyId,
+      required CompanyShowModel companyShowModel}) {
     emit(GetOneCompanyLoadingState());
-    return DioHelper.getData(
-        url: companyShowUrl,
-      id: oneCompanyId
-    ).then((value){
+    return DioHelper.getData(url: companyShowUrl, id: oneCompanyId)
+        .then((value) {
       companyShowModel = CompanyShowModel.fromJson(value!.data);
       print(value.data);
       emit(GetOneCompanySuccessState());
       return companyShowModel;
-     }).catchError((error){
-       if(error is DioException){
-         if(error.response != null){
-           print(error.response!.data);
-         }
-         emit(GetOneCompanyErrorState(error.toString()));
-       }
-       return companyShowModel;
-     });
-
-
+    }).catchError((error) {
+      if (error is DioException) {
+        if (error.response != null) {
+          print(error.response!.data);
+        }
+        emit(GetOneCompanyErrorState(error.toString()));
+      }
+      return companyShowModel;
+    });
 
     // DioHelper.getData(
     //     url: companyShowUrl,
@@ -460,5 +484,17 @@ class AppCubit extends Cubit<AppStates> {
     // });
   }
 
+  void logout(BuildContext context) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
 
+    await prefs.clear();
+
+    Navigator.of(context).pushAndRemoveUntil(
+      MaterialPageRoute(builder: (context) => LoginScreen()),
+      (Route<dynamic> route) => false,
+    );
+
+    loginEmailController.clear();
+    loginPasswordController.clear();
+  }
 }

@@ -190,3 +190,14 @@ class GetOneCompanyErrorState extends AppStates {
 
   GetOneCompanyErrorState(this.error);
 }
+
+
+class TradingAccountsLoadingState extends AppStates {}
+
+class TradingAccountsSuccessState extends AppStates {}
+
+class TradingAccountsErrorState extends AppStates {
+  final String error;
+
+  TradingAccountsErrorState(this.error);
+}
