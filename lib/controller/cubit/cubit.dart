@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -313,12 +315,12 @@ class AppCubit extends Cubit<AppStates> {
     required String country,
     required String password,
     required String passwordConfirmation,
-    //required String image,
+     File? image,
     required BuildContext context,
   }) async {
     emit(EditAccountLoadingState());
-
     try {
+
       FormData formData = FormData.fromMap({
         'first_name': firstName,
         'last_name': lastName,
@@ -327,13 +329,13 @@ class AppCubit extends Cubit<AppStates> {
         'country': country,
         'password': password,
         'password_confirmation': passwordConfirmation,
-       // 'image': image,
+        if(image != null) 'image': await MultipartFile.fromFile(image.path, filename: image.path),
       });
 
       Response response = await DioHelper.postData(
         url: editAccountUrl,
         data: formData,
-        token: loginDataModel.accessToken
+        token: loginDataModel.accessToken,
       );
 
       print('token now ${loginDataModel.accessToken}');
@@ -356,6 +358,36 @@ class AppCubit extends Cubit<AppStates> {
       emit(EditAccountErrorState(error.toString()));
     }
   }
+
+
+  void postTradingAccounts({
+    required BuildContext context,
+  }) async {
+    emit(TradingAccountsLoadingState());
+    try {
+     // FormData formData = FormData.fromMap({});
+      Response response = await DioHelper.postData(
+        url: tradingAccountsUrl,
+        //data: formData,
+        token: loginDataModel.accessToken,
+      );
+
+      emit(TradingAccountsSuccessState());
+      print('GOT TRADING ACCOUNTS SUCCESSFULLYYY ${response.data}');
+
+    } catch (error) {
+      if (error is DioException) {
+        print(error.response!.data);
+
+        print('Error message: ${error.message}');
+        print('Stacktrace: ${error.stackTrace}');
+      } else {
+        print('Error: ${error.toString()}');
+      }
+      emit(TradingAccountsErrorState(error.toString()));
+    }
+  }
+
 
   void editAccountSuccessDialog(BuildContext context) {
     showDialog(

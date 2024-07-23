@@ -36,7 +36,7 @@ class LoginCubit extends Cubit<LoginStates> {
     // print(loginDataModel.accessToken);
 
       emit(LoginSuccessState());
-      print('ay 7aga ya mo7a awel marraaaa');
+    //  print('ay 7aga ya mo7a awel marraaaa');
       print('token enteredddd ${loginDataModel.accessToken}');
 
 
@@ -49,7 +49,7 @@ class LoginCubit extends Cubit<LoginStates> {
           CacheHelper.saveData(key: 'loggedin', value: true);
           Navigator.pushReplacement(context,
               MaterialPageRoute(builder: (context) => HomeLayoutScreen()));
-          print('ay 7aga ya mo7a tany marrraaa');
+         // print('ay 7aga ya mo7a tany marrraaa');
         }
       } else {
         Navigator.pushReplacement(context,
