@@ -174,63 +174,6 @@ Widget containerBelowAppBar({
       ),
     );
 
-Widget addedAccountTradingAccountScreen({
-  String image = '',
-  String brokerName = '',
-  String accountNumber = '',
-  String accountStatus = '',
-}) =>
-    Row(
-      children: [
-        ClipRRect(
-            borderRadius: BorderRadius.circular(8.dp),
-            child: Image(image: AssetImage(image))),
-        SizedBox(
-          width: 3.w,
-        ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Text(
-                  'Broker : ',
-                  style: TextStyle(fontSize: 14.dp),
-                ),
-                Text(
-                  brokerName,
-                  style: TextStyle(fontSize: 14.dp, color: Color(0xff808080)),
-                )
-              ],
-            ),
-            Row(
-              children: [
-                Text(
-                  'Account Number : ',
-                  style: TextStyle(fontSize: 14.dp),
-                ),
-                Text(
-                  accountNumber,
-                  style: TextStyle(fontSize: 14.dp, color: Color(0xff808080)),
-                )
-              ],
-            ),
-            Row(
-              children: [
-                Text(
-                  'Account Status : ',
-                  style: TextStyle(fontSize: 14.dp),
-                ),
-                Text(
-                  accountStatus,
-                  style: TextStyle(fontSize: 14.dp, color: Colors.red),
-                )
-              ],
-            ),
-          ],
-        )
-      ],
-    );
 
 class startDateTextFormField extends StatefulWidget {
   const startDateTextFormField({super.key});

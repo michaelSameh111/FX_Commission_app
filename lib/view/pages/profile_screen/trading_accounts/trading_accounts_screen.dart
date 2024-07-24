@@ -50,26 +50,33 @@ class _TradingAccountsScreenState extends State<TradingAccountsScreen> {
               : Column(
                   children: [
                     containerBelowAppBar(text: 'Trading Accounts'),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 3.0.w),
-                      child: Expanded(
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 3.0.w),
                         child: tradingAccountsModel.accounts == null ||
                                 tradingAccountsModel.accounts!.isEmpty
                             ? Center(
-                                child: Text('You don\'t have any accounts yet'),
-                              )
-                            : ListView.separated(
-                                shrinkWrap: false,
-                                itemBuilder: (context, index) =>
-                                    containerAddedAccounts(
-                                        account: tradingAccountsModel
-                                            .accounts![index]),
-                                separatorBuilder: (context, index) =>
-                                    const Divider(
-                                  color: Color(0xffC4C4C4),
+                                child: Text(
+                                  'You don\'t have any accounts yet',
+                                  style: TextStyle(
+                                      color: Color(0xff0095D0),
+                                      fontSize: 18.dp),
                                 ),
-                                itemCount:
-                                    tradingAccountsModel.accounts!.length,
+                              )
+                            : Expanded(
+                                child: ListView.separated(
+                                  shrinkWrap: true,
+                                  itemBuilder: (context, index) =>
+                                      containerAllAddedAccounts(
+                                          account: tradingAccountsModel
+                                              .accounts![index]),
+                                  separatorBuilder: (context, index) =>
+                                      const Divider(
+                                    color: Color(0xffC4C4C4),
+                                  ),
+                                  itemCount:
+                                      tradingAccountsModel.accounts!.length,
+                                ),
                               ),
                       ),
                     ),
@@ -83,22 +90,84 @@ class _TradingAccountsScreenState extends State<TradingAccountsScreen> {
     );
   }
 
-  Widget containerAddedAccounts({required Accounts account}) {
-    return Column(
-      children: [
-        SizedBox(
-          height: 1.h,
+  Widget containerAllAddedAccounts({required Accounts account}) => Padding(
+        padding: EdgeInsets.symmetric(vertical: 2.h),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                ClipRRect(
+                    borderRadius: BorderRadius.circular(8.dp),
+                    child: Image.network(
+                      fit: BoxFit.fill,
+                      width: 14.w,
+                      height: 7.2.h,
+                      '${account.image}',
+                      errorBuilder: (context, error, stackTrace) =>
+                          const Center(
+                              child: Text(
+                        'no image returned',
+                        style: TextStyle(color: Colors.red),
+                      )),
+                    )),
+                SizedBox(
+                  width: 3.w,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Text(
+                          'Broker : ',
+                          style: TextStyle(fontSize: 14.dp),
+                        ),
+                        Text(
+                          '${account.broker}',
+                          style: TextStyle(
+                              fontSize: 14.dp, color: Color(0xff808080)),
+                        )
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          'Account Number : ',
+                          style: TextStyle(fontSize: 14.dp),
+                        ),
+                        Text(
+                          '${account.accountNumber}',
+                          style: TextStyle(
+                              fontSize: 14.dp, color: Color(0xff808080)),
+                        )
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          'Account Status : ',
+                          style: TextStyle(fontSize: 14.dp),
+                        ),
+                        Text(
+                          '${account.accountStatus}',
+                          style: TextStyle(
+                            fontSize: 14.dp,
+                            color: account.accountStatus == 'In review'
+                                ? Colors.orange
+                                : account.accountStatus == 'Accepted'
+                                    ? Colors.green
+                                    : account.accountStatus == 'Rejected'
+                                        ? Colors.red
+                                        : Colors.black,
+                          ),
+                        )
+                      ],
+                    ),
+                  ],
+                )
+              ],
+            ),
+          ],
         ),
-        addedAccountTradingAccountScreen(
-          image: '${account.image}',
-          brokerName: '${account.broker}',
-          accountNumber: '${account.accountNumber}',
-          accountStatus: '${account.accountStatus}',
-        ),
-        SizedBox(
-          height: 1.h,
-        ),
-      ],
-    );
-  }
+      );
 }

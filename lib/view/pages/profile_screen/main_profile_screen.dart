@@ -9,8 +9,6 @@ import 'package:fx_commission_app/view/pages/profile_screen/payment_history/paym
 import 'package:fx_commission_app/view/pages/profile_screen/referral/referral_screen.dart';
 import 'package:fx_commission_app/view/pages/profile_screen/registered_from_my_referral/registered_from_my_referral_screen.dart';
 import 'package:fx_commission_app/view/pages/profile_screen/trading_accounts/trading_accounts_screen.dart';
-import 'package:fx_commission_app/view/pages/splash&auth/login_screen.dart';
-
 import 'withdrawals/withdrawals_screen.dart';
 
 class MainProfileScreen extends StatelessWidget {
@@ -20,7 +18,7 @@ class MainProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: EdgeInsets.only(left: 3.0.w, right: 3.0.w, top: 6.h, bottom: 2.h),
+        padding: EdgeInsets.only(left: 3.0.w, right: 3.0.w, top: 6.h, ),
         child: Column(
           children: [
             Container(
@@ -93,7 +91,7 @@ class MainProfileScreen extends StatelessWidget {
             ),
 
             SizedBox(
-              height: 4.h,
+              height: 3.h,
             ),
 
             Expanded(
@@ -458,7 +456,6 @@ class MainProfileScreen extends StatelessWidget {
                                 ],
                               ),
                             ),
-
                           ],
                         ),
                       ),

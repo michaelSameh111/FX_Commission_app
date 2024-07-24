@@ -59,7 +59,7 @@ class MainMoreScreen extends StatelessWidget {
                       children: [
                         Container(
                           width: double.infinity,
-                          height: 54.h,
+                        //  height: 54.h,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10.dp),
                               color: Colors.white),

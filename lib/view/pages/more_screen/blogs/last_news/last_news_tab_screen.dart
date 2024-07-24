@@ -94,7 +94,6 @@ class _LastNewsTabScreenState extends State<LastNewsTabScreen> {
                     LastNewsReadArticleScreen(lastNews: lastNews)));
       },
       child: Container(
-        height: 50.h,
         width: double.infinity,
         decoration: BoxDecoration(
           color: Colors.white,
@@ -102,85 +101,82 @@ class _LastNewsTabScreenState extends State<LastNewsTabScreen> {
         ),
         child: Column(
           children: [
-            Expanded(
-              child: ClipRRect(
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(10.dp),
-                    topRight: Radius.circular(10.dp)),
-                child: Image.network(
-                  fit: BoxFit.fill,
-                  width: double.infinity,
-                  height: 15.h,
-                  '${lastNews.image}',
-                  errorBuilder: (context, error, stackTrace) => const Center(
-                      child: Text(
-                    'no image returned',
-                    style: TextStyle(color: Colors.red),
-                  )),
-                ),
+            ClipRRect(
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(10.dp),
+                  topRight: Radius.circular(10.dp)),
+              child: Image.network(
+                fit: BoxFit.cover,
+                width: double.infinity,
+                height: 20.h,
+                '${lastNews.image}',
+                errorBuilder: (context, error, stackTrace) => const Center(
+                    child: Text(
+                  'no image returned',
+                  style: TextStyle(color: Colors.red),
+                )),
               ),
             ),
-            Expanded(
-                child: Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(10.dp),
-              ),
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 3.0.w, vertical: 2.h),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
+            Container(
+                          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(10.dp),
+                          ),
+                          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 3.0.w, vertical: 2.h),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Text(
+                  '${lastNews.createdBy} • ${lastNews.createdAt}',
+                  style: TextStyle(
+                      color: const Color(0xff808080),
+                      fontSize: 15.dp,
+                      fontWeight: FontWeight.bold),
+                ),
+                SizedBox(
+                  height: 0.5.h,
+                ),
+                Text(
+                  '${lastNews.title}',
+                  style: TextStyle(
+                      fontSize: 18.dp, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(
+                  height: 0.5.h,
+                ),
+                Text(
+                  '${lastNews.description}',
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontSize: 18.dp,
+                  ),
+                ),
+                SizedBox(
+                  height: 2.h,
+                ),
+                Row(
                   children: [
                     Text(
-                      '${lastNews.createdBy} • ${lastNews.createdAt}',
+                      'Read Article',
                       style: TextStyle(
-                          color: const Color(0xff808080),
-                          fontSize: 15.dp,
-                          fontWeight: FontWeight.bold),
+                          color: const Color(0xff0095D0), fontSize: 18.dp),
                     ),
                     SizedBox(
-                      height: 0.5.h,
+                      width: 2.w,
                     ),
-                    Text(
-                      '${lastNews.title}',
-                      style: TextStyle(
-                          fontSize: 18.dp, fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(
-                      height: 0.5.h,
-                    ),
-                    Text(
-                      '${lastNews.description}',
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        fontSize: 18.dp,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 2.h,
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          'Read Article',
-                          style: TextStyle(
-                              color: const Color(0xff0095D0), fontSize: 18.dp),
-                        ),
-                        SizedBox(
-                          width: 2.w,
-                        ),
-                        Icon(
-                          Icons.arrow_forward_ios,
-                          size: 15.dp,
-                          color: const Color(0xff0095D0),
-                        )
-                      ],
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      size: 15.dp,
+                      color: const Color(0xff0095D0),
                     )
                   ],
-                ),
-              ),
-            ))
+                )
+              ],
+            ),
+                          ),
+                        )
           ],
         ),
       ),
