@@ -22,6 +22,8 @@ import 'package:fx_commission_app/model/services/services_model.dart';
 import 'package:fx_commission_app/view/pages/brokers_screen/main_brokers_screen.dart';
 import 'package:fx_commission_app/view/pages/more_screen/main_more_screen.dart';
 import 'package:fx_commission_app/view/pages/profile_screen/main_profile_screen.dart';
+import 'package:fx_commission_app/view/pages/splash&auth/login_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AppCubit extends Cubit<AppStates> {
   AppCubit() : super(AppInitialState());
@@ -383,6 +385,37 @@ class AppCubit extends Cubit<AppStates> {
   }
 
 
+  void postTradingAccounts({
+    required BuildContext context,
+  }) async {
+    emit(TradingAccountsLoadingState());
+    try {
+      // FormData formData = FormData.fromMap({});
+      Response response = await DioHelper.postData(
+        url: tradingAccountsUrl,
+        //data: formData,
+        token: loginDataModel.accessToken,
+      );
+
+      emit(TradingAccountsSuccessState());
+      print('GOT TRADING ACCOUNTS SUCCESSFULLYYY ${response.data}');
+
+    } catch (error) {
+      if (error is DioException) {
+        print(error.response!.data);
+
+        print('Error message: ${error.message}');
+        print('Stacktrace: ${error.stackTrace}');
+      } else {
+        print('Error: ${error.toString()}');
+      }
+      emit(TradingAccountsErrorState(error.toString()));
+    }
+  }
+
+
+
+
   void getCompanies() {
     emit(CompaniesLoadingState());
     DioHelper.getData(
@@ -460,5 +493,19 @@ class AppCubit extends Cubit<AppStates> {
     // });
   }
 
+  void logout(BuildContext context) async {
+    // Obtain shared preferences
+    SharedPreferences prefs = await SharedPreferences.getInstance();
 
+    // Clear user session data
+    await prefs.clear();
+
+    // Navigate to the login screen
+    Navigator.of(context).pushAndRemoveUntil(
+      MaterialPageRoute(builder: (context) => LoginScreen()),
+          (Route<dynamic> route) => false,
+    );
+    loginEmailController.clear();
+    loginPasswordController.clear();
+  }
 }
