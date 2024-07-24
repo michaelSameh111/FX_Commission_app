@@ -496,5 +496,6 @@ class AppCubit extends Cubit<AppStates> {
 
     loginEmailController.clear();
     loginPasswordController.clear();
+
   }
 }
