@@ -13,6 +13,7 @@ import 'package:fx_commission_app/model/forex_news/forex_news_model.dart';
 import 'package:fx_commission_app/model/login/login_model.dart';
 import 'package:fx_commission_app/model/loyalty_program/loyalty_program_model.dart';
 import 'package:fx_commission_app/model/services/services_model.dart';
+import 'package:fx_commission_app/model/trading_accounts/add_trading_account_model.dart';
 import 'package:fx_commission_app/model/trading_accounts/trading_accounts_model.dart';
 
 LoginDataModel loginDataModel = LoginDataModel();
@@ -50,4 +51,6 @@ TextEditingController loginPasswordController = TextEditingController();
 bool rememberMe = false;
 
 TradingAccountsModel tradingAccountsModel = TradingAccountsModel();
+
+AddTradingAccountModel addTradingAccountModel = AddTradingAccountModel();
 

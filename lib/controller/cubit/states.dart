@@ -201,3 +201,14 @@ class TradingAccountsErrorState extends AppStates {
 
   TradingAccountsErrorState(this.error);
 }
+
+
+class AddTradingAccountLoadingState extends AppStates {}
+
+class AddTradingAccountSuccessState extends AppStates {}
+
+class AddTradingAccountErrorState extends AppStates {
+  final String error;
+
+  AddTradingAccountErrorState(this.error);
+}

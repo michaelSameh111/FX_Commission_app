@@ -21,7 +21,7 @@ class _PaymentHistoryScreenState extends State<PaymentHistoryScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            containerBelowAppBar(text: 'Payment History'),
+            containerBelowAppBar(text: 'Payments log'),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 3.0.w, vertical: 3.h),
               child: Container(

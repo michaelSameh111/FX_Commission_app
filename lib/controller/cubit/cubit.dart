@@ -412,6 +412,71 @@ class AppCubit extends Cubit<AppStates> {
     }
   }
 
+
+  void postAddTradingAccount({
+    required int companyId,
+    required int accountNumber,
+    required BuildContext context,
+  }) async {
+    emit(AddTradingAccountLoadingState());
+
+    try {
+      FormData formData = FormData.fromMap({
+        'company': companyId,
+        'account_url': accountNumber,
+      });
+
+      Response response = await DioHelper.postData(
+          url: addTradingAccountUrl,
+          data: formData,
+          token: loginDataModel.accessToken);
+
+      emit(AddTradingAccountSuccessState());
+      print('ACCOUNT ADDED SUCCESSFULLYYY ${response.data}');
+
+      if (state is EditAccountSuccessState) {
+        addTradingAccountSuccessDialog(context);
+      }
+    } catch (error) {
+      if (error is DioException) {
+        print(error.response!.data);
+        print('token nowww ${loginDataModel.accessToken}');
+
+        print('Error message: ${error.message}');
+        print('Stacktrace: ${error.stackTrace}');
+      } else {
+        print('Error: $error');
+      }
+      emit(AddTradingAccountErrorState(error.toString()));
+    }
+  }
+
+  void addTradingAccountSuccessDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          content: Text(
+            'Account added successfully and in review.',
+            style: TextStyle(fontSize: 18.dp),
+          ),
+          actions: [
+            TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text(
+                  'Ok',
+                  style: TextStyle(
+                      color: const Color(0xff0095D0), fontSize: 18.dp),
+                ))
+          ],
+        );
+      },
+    );
+  }
+
+
   void getCompanies() {
     emit(CompaniesLoadingState());
     DioHelper.getData(

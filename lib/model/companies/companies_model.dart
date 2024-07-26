@@ -34,11 +34,11 @@ class Companies {
 
   Companies(
       {this.id,
-        this.title,
-        this.logo,
-        this.reviews,
-        this.rate,
-        this.highlights});
+      this.title,
+      this.logo,
+      this.reviews,
+      this.rate,
+      this.highlights});
 
   Companies.fromJson(Map<String, dynamic> json) {
     id = json['id'];

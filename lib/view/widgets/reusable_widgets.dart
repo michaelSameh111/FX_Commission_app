@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
+import 'package:fx_commission_app/controller/constants.dart';
+import 'package:fx_commission_app/model/companies/companies_model.dart';
 
 Widget defaultTextFormField(
         {String? hintText,
@@ -10,6 +12,7 @@ Widget defaultTextFormField(
         IconData? suffixIcon,
         void Function()? suffixPressed,
         bool? isPassword,
+          void Function()? onTap
         }) =>
     Container(
       decoration: BoxDecoration(
@@ -21,6 +24,7 @@ Widget defaultTextFormField(
         ),
       ),
       child: TextFormField(
+        onTap: onTap,
         keyboardType: keyboardType,
         controller: textFormFieldController,
         obscureText: obscureText,
@@ -323,6 +327,73 @@ class _endDateTextFormFieldState extends State<endDateTextFormField> {
             hintStyle:
                 TextStyle(color: const Color(0xff808080), fontSize: 15.dp)),
       ),
+    );
+  }
+}
+
+
+class BrokerDropDown extends StatelessWidget {
+  int? brokerDropDown;
+  final ValueChanged<int?> onBrokerChanged;
+  bool? required;
+  BrokerDropDown(
+      {super.key,
+        required this.brokerDropDown,
+        required this.onBrokerChanged,
+        this.required});
+
+  @override
+  Widget build(BuildContext context) {
+    List<Companies> companies =
+    companiesModel.companies!; // Assuming 'allCities' is the list of cities
+
+    List<DropdownMenuItem<int>> dropdownItems = [
+      DropdownMenuItem(
+        value: 0,
+        child: Text('Choose Broker',
+            style: TextStyle(color: const Color(0xff808080), fontSize: 15.dp)),
+      )
+    ];
+
+    for (Companies company in companies) {
+      DropdownMenuItem<int> dropdownItem = DropdownMenuItem<int>(
+        value: company.id,
+        child: SizedBox(
+          child: Text(
+            '${company.title}',
+            style: TextStyle(color: const Color(0xff767676), fontSize: 15.dp),
+          ),
+        ),
+      );
+      dropdownItems.add(dropdownItem);
+    }
+
+    return DropdownButtonFormField<int>(
+      validator: required == false
+          ? null
+          : (value) {
+        if (value == 0) {
+          return 'Please select a broker ';
+        }
+        return null;
+      },
+      decoration: InputDecoration(
+        fillColor: Color(0xffECECEC),
+        filled: true,
+        errorStyle: TextStyle(
+          fontSize: 8.sp,
+        ),
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+        focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(6.dp),
+            borderSide: const BorderSide(color: Color(0xffC4C4C4), width: 1.5)),
+      ),
+      value: brokerDropDown,
+      items: dropdownItems,
+      onChanged: (val) {
+        onBrokerChanged(val);
+        brokerDropDown = val;
+      },
     );
   }
 }
