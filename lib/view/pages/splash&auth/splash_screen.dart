@@ -29,8 +29,8 @@ class _SplashScreenState extends State<SplashScreen> {
             email: CacheHelper.getData(key: 'username'),
             password: CacheHelper.getData(key: 'password'),
             context: context);
-        Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (context) => const HomeLayoutScreen()));
+        // Navigator.pushReplacement(context,
+        //     MaterialPageRoute(builder: (context) => const HomeLayoutScreen()));
       }
     });
   }

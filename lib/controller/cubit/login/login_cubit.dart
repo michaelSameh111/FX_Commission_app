@@ -26,19 +26,17 @@ class LoginCubit extends Cubit<LoginStates> {
   }) {
     emit(LoginLoadingState());
     DioHelper.postData(
-            url: loginUrl,
-            data: {'email': email, 'password': password},
-            //token: ''
-    )
-
-        .then((value) {
+      url: loginUrl,
+      data: {'email': email, 'password': password},
+    ).then((value) {
       loginDataModel = LoginDataModel.fromJson(value.data);
-    // print(loginDataModel.accessToken);
 
+      Navigator.pushReplacement(context,
+          MaterialPageRoute(builder: (context) => const HomeLayoutScreen()));
       emit(LoginSuccessState());
-    //  print('ay 7aga ya mo7a awel marraaaa');
       print('token enteredddd ${loginDataModel.accessToken}');
 
+      print('remomebebrer emeeee $rememberMe');
 
       if (state is LoginSuccessState) {
         if (rememberMe == true) {
@@ -47,32 +45,13 @@ class LoginCubit extends Cubit<LoginStates> {
           CacheHelper.saveData(
               key: 'password', value: loginPasswordController.text);
           CacheHelper.saveData(key: 'loggedin', value: true);
-          Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) => HomeLayoutScreen()));
-         // print('ay 7aga ya mo7a tany marrraaa');
+          print('remember me keda true $rememberMe');
         }
-      } else {
-        Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (context) => HomeLayoutScreen()));
       }
     }).catchError((error, stackTrace) {
-     if(error is DioException){
-       print(error.response!.data);
-     }
-        // ScaffoldMessenger.of(context).showSnackBar(
-        //   SnackBar(
-        //     content: Container(
-        //       alignment: Alignment.center,
-        //       decoration: BoxDecoration(
-        //           color: Colors.red, borderRadius: BorderRadius.circular(20)),
-        //       height: 5.h,
-        //       child: const Text('Your Username or Password is Incorrect'),
-        //     ),
-        //     behavior: SnackBarBehavior.floating,
-        //     backgroundColor: Colors.transparent,
-        //     elevation: 0,
-        //   ),
-        // );
+      if (error is DioException) {
+        print(error.response!.data);
+      }
       print(error.toString());
       print(stackTrace);
       Fluttertoast.showToast(
