@@ -44,6 +44,7 @@ dependencies:
   pinput: ^5.0.0
   shared_preferences: ^2.2.3
   image_picker: ^1.1.2
+  intl: ^0.17.0
 
 
 

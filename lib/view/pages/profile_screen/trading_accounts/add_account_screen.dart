@@ -1,9 +1,10 @@
-import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:fx_commission_app/controller/cubit/cubit.dart';
-import 'package:fx_commission_app/model/companies/companies_model.dart';
+import 'package:fx_commission_app/controller/cubit/states.dart';
 import 'package:fx_commission_app/view/widgets/reusable_widgets.dart';
+
 
 class AddAccountScreen extends StatefulWidget {
   const AddAccountScreen({super.key});
@@ -13,11 +14,6 @@ class AddAccountScreen extends StatefulWidget {
 }
 
 class _AddAccountScreenState extends State<AddAccountScreen> {
-  final List<String> brokers = [
-    'Company A',
-    'Company B',
-    'Company C'
-  ];
 
   int brokerDropDown = 0;
   void onBrokerChanged(int? value) {
@@ -26,27 +22,15 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
     });
   }
 
-  String? selectedValue;
-  final selectedWithdrawalMethod = TextEditingController();
-  String withdrawalMethodSelected = '';
+
   TextEditingController accountNumberController = TextEditingController();
-  TextEditingController brokerController = TextEditingController();
-  Companies company = Companies();
 
-  @override
-  void initState() {
-    super.initState();
-    brokerController.text = selectedValue ?? 'Choose broker'; // Set initial value
-  }
-
-  @override
-  void dispose() {
-    brokerController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
+    return BlocConsumer <AppCubit, AppStates>(
+  listener: (context, state) {},
+  builder: (context, state) {
     return Scaffold(
       appBar: reusableAppBar(context: context, text: 'My Profile'),
       body: SingleChildScrollView(
@@ -93,6 +77,7 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
                       height: 1.h,
                     ),
                     BrokerDropDown(
+                     // required: true,
                         brokerDropDown: brokerDropDown,
                         onBrokerChanged: onBrokerChanged
                     ),
@@ -151,12 +136,11 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
 
                   Center(
                     child: mainElevatedButton(
+                      loading: state is AddTradingAccountLoadingState,
                       onPressed: (){
                         AppCubit.get(context).postAddTradingAccount(
-                            companyId: 4,
-                            //company.id
-                            accountNumber: 1,
-                           // accountNumberController.text
+                            companyId: brokerDropDown,
+                            accountNumber: int.parse(accountNumberController.text),
                             context: context);
                       },
                       width: 35.w,
@@ -168,11 +152,11 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
                 ),
               ),
             ),
-
           ],
         ),
       ),
-
     );
+  },
+);
   }
 }

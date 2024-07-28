@@ -212,3 +212,14 @@ class AddTradingAccountErrorState extends AppStates {
 
   AddTradingAccountErrorState(this.error);
 }
+
+
+class PaymentsLogsLoadingState extends AppStates {}
+
+class PaymentsLogsSuccessState extends AppStates {}
+
+class PaymentsLogsErrorState extends AppStates {
+  final String error;
+
+  PaymentsLogsErrorState(this.error);
+}

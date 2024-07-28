@@ -12,8 +12,7 @@ Widget defaultTextFormField(
         IconData? suffixIcon,
         void Function()? suffixPressed,
         bool? isPassword,
-          void Function()? onTap
-        }) =>
+        void Function()? onTap}) =>
     Container(
       decoration: BoxDecoration(
         color: const Color(0xffECECEC),
@@ -33,19 +32,20 @@ Widget defaultTextFormField(
           border: InputBorder.none,
           hintText: hintText,
           hintStyle: TextStyle(color: const Color(0xff808080), fontSize: 15.dp),
-          suffixIcon: suffixIcon != null ? IconButton(
-            icon: Icon(suffixIcon),
-            onPressed: suffixPressed,
-          ) : null,
-            // GestureDetector(
-            //     onTap: () {
-            //       LoginCubit.get(context)
-            //           .changePasswordVisibility();
-            //     },
-            //     child: LoginCubit.get(context).isPassword
-            //         ? Icon(Icons.visibility_outlined)
-            //         : Icon(Icons.visibility_off_outlined))
-
+          suffixIcon: suffixIcon != null
+              ? IconButton(
+                  icon: Icon(suffixIcon),
+                  onPressed: suffixPressed,
+                )
+              : null,
+          // GestureDetector(
+          //     onTap: () {
+          //       LoginCubit.get(context)
+          //           .changePasswordVisibility();
+          //     },
+          //     child: LoginCubit.get(context).isPassword
+          //         ? Icon(Icons.visibility_outlined)
+          //         : Icon(Icons.visibility_off_outlined))
         ),
         validator: validator,
       ),
@@ -177,7 +177,6 @@ Widget containerBelowAppBar({
         ),
       ),
     );
-
 
 class startDateTextFormField extends StatefulWidget {
   const startDateTextFormField({super.key});
@@ -331,21 +330,19 @@ class _endDateTextFormFieldState extends State<endDateTextFormField> {
   }
 }
 
-
 class BrokerDropDown extends StatelessWidget {
   int? brokerDropDown;
   final ValueChanged<int?> onBrokerChanged;
   bool? required;
   BrokerDropDown(
       {super.key,
-        required this.brokerDropDown,
-        required this.onBrokerChanged,
-        this.required});
+      required this.brokerDropDown,
+      required this.onBrokerChanged,
+      this.required});
 
   @override
   Widget build(BuildContext context) {
-    List<Companies> companies =
-    companiesModel.companies!; // Assuming 'allCities' is the list of cities
+    List<Companies> companies = companiesModel.companies!;
 
     List<DropdownMenuItem<int>> dropdownItems = [
       DropdownMenuItem(
@@ -372,21 +369,29 @@ class BrokerDropDown extends StatelessWidget {
       validator: required == false
           ? null
           : (value) {
-        if (value == 0) {
-          return 'Please select a broker ';
-        }
-        return null;
-      },
+              if (value == 0) {
+                return 'Please select a broker ';
+              }
+              return null;
+            },
       decoration: InputDecoration(
         fillColor: Color(0xffECECEC),
         filled: true,
         errorStyle: TextStyle(
           fontSize: 8.sp,
         ),
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+        // border: OutlineInputBorder(
+        //   borderRadius: BorderRadius.circular(6.dp),
+        //   borderSide: BorderSide(color: const Color(0xffC4C4C4), width: 1.5),
+        // ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(6.dp),
+          borderSide: BorderSide(color: const Color(0xffC4C4C4), width: 1.5),
+        ),
         focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(6.dp),
-            borderSide: const BorderSide(color: Color(0xffC4C4C4), width: 1.5)),
+          borderRadius: BorderRadius.circular(6.dp),
+          borderSide: BorderSide(color: const Color(0xffC4C4C4), width: 1.5),
+        ),
       ),
       value: brokerDropDown,
       items: dropdownItems,

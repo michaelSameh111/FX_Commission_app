@@ -26,6 +26,8 @@ import 'package:fx_commission_app/view/pages/profile_screen/main_profile_screen.
 import 'package:fx_commission_app/view/pages/splash&auth/login_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../model/payments_logs/payments_logs_model.dart';
+
 class AppCubit extends Cubit<AppStates> {
   AppCubit() : super(AppInitialState());
 
@@ -434,7 +436,7 @@ class AppCubit extends Cubit<AppStates> {
       emit(AddTradingAccountSuccessState());
       print('ACCOUNT ADDED SUCCESSFULLYYY ${response.data}');
 
-      if (state is EditAccountSuccessState) {
+      if (state is AddTradingAccountSuccessState) {
         addTradingAccountSuccessDialog(context);
       }
     } catch (error) {
@@ -547,6 +549,27 @@ class AppCubit extends Cubit<AppStates> {
     //   emit(GetOneCompanyErrorState(error.toString()));
     // });
   }
+
+
+  void getPaymentsLogs() {
+    emit(PaymentsLogsLoadingState());
+    DioHelper.getData(
+      url: paymentsLogsUrl,
+      token: loginDataModel.accessToken,
+    ).then((value) {
+      paymentsLogsModel = PaymentsLogsModel.fromJson(value?.data);
+      print('we have payments logs dataaaaaa heeeeeeeere');
+
+      emit(PaymentsLogsSuccessState());
+    }).catchError((error, stackTrace) {
+      print('error (getPaymentsLogs method)');
+      print(error.toString());
+      print('stack trace : $stackTrace');
+
+      emit(PaymentsLogsErrorState(error.toString()));
+    });
+  }
+
 
   void logout(BuildContext context) async {
     // Obtain shared preferences

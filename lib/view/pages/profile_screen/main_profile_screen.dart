@@ -5,7 +5,7 @@ import 'package:fx_commission_app/controller/cubit/cubit.dart';
 import 'package:fx_commission_app/view/pages/profile_screen/edit_profile_screen.dart';
 import 'package:fx_commission_app/view/pages/profile_screen/inactive_fees/inactive_fees_screen.dart';
 import 'package:fx_commission_app/view/pages/profile_screen/loyalty_program/loyalty_program_screen.dart';
-import 'package:fx_commission_app/view/pages/profile_screen/payment_history/payment_history_screen.dart';
+import 'package:fx_commission_app/view/pages/profile_screen/payment_logs/payment_logs_screen.dart';
 import 'package:fx_commission_app/view/pages/profile_screen/referral/referral_screen.dart';
 import 'package:fx_commission_app/view/pages/profile_screen/registered_from_my_referral/registered_from_my_referral_screen.dart';
 import 'package:fx_commission_app/view/pages/profile_screen/trading_accounts/trading_accounts_screen.dart';

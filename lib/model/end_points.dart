@@ -17,3 +17,4 @@ const companiesUrl = 'api/en/companies';
 const companyShowUrl = 'api/en/companies/show';
 const tradingAccountsUrl = 'api/auth/my-trading-accounts';
 const addTradingAccountUrl = 'api/auth/add-trading-account';
+const paymentsLogsUrl = 'api/auth/payment-history';

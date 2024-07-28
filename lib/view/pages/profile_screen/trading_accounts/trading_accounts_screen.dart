@@ -63,25 +63,23 @@ class _TradingAccountsScreenState extends State<TradingAccountsScreen> {
                                       fontSize: 18.dp),
                                 ),
                               )
-                            : Expanded(
-                                child: ListView.separated(
-                                  shrinkWrap: true,
-                                  itemBuilder: (context, index) =>
-                                      containerAllAddedAccounts(
-                                          account: tradingAccountsModel
-                                              .accounts![index]),
-                                  separatorBuilder: (context, index) =>
-                                      const Divider(
-                                    color: Color(0xffC4C4C4),
-                                  ),
-                                  itemCount:
-                                      tradingAccountsModel.accounts!.length,
-                                ),
+                            : ListView.separated(
+                              shrinkWrap: true,
+                              itemBuilder: (context, index) =>
+                                  containerAllAddedAccounts(
+                                      account: tradingAccountsModel
+                                          .accounts![index]),
+                              separatorBuilder: (context, index) =>
+                                  const Divider(
+                                color: Color(0xffC4C4C4),
                               ),
+                              itemCount:
+                                  tradingAccountsModel.accounts!.length,
+                            ),
                       ),
                     ),
                     SizedBox(
-                      height: 1.h,
+                      height: 7.h,
                     ),
                   ],
                 ),
