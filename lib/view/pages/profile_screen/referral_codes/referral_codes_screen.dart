@@ -67,7 +67,7 @@ class _ReferralCodesScreenState extends State<ReferralCodesScreen> {
                         ),
                         Center(
                           child: mainElevatedButton(
-                              // onPressed: _pickImage,
+                               onPressed: _pickImage,
                               width: 40.w,
                               height: 5.h,
                               text: 'Add referral code'),
@@ -76,67 +76,75 @@ class _ReferralCodesScreenState extends State<ReferralCodesScreen> {
                           height: 2.h,
                         ),
                         Table(
-                            border: TableBorder.all(color: Colors.grey),
-                            children: [
+                          border: TableBorder.all(color: Colors.grey),
+                          children: [
+                            TableRow(
+                              decoration:
+                                  BoxDecoration(color: Colors.grey[200]),
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Center(
+                                    child: Text(
+                                      'Image',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.blue),
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Center(
+                                    child: Text(
+                                      'Code',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.blue),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            if (_image != null && _code != null)
                               TableRow(
                                 children: [
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
-                                    child: Center(
-                                      child: Text(
-                                        'Image',
-                                        style: TextStyle(
-                                            fontSize: 15.dp,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.blue),
-                                      ),
-                                    ),
+                                    child: Image.file(_image!,
+                                        height: 100,
+                                        width: 100,
+                                        fit: BoxFit.cover),
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
-                                    child: Center(
-                                      child: Text(
-                                        'Code',
-                                        style: TextStyle(
-                                            fontSize: 15.dp,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.blue),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              TableRow(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: _image == null
-                                        ? Container(
-                                            color: Colors.yellow[100],
-                                            child: Center(
-                                              child: Text(
-                                                'No referral codes available.',
-                                                style: TextStyle(
-                                                    color: Colors.brown),
-                                              ),
-                                            ),
-                                          )
-                                        : Image.file(_image!,
-                                            height: 100,
-                                            width: 100,
-                                            fit: BoxFit.cover),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: _code == null
-                                        ? Container()
-                                        : Text(
+                                    child: Text(
                                       _code!,
-                                      style: TextStyle(fontWeight: FontWeight.bold),
-                                    ),)
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
                                 ],
                               ),
-                            ]),
+                          ],
+                        ),
+                        if (_image == null || _code == null)
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  color: Colors.yellow[100],
+                                  borderRadius: BorderRadius.circular(6.dp)),
+                              width: double.infinity,
+                              padding: EdgeInsets.all(16.0),
+                              child: Center(
+                                child: Text(
+                                  'No referral codes available.',
+                                  style: TextStyle(color: Colors.brown),
+                                ),
+                              ),
+                            ),
+                          ),
                       ]),
                 ))
           ],
