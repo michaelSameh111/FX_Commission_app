@@ -14,11 +14,11 @@ class PaymentHistoryScreen extends StatefulWidget {
 
 class _PaymentHistoryScreenState extends State<PaymentHistoryScreen> {
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   AppCubit.get(context).getPaymentsLogs();
-  // }
+  @override
+  void initState() {
+    super.initState();
+    AppCubit.get(context).getPaymentsLogs();
+  }
 
   @override
   Widget build(BuildContext context) {

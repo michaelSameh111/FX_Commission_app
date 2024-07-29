@@ -11,6 +11,7 @@ import 'package:fx_commission_app/view/pages/profile_screen/inactive_fees/inacti
 import 'package:fx_commission_app/view/pages/profile_screen/loyalty_program/loyalty_program_screen.dart';
 import 'package:fx_commission_app/view/pages/profile_screen/payment_logs/payment_logs_screen.dart';
 import 'package:fx_commission_app/view/pages/profile_screen/referral/referral_screen.dart';
+import 'package:fx_commission_app/view/pages/profile_screen/referral_codes/referral_codes_screen.dart';
 import 'package:fx_commission_app/view/pages/profile_screen/registered_from_my_referral/registered_from_my_referral_screen.dart';
 import 'package:fx_commission_app/view/pages/profile_screen/trading_accounts/trading_accounts_screen.dart';
 import 'withdrawals/withdrawals_screen.dart';
@@ -399,11 +400,11 @@ class MainProfileScreen extends StatelessWidget {
                                       ),
                                       InkWell(
                                         onTap: () {
-                                          // Navigator.push(
-                                          //     context,
-                                          //     MaterialPageRoute(
-                                          //         builder: (context) =>
-                                          //         const LoginScreen()));
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      ReferralCodesScreen()));
                                         },
                                         child: Row(
                                           children: [
