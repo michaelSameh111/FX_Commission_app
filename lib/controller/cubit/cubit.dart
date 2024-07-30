@@ -25,7 +25,6 @@ import 'package:fx_commission_app/view/pages/more_screen/main_more_screen.dart';
 import 'package:fx_commission_app/view/pages/profile_screen/main_profile_screen.dart';
 import 'package:fx_commission_app/view/pages/splash&auth/login_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../model/payments_logs/payments_logs_model.dart';
 
 class AppCubit extends Cubit<AppStates> {
@@ -551,8 +550,13 @@ class AppCubit extends Cubit<AppStates> {
   }
 
 
-  void getPaymentsLogs() {
-    emit(PaymentsLogsLoadingState());
+  void getPaymentsLogs({bool isButtonPressed = false}) {
+    if (isButtonPressed) {
+      emit(PaymentsLogsButtonLoadingState());
+    } else {
+      emit(PaymentsLogsLoadingState());
+    }
+
     DioHelper.getData(
       url: paymentsLogsUrl,
       token: loginDataModel.accessToken,

@@ -13,7 +13,6 @@ class PaymentHistoryScreen extends StatefulWidget {
 }
 
 class _PaymentHistoryScreenState extends State<PaymentHistoryScreen> {
-
   @override
   void initState() {
     super.initState();
@@ -25,107 +24,122 @@ class _PaymentHistoryScreenState extends State<PaymentHistoryScreen> {
     return BlocConsumer<AppCubit, AppStates>(
       listener: (context, state) {},
       builder: (context, state) {
+        bool isButtonLoading = state is PaymentsLogsButtonLoadingState;
+        bool isLoading = state is PaymentsLogsLoadingState;
         return Scaffold(
           appBar: reusableAppBar(context: context, text: 'My Profile'),
-          body: SingleChildScrollView(
-            child: Column(
-              children: [
-                containerBelowAppBar(text: 'Payments log'),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 3.0.w, vertical: 3.h),
-                  child: Container(
-                    width: double.infinity,
-                    padding: EdgeInsets.all(12.dp),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      border: Border.all(
-                        color: const Color(0xff0095D0),
-                      ),
-                      borderRadius: BorderRadius.circular(7.dp),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            Text(
-                              'Total Payments : ',
-                              style: TextStyle(
-                                  fontSize: 15.dp, fontWeight: FontWeight.w600),
+          body: isLoading
+              ? const Center(
+                  child: CircularProgressIndicator(
+                    color: Color(0xff0095D0),
+                  ),
+                )
+              : SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      containerBelowAppBar(text: 'Payments log'),
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 3.0.w, vertical: 3.h),
+                        child: Container(
+                          width: double.infinity,
+                          padding: EdgeInsets.all(12.dp),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            border: Border.all(
+                              color: const Color(0xff0095D0),
                             ),
-                            Text(
-                              '${loginDataModel.userBalance}',
-                              style: TextStyle(
-                                  fontSize: 15.dp, fontWeight: FontWeight.w600),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 1.h,
-                        ),
-                        Text(
-                          'Sort by date',
-                          style: TextStyle(
-                              fontSize: 15.dp, fontWeight: FontWeight.w500),
-                        ),
-                        SizedBox(
-                          height: 2.h,
-                        ),
-                        const Row(
-                          children: [
-                            startDateTextFormField(),
-                            Spacer(),
-                            endDateTextFormField()
-                          ],
-                        ),
-                        SizedBox(
-                          height: 3.h,
-                        ),
-                        Center(
-                          child: mainElevatedButton(
-                            loading: state is PaymentsLogsLoadingState,
-                            onPressed: () {
-                              AppCubit.get(context).getPaymentsLogs();
-                            },
-                            width: 35.w,
-                            height: 5.h,
-                            text: 'Find',
+                            borderRadius: BorderRadius.circular(7.dp),
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  Text(
+                                    'Total Payments : ',
+                                    style: TextStyle(
+                                        fontSize: 15.dp,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                  Text(
+                                    '${loginDataModel.userBalance}',
+                                    style: TextStyle(
+                                        fontSize: 15.dp,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 1.h,
+                              ),
+                              Text(
+                                'Sort by date',
+                                style: TextStyle(
+                                    fontSize: 15.dp,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                              SizedBox(
+                                height: 2.h,
+                              ),
+                              const Row(
+                                children: [
+                                  startDateTextFormField(),
+                                  Spacer(),
+                                  endDateTextFormField()
+                                ],
+                              ),
+                              SizedBox(
+                                height: 3.h,
+                              ),
+                              Center(
+                                child: mainElevatedButton(
+                                  loading: isButtonLoading,
+                                  onPressed: () {
+                                    AppCubit.get(context)
+                                        .getPaymentsLogs(isButtonPressed: true);
+                                  },
+                                  width: 35.w,
+                                  height: 5.h,
+                                  text: 'Find',
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                      Table(
+                        columnWidths: {
+                          0: FlexColumnWidth(1),
+                          1: FlexColumnWidth(4),
+                        },
+                        children: [
+                          TableRow(
+                            children: [
+                              ListView.builder(
+                                physics: NeverScrollableScrollPhysics(),
+                                itemBuilder: (context, index) =>
+                                    PaymentLogContainer(
+                                  paymentHistory:
+                                      paymentsLogsModel.paymentHistory![index],
+                                ),
+                                itemCount:
+                                    paymentsLogsModel.paymentHistory!.length,
+                                shrinkWrap: true,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
-                Table(
-                  columnWidths: {
-                    0: FlexColumnWidth(1),
-                    1: FlexColumnWidth(4),
-                  },
-                  children: [
-                    TableRow(
-                      children: [
-                        ListView.builder(
-                          physics: NeverScrollableScrollPhysics(),
-                          itemBuilder: (context, index) => PaymentLogContainer(
-                            paymentHistory: paymentsLogsModel.paymentHistory![index],
-                          ),
-                          itemCount: paymentsLogsModel.paymentHistory!.length,
-                          shrinkWrap: true,
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
         );
       },
     );
   }
-  Widget PaymentLogContainer ({
-    required PaymentHistory paymentHistory
-}){
+
+  Widget PaymentLogContainer({required PaymentHistory paymentHistory}) {
     return Padding(
       padding: EdgeInsets.only(left: 3.0.w, right: 3.0.w, bottom: 2.h),
       child: Container(
@@ -155,7 +169,9 @@ class _PaymentHistoryScreenState extends State<PaymentHistoryScreen> {
                               fontWeight: FontWeight.bold,
                               color: const Color(0xff0095D0)),
                         ),
-                        SizedBox(width: 25.w,),
+                        SizedBox(
+                          width: 25.w,
+                        ),
                       ],
                     ),
                   ),
@@ -164,7 +180,9 @@ class _PaymentHistoryScreenState extends State<PaymentHistoryScreen> {
                     height: 5.h,
                     color: const Color(0xffC4C4C4),
                   ),
-                  SizedBox(width: 5.w,),
+                  SizedBox(
+                    width: 5.w,
+                  ),
                   Expanded(
                     child: Text(
                       '${paymentHistory.amount}',
@@ -178,8 +196,6 @@ class _PaymentHistoryScreenState extends State<PaymentHistoryScreen> {
             Divider(
               thickness: 0.3.w,
             ),
-
-
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 3.w),
               child: Row(
@@ -194,7 +210,9 @@ class _PaymentHistoryScreenState extends State<PaymentHistoryScreen> {
                               fontWeight: FontWeight.bold,
                               color: const Color(0xff0095D0)),
                         ),
-                        SizedBox(width: 30.w,),
+                        SizedBox(
+                          width: 30.w,
+                        ),
                       ],
                     ),
                   ),
@@ -203,7 +221,9 @@ class _PaymentHistoryScreenState extends State<PaymentHistoryScreen> {
                     height: 5.h,
                     color: const Color(0xffC4C4C4),
                   ),
-                  SizedBox(width: 5.w,),
+                  SizedBox(
+                    width: 5.w,
+                  ),
                   Expanded(
                     child: Text(
                       '${paymentHistory.start}',
@@ -217,8 +237,6 @@ class _PaymentHistoryScreenState extends State<PaymentHistoryScreen> {
             Divider(
               thickness: 0.3.w,
             ),
-
-
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 3.w),
               child: Row(
@@ -230,13 +248,17 @@ class _PaymentHistoryScreenState extends State<PaymentHistoryScreen> {
                         fontWeight: FontWeight.bold,
                         color: const Color(0xff0095D0)),
                   ),
-                  SizedBox(width: 30.2.w,),
+                  SizedBox(
+                    width: 30.2.w,
+                  ),
                   Container(
                     width: 0.3.w,
                     height: 5.h,
                     color: const Color(0xffC4C4C4),
                   ),
-                  SizedBox(width: 5.w,),
+                  SizedBox(
+                    width: 5.w,
+                  ),
                   Expanded(
                     child: Text(
                       '${paymentHistory.finals}',
@@ -250,7 +272,6 @@ class _PaymentHistoryScreenState extends State<PaymentHistoryScreen> {
             Divider(
               thickness: 0.3.w,
             ),
-
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 3.w),
               child: Row(
@@ -265,7 +286,9 @@ class _PaymentHistoryScreenState extends State<PaymentHistoryScreen> {
                               fontWeight: FontWeight.bold,
                               color: const Color(0xff0095D0)),
                         ),
-                        SizedBox(width: 23.2.w,),
+                        SizedBox(
+                          width: 23.2.w,
+                        ),
                       ],
                     ),
                   ),
@@ -274,7 +297,9 @@ class _PaymentHistoryScreenState extends State<PaymentHistoryScreen> {
                     height: 5.h,
                     color: const Color(0xffC4C4C4),
                   ),
-                  SizedBox(width: 5.w,),
+                  SizedBox(
+                    width: 5.w,
+                  ),
                   Expanded(
                     child: Text(
                       '${formatDate('${paymentHistory.createdAt}')}',

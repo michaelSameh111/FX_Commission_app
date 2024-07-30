@@ -216,6 +216,8 @@ class AddTradingAccountErrorState extends AppStates {
 
 class PaymentsLogsLoadingState extends AppStates {}
 
+class PaymentsLogsButtonLoadingState extends AppStates {}
+
 class PaymentsLogsSuccessState extends AppStates {}
 
 class PaymentsLogsErrorState extends AppStates {
