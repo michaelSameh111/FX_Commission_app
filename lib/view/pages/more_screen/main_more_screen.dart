@@ -7,7 +7,7 @@ import 'package:fx_commission_app/view/pages/more_screen/blogs/blogs_screen.dart
 import 'package:fx_commission_app/view/pages/more_screen/contact_us/contact_us_screen.dart';
 import 'package:fx_commission_app/view/pages/more_screen/forex/forex_screen.dart';
 import 'package:fx_commission_app/view/pages/more_screen/how_to_register_for_trading_account/how_to_register_for_trading_account_screen.dart';
-import 'package:fx_commission_app/view/pages/more_screen/loyalty_programs/loyalty_programs_screen.dart';
+import 'package:fx_commission_app/view/pages/more_screen/loyalty_programs_more_screen/loyalty_programs_more_screen.dart';
 import 'package:fx_commission_app/view/pages/more_screen/services/services_screen.dart';
 
 class MainMoreScreen extends StatelessWidget {
@@ -145,7 +145,7 @@ class MainMoreScreen extends StatelessWidget {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                LoyaltyProgramsScreen()));
+                                                LoyaltyProgramsMoreScreen()));
                                   },
                                   child: Row(
                                     children: [

@@ -70,7 +70,7 @@ class ServicesErrorState extends AppStates {
 }
 
 
-class LoyaltyProgramsLoadingState extends AppStates {}
+class LoyaltyProgramsMoreScreenLoadingState extends AppStates {}
 
 class LoyaltyProgramsSuccessState extends AppStates {}
 
@@ -224,4 +224,15 @@ class PaymentsLogsErrorState extends AppStates {
   final String error;
 
   PaymentsLogsErrorState(this.error);
+}
+
+
+class LoyaltyProgramProfileScreenLoadingState extends AppStates {}
+
+class LoyaltyProgramProfileScreenSuccessState extends AppStates {}
+
+class LoyaltyProgramProfileScreenErrorState extends AppStates {
+  final String error;
+
+  LoyaltyProgramProfileScreenErrorState(this.error);
 }

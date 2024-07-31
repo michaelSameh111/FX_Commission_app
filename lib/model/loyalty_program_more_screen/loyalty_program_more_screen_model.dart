@@ -1,12 +1,12 @@
-class LoyaltyProgramModel {
+class LoyaltyProgramMoreScreenModel {
   String? message;
   Page? page;
   List<PageMetas>? pageMetas;
  // List<Null>? advertisingBanners;
-  Null? video;
+  dynamic video;
   List<LoyaltyProgramStages>? loyaltyProgramStages;
 
-  LoyaltyProgramModel(
+  LoyaltyProgramMoreScreenModel(
       {this.message,
         this.page,
         this.pageMetas,
@@ -14,7 +14,7 @@ class LoyaltyProgramModel {
         this.video,
         this.loyaltyProgramStages});
 
-  LoyaltyProgramModel.fromJson(Map<String, dynamic> json) {
+  LoyaltyProgramMoreScreenModel.fromJson(Map<String, dynamic> json) {
     message = json['message'];
     page = json['page'] != null ? new Page.fromJson(json['page']) : null;
     if (json['page metas'] != null) {

@@ -5,10 +5,9 @@ import 'package:fx_commission_app/controller/constants.dart';
 import 'package:fx_commission_app/controller/cubit/cubit.dart';
 import 'package:fx_commission_app/controller/cubit/login/login_cubit.dart';
 import 'package:fx_commission_app/controller/cubit/login/login_states.dart';
-import 'package:fx_commission_app/controller/cubit/states.dart';
 import 'package:fx_commission_app/view/pages/profile_screen/edit_profile_screen.dart';
 import 'package:fx_commission_app/view/pages/profile_screen/inactive_fees/inactive_fees_screen.dart';
-import 'package:fx_commission_app/view/pages/profile_screen/loyalty_program/loyalty_program_screen.dart';
+import 'package:fx_commission_app/view/pages/profile_screen/loyalty_program_profile_screen/loyalty_program_profile_screen.dart';
 import 'package:fx_commission_app/view/pages/profile_screen/payment_logs/payment_logs_screen.dart';
 import 'package:fx_commission_app/view/pages/profile_screen/referral/referral_screen.dart';
 import 'package:fx_commission_app/view/pages/profile_screen/referral_codes/referral_codes_screen.dart';
@@ -443,7 +442,7 @@ class MainProfileScreen extends StatelessWidget {
                                               context,
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                      const LoyaltyProgramScreen()));
+                                                      const LoyaltyProgramProfileScreen()));
                                         },
                                         child: Row(
                                           children: [

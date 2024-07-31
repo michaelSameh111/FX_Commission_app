@@ -17,7 +17,8 @@ import 'package:fx_commission_app/model/crypto_news/crypto_news_model.dart';
 import 'package:fx_commission_app/model/end_points.dart';
 import 'package:fx_commission_app/model/forex_course/forex_course_model.dart';
 import 'package:fx_commission_app/model/forex_news/forex_news_model.dart';
-import 'package:fx_commission_app/model/loyalty_program/loyalty_program_model.dart';
+import 'package:fx_commission_app/model/loyalty_program_more_screen/loyalty_program_more_screen_model.dart';
+import 'package:fx_commission_app/model/loyalty_program_profile_screen/loyalty_program_profile_screen_model.dart';
 import 'package:fx_commission_app/model/services/services_model.dart';
 import 'package:fx_commission_app/model/trading_accounts/trading_accounts_model.dart';
 import 'package:fx_commission_app/view/pages/brokers_screen/main_brokers_screen.dart';
@@ -119,12 +120,13 @@ class AppCubit extends Cubit<AppStates> {
     });
   }
 
-  void getLoyaltyPrograms() {
-    emit(LoyaltyProgramsLoadingState());
+  void getLoyaltyProgramsMoreScreen() {
+    emit(LoyaltyProgramsMoreScreenLoadingState());
 
-    DioHelper.getData(url: loyaltyProgramsUrl).then((value) {
-      loyaltyProgramsModel = LoyaltyProgramModel.fromJson(value?.data);
-      print('we have got loyalty programs dataaaaaa heeeeeeeere');
+    DioHelper.getData(url: loyaltyProgramsMoreScreenUrl).then((value) {
+      loyaltyProgramsMoreScreenModel =
+          LoyaltyProgramMoreScreenModel.fromJson(value?.data);
+      print('we have got loyalty programs more screen dataaaaaa heeeeeeeere');
 
       emit(LoyaltyProgramsSuccessState());
     }).catchError((error, stackTrace) {
@@ -413,7 +415,6 @@ class AppCubit extends Cubit<AppStates> {
     }
   }
 
-
   void postAddTradingAccount({
     required int companyId,
     required int accountNumber,
@@ -476,7 +477,6 @@ class AppCubit extends Cubit<AppStates> {
       },
     );
   }
-
 
   void getCompanies() {
     emit(CompaniesLoadingState());
@@ -549,7 +549,6 @@ class AppCubit extends Cubit<AppStates> {
     // });
   }
 
-
   void getPaymentsLogs({bool isButtonPressed = false}) {
     if (isButtonPressed) {
       emit(PaymentsLogsButtonLoadingState());
@@ -574,7 +573,6 @@ class AppCubit extends Cubit<AppStates> {
     });
   }
 
-
   void logout(BuildContext context) async {
     // Obtain shared preferences
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -589,5 +587,24 @@ class AppCubit extends Cubit<AppStates> {
     );
     loginEmailController.clear();
     loginPasswordController.clear();
+  }
+
+  void getLoyaltyProgramProfileScreen() {
+    emit(LoyaltyProgramProfileScreenLoadingState());
+
+    DioHelper.getData(url: loyaltyProgramProfileScreenUrl).then((value) {
+      loyaltyProgramProfileScreenModel =
+          LoyaltyProgramProfileScreenModel.fromJson(value?.data);
+      print(
+          'we have got loyalty programs profile screen dataaaaaa heeeeeeeere ${value!.data}');
+
+      emit(LoyaltyProgramProfileScreenSuccessState());
+    }).catchError((error, stackTrace) {
+      print('error (getLoyaltyProgramProfileScreen methoooooooooooood)');
+      print(error.toString());
+      print('stack trace : $stackTrace');
+
+      emit(LoyaltyProgramProfileScreenErrorState(error));
+    });
   }
 }

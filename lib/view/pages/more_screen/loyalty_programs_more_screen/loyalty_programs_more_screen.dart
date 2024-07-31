@@ -6,12 +6,12 @@ import 'package:fx_commission_app/controller/cubit/cubit.dart';
 import 'package:fx_commission_app/controller/cubit/states.dart';
 import 'package:fx_commission_app/view/widgets/reusable_widgets.dart';
 
-class LoyaltyProgramsScreen extends StatefulWidget {
+class LoyaltyProgramsMoreScreen extends StatefulWidget {
   @override
-  State<LoyaltyProgramsScreen> createState() => _LoyaltyProgramsScreenState();
+  State<LoyaltyProgramsMoreScreen> createState() => _LoyaltyProgramsMoreScreenState();
 }
 
-class _LoyaltyProgramsScreenState extends State<LoyaltyProgramsScreen> {
+class _LoyaltyProgramsMoreScreenState extends State<LoyaltyProgramsMoreScreen> {
 //   String question =
 //       'What is the Loyalty program offered by FXCommission and its mechanism?';
 //
@@ -35,7 +35,7 @@ class _LoyaltyProgramsScreenState extends State<LoyaltyProgramsScreen> {
   @override
   void initState() {
     super.initState();
-    AppCubit.get(context).getLoyaltyPrograms();
+    AppCubit.get(context).getLoyaltyProgramsMoreScreen();
   }
 
   @override
@@ -45,7 +45,7 @@ class _LoyaltyProgramsScreenState extends State<LoyaltyProgramsScreen> {
       builder: (context, state) {
         return Scaffold(
           appBar: reusableAppBar(context: context, text: 'More'),
-          body: state is LoyaltyProgramsLoadingState
+          body: state is LoyaltyProgramsMoreScreenLoadingState
               ? const Center(
                   child: CircularProgressIndicator(
                     color: Color(0xff0095D0),
@@ -70,7 +70,7 @@ class _LoyaltyProgramsScreenState extends State<LoyaltyProgramsScreen> {
                                       width: double.infinity,
                                       child: Image.network(
                                         fit: BoxFit.cover,
-                                        '${loyaltyProgramsModel.page!.image}',
+                                        '${loyaltyProgramsMoreScreenModel.page!.image}',
                                         errorBuilder:
                                             (context, error, stackTrace) =>
                                                 const Text(
@@ -84,7 +84,7 @@ class _LoyaltyProgramsScreenState extends State<LoyaltyProgramsScreen> {
                                     height: 2.h,
                                   ),
                                   Text(
-                                    '${loyaltyProgramsModel.page!.description}',
+                                    '${loyaltyProgramsMoreScreenModel.page!.description}',
                                     style: TextStyle(
                                         color: const Color(0xff646363),
                                         fontSize: 16.dp),
